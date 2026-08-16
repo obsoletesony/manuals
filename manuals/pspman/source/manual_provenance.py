@@ -9,7 +9,12 @@ from pathlib import Path
 def manual_input_files(repo_root: Path, manual_dir: Path) -> list[Path]:
     """Return every source input that can affect the generated manual outputs."""
     files = [repo_root / "package.json"]
-    for directory in (manual_dir / "content", manual_dir / "assets", manual_dir / "source"):
+    for directory in (
+        repo_root / "manualkit",
+        manual_dir / "content",
+        manual_dir / "assets",
+        manual_dir / "source",
+    ):
         files.extend(
             path
             for path in directory.rglob("*")

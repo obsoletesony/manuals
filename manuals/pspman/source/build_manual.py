@@ -6,14 +6,23 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from io import BytesIO
 import subprocess
+import sys
 from pathlib import Path
 
-from pypdf import PdfReader, PdfWriter, Transformation
-from pypdf._page import PageObject
-from reportlab.lib.utils import ImageReader
-from reportlab.pdfgen import canvas
+SOURCE_DIR = Path(__file__).resolve().parent
+MANUAL_DIR = SOURCE_DIR.parent
+REPO_ROOT = MANUAL_DIR.parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from manualkit.deterministic import (
+    PdfMetadata,
+    apply_metadata,
+    content_image_reader,
+    invariant_canvas,
+)
+from manualkit.document import add_print_boxes, build_spreads, edition_paths
 
 from diagrams import DIAGRAMS, psp_front
 from layout import (
@@ -54,9 +63,6 @@ from styles import (
 )
 from manual_provenance import manual_input_digest
 
-SOURCE_DIR = Path(__file__).resolve().parent
-MANUAL_DIR = SOURCE_DIR.parent
-REPO_ROOT = MANUAL_DIR.parents[1]
 CONTENT_DIR = MANUAL_DIR / "content"
 ASSET_DIR = MANUAL_DIR / "assets"
 SCREENSHOT_DIR = ASSET_DIR / "screenshots"
@@ -79,19 +85,19 @@ def canonical_origin() -> str:
     return remote.removesuffix(".git").replace("https://github.com/ObsoleteSony/", "https://github.com/obsoletesony/")
 
 
-def metadata(c: canvas.Canvas) -> None:
-    c.setTitle("PSPMAN User's Guide")
-    c.setAuthor("ObsoleteSony")
-    c.setCreator("ObsoleteSony")
-    c.setSubject("User's guide for PSPMAN")
-    c.setKeywords("PSPMAN, ObsoleteSony, PlayStation Portable, user's guide")
-
+DOCUMENT_METADATA = PdfMetadata(
+    title="PSPMAN User's Guide",
+    author="ObsoleteSony",
+    creator="ObsoleteSony",
+    subject="User's guide for PSPMAN",
+    keywords="PSPMAN, ObsoleteSony, PlayStation Portable, user's guide",
+)
 
 def cover(c, page: ManualPage, *, back: bool = False) -> None:
     c.setFillColor(CHARCOAL)
     c.rect(0, 0, c._pagesize[0], c._pagesize[1], fill=1, stroke=0)
     x0, y0 = page.x0, page.y0
-    cover_logo = ImageReader(BytesIO(PSPMAN3_COVER_LOGO.read_bytes()))
+    cover_logo = content_image_reader(PSPMAN3_COVER_LOGO)
     if back:
         logo_width = TRIM - mm(30)
         logo_height = logo_width * 356 / 2400
@@ -568,8 +574,8 @@ def build_pages(
 ) -> list[dict]:
     page_size = (PRINT_SIZE, PRINT_SIZE) if print_edition else (TRIM, TRIM)
     bleed = BLEED if print_edition else 0
-    c = canvas.Canvas(str(path), pagesize=page_size, pageCompression=1, invariant=1)
-    metadata(c)
+    c = invariant_canvas(path, page_size)
+    apply_metadata(c, DOCUMENT_METADATA)
     reviews: list[dict] = []
     outline_pages = {1, len(content["pages"]), *(number for _, number in TOC)}
     for record in content["pages"]:
@@ -610,47 +616,6 @@ def build_pages(
     return reviews
 
 
-def add_print_boxes(path: Path) -> None:
-    reader = PdfReader(str(path))
-    writer = PdfWriter()
-    for page in reader.pages:
-        page.mediabox.lower_left = (0, 0)
-        page.mediabox.upper_right = (PRINT_SIZE, PRINT_SIZE)
-        page.bleedbox.lower_left = (0, 0)
-        page.bleedbox.upper_right = (PRINT_SIZE, PRINT_SIZE)
-        page.trimbox.lower_left = (BLEED, BLEED)
-        page.trimbox.upper_right = (BLEED + TRIM, BLEED + TRIM)
-        page.cropbox.lower_left = (0, 0)
-        page.cropbox.upper_right = (PRINT_SIZE, PRINT_SIZE)
-        writer.add_page(page)
-    writer.add_metadata(reader.metadata or {})
-    with path.open("wb") as handle:
-        writer.write(handle)
-
-
-def build_spreads(reader_path: Path, spread_path: Path) -> None:
-    reader = PdfReader(str(reader_path))
-    total_pages = len(reader.pages)
-    pairs: list[tuple[int | None, int]] = (
-        [(None, 1)] if total_pages % 2 else [(total_pages, 1)]
-    ) + [(left, left + 1) for left in range(2, total_pages, 2)]
-    writer = PdfWriter()
-    for left_number, right_number in pairs:
-        spread = PageObject.create_blank_page(width=SPREAD_SIZE[0], height=SPREAD_SIZE[1])
-        if left_number is not None:
-            spread.merge_transformed_page(reader.pages[left_number - 1], Transformation().translate(0, 0))
-        spread.merge_transformed_page(reader.pages[right_number - 1], Transformation().translate(TRIM, 0))
-        writer.add_page(spread)
-    writer.add_metadata({
-        "/Title": "PSPMAN User's Guide - Reader Spreads",
-        "/Subject": "User's guide for PSPMAN",
-        "/Author": "ObsoleteSony",
-        "/Creator": "PSPMAN deterministic manual builder",
-    })
-    with spread_path.open("wb") as handle:
-        writer.write(handle)
-
-
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as handle:
@@ -664,7 +629,7 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--qa-output", type=Path)
     args = parser.parse_args()
-    args.output_dir.mkdir(parents=True, exist_ok=True)
+    paths = edition_paths(args.output_dir, "PSPMAN-User-Guide")
     register_fonts(REPO_ROOT)
     content = load_json(CONTENT_DIR / "manual.yaml")
     controls = load_json(CONTENT_DIR / "controls.json")
@@ -676,13 +641,24 @@ def main() -> None:
     page_count = len(content["pages"])
     if page_count != 15 or [p["number"] for p in content["pages"]] != list(range(1, page_count + 1)):
         raise RuntimeError("Manual content must define pages 1 through 15 exactly")
-    reader = args.output_dir / "PSPMAN-User-Guide.pdf"
-    spreads = args.output_dir / "PSPMAN-User-Guide-Spreads.pdf"
-    print_pdf = args.output_dir / "PSPMAN-User-Guide-Print.pdf"
+    reader = paths.reader
+    spreads = paths.spreads
+    print_pdf = paths.print
     layout_reviews = build_pages(reader, print_edition=False, content=content, controls=controls, compatibility=compatibility)
     build_pages(print_pdf, print_edition=True, content=content, controls=controls, compatibility=compatibility)
-    add_print_boxes(print_pdf)
-    build_spreads(reader, spreads)
+    add_print_boxes(print_pdf, print_size=PRINT_SIZE, bleed=BLEED, trim=TRIM)
+    build_spreads(
+        reader,
+        spreads,
+        spread_size=SPREAD_SIZE,
+        page_width=TRIM,
+        metadata={
+            "/Title": "PSPMAN User's Guide - Reader Spreads",
+            "/Subject": "User's guide for PSPMAN",
+            "/Author": "ObsoleteSony",
+            "/Creator": "PSPMAN deterministic manual builder",
+        },
+    )
     if args.qa_output:
         args.qa_output.parent.mkdir(parents=True, exist_ok=True)
         build_pages(

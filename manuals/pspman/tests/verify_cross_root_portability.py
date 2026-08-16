@@ -129,14 +129,13 @@ def main() -> None:
                     "clone",
                     "--quiet",
                     "--no-local",
-                    "--single-branch",
-                    "--branch",
-                    "main",
+                    "--no-checkout",
                     str(REPO_ROOT),
                     str(checkout),
                 ],
                 cwd=root,
             )
+            run(["git", "checkout", "--quiet", "--detach", source_head], cwd=checkout)
             require(
                 run(["git", "rev-parse", "HEAD"], cwd=checkout) == source_head,
                 f"Checkout did not reproduce source HEAD: {checkout}",

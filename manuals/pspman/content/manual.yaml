@@ -1,0 +1,137 @@
+{
+  "document": {
+    "title": "PSPMAN User's Guide",
+    "code": "OS-PSPMAN-01 (2)",
+    "description": "Walkman-inspired FLAC music player for Sony PSP, built with PocketJS.",
+    "creator": "ObsoleteSony",
+    "version": "0.1.0-alpha.2",
+    "edition": "16 August 2026",
+    "site": "obsoletesony.com/pspman",
+    "handle": "@obsoletesony",
+    "repository": "https://github.com/obsoletesony/PSPMAN"
+  },
+  "pages": [
+    {"number": 1, "kind": "cover", "title": "PSPMAN"},
+    {"number": 2, "title": "Read this first", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "text", "text": "PSPMAN is a Walkman-inspired FLAC music player for Sony PSP. It scans compatible music on the Memory Stick and organizes it in an offline library."},
+      {"type": "heading", "before": "section", "text": "Requirements"},
+      {"type": "bullet", "spacing": "compact", "text": "PSPMAN requires a PSP with 64 MB of RAM."},
+      {"type": "bullet", "spacing": "compact", "text": "Supported models are PSP-2000, PSP-3000, PSP Go, and PSP Street (E1000)."},
+      {"type": "bullet", "spacing": "compact", "text": "The original PSP-1000 is not supported because it has only 32 MB of RAM."},
+      {"type": "bullet", "spacing": "compact", "text": "Custom firmware or another working homebrew environment is required."},
+      {"type": "bullet", "spacing": "compact", "text": "Use stereo 16-bit / 44.1 kHz FLAC music."},
+      {"type": "bullet", "spacing": "compact", "text": "Keep enough free Memory Stick space for PSPMAN, music, saved data, and cover art."},
+      {"type": "heading", "before": "section", "text": "Music files"},
+      {"type": "text", "text": "PSPMAN does not retag, move, or delete source music files. It does not require a network connection."},
+      {"type": "heading", "before": "section", "text": "Button names"},
+      {"type": "text", "text": "These instructions use CROSS, CIRCLE, SQUARE, TRIANGLE, L, R, START, SELECT, and HOME as labeled on the PSP."}
+    ]},
+    {"number": 3, "title": "Table of Contents", "kind": "contents", "density": "standard", "template": "standard-text"},
+    {"number": 4, "title": "Install and add music", "density": "dense", "template": "visual", "blocks": [
+      {"type": "numbered-list", "items": [
+        "Extract PSPMAN: Extract the package. Confirm that the PSPMAN folder contains EBOOT.PBP.",
+        "Copy the application: PSP/GAME/PSPMAN/EBOOT.PBP",
+        "Copy music: Copy supported FLAC files to MUSIC or PSP/MUSIC.",
+        "Disconnect safely: Eject the storage, then disconnect the USB cable or card reader.",
+        "Start PSPMAN: On the XMB, open Game > Memory Stick and start PSPMAN by ObsoleteSony.",
+        "Finish the scan: Allow the first scan to finish. Restart PSPMAN after adding music."
+      ]}
+    ]},
+    {"number": 5, "title": "Library", "density": "standard", "template": "visual", "blocks": [
+      {"type": "screenshot", "file": "library-home-480x272.png", "width": 64},
+      {"type": "bullet", "spacing": "compact", "text": "All Songs lists every compatible track."},
+      {"type": "bullet", "spacing": "compact", "text": "Album and Artist group tracks by their stored metadata."},
+      {"type": "bullet", "spacing": "compact", "text": "Folder follows the folder structure on the Memory Stick."},
+      {"type": "bullet", "spacing": "compact", "text": "Favorites contains tracks you marked with the star on Now Playing."},
+      {"type": "bullet", "spacing": "compact", "text": "Recent lists recently added tracks. Playlists shows M3U and M3U8 playlists found during scanning."},
+      {"type": "bullet", "spacing": "compact", "text": "The player strip shows the current track and Previous, Play/Pause, and Next controls."},
+      {"type": "text", "text": "Use the D-pad to choose an item. Press CROSS to open a category or play a track. Press CIRCLE to return."}
+    ]},
+    {"number": 6, "title": "Playback", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "Start playback"},
+      {"type": "text", "text": "Choose a track in the Library and press CROSS. PSPMAN starts the track and creates a queue from the selected list."},
+      {"type": "heading", "before": "section", "text": "Basic controls"},
+      {"type": "bullet", "spacing": "relaxed", "text": "Press START or activate Play/Pause to pause or resume."},
+      {"type": "bullet", "spacing": "relaxed", "text": "Tap L for the previous track or R for the next track. Previous restarts the current track after three seconds of playback."},
+      {"type": "bullet", "spacing": "relaxed", "text": "Hold L to rewind or R to fast-forward."},
+      {"type": "heading", "before": "section", "text": "Shuffle and repeat"},
+      {"type": "text", "text": "Shuffle changes the order of the active queue. Repeat can repeat the queue or the current track. When a track ends, PSPMAN follows the active queue and Repeat setting."}
+    ]},
+    {"number": 7, "title": "Now Playing", "density": "standard", "template": "visual", "blocks": [
+      {"type": "screenshot", "file": "now-playing-480x272.png", "width": 72},
+      {"type": "bullet", "anchor": "secondary", "spacing": "compact", "text": "From Library Home, press SQUARE to open Now Playing."},
+      {"type": "bullet", "spacing": "compact", "text": "Now Playing shows cover art, title, artist, album, file information, time, progress, and transport controls."},
+      {"type": "bullet", "spacing": "compact", "text": "Use the D-pad to move focus. Press CROSS to activate the focused control."},
+      {"type": "bullet", "spacing": "compact", "text": "Up returns to Library. Left opens Queue. Right opens Favorites. Down opens Audio."},
+      {"type": "bullet", "spacing": "compact", "text": "Activate the star to add or remove the current track from Favorites."},
+      {"type": "bullet", "spacing": "compact", "text": "Press TRIANGLE for Track Information or SQUARE for Cassette View."}
+    ]},
+    {"number": 8, "title": "Queue, Favorites, and Track Information", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "Queue"},
+      {"type": "text", "text": "Press Left on Now Playing to open the current queue. Choose a track and press CROSS to play it."},
+      {"type": "heading", "before": "section", "text": "Favorites"},
+      {"type": "text", "text": "Press Right on Now Playing or open Favorites from Library Home. Select a favorite track and press CROSS to play it."},
+      {"type": "heading", "before": "section", "text": "Track Information"},
+      {"type": "text", "text": "Press TRIANGLE on Now Playing. The first page shows file and metadata information. The second page shows playback status for troubleshooting. Use Left or Right, or L or R, to change page. Use Up or Down to scroll. Press CIRCLE or TRIANGLE to return."}
+    ]},
+    {"number": 9, "title": "Cassette View", "density": "standard", "template": "visual", "blocks": [
+      {"type": "screenshot", "file": "cassette-480x272.png", "width": 72},
+      {"type": "bullet", "anchor": "secondary", "spacing": "relaxed", "text": "Press SQUARE on Now Playing to open Cassette View."},
+      {"type": "bullet", "spacing": "relaxed", "text": "The reels move while music plays and stop when playback is paused."},
+      {"type": "bullet", "spacing": "relaxed", "text": "Press Left or Right to choose a cassette color. PSPMAN remembers the choice."},
+      {"type": "bullet", "spacing": "relaxed", "text": "Press START or CROSS to play or pause."},
+      {"type": "bullet", "spacing": "relaxed", "text": "Press CIRCLE or SQUARE to return to Now Playing."}
+    ]},
+    {"number": 10, "title": "About, diagnostics, and safe exit", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "About"},
+      {"type": "text", "text": "Press SELECT from a normal screen to open About. It shows PSPMAN version 0.1.0-alpha.2, the creator, website, repository, and license. Press any button to close it."},
+      {"type": "heading", "before": "section", "text": "Diagnostics"},
+      {"type": "text", "text": "Use Diagnostics only when reporting a problem. Pause playback, return to Library, then hold TRIANGLE. Use CIRCLE to return. Keep the diagnostic files created during the problem session."},
+      {"type": "heading", "before": "section", "text": "Safe exit"},
+      {"type": "text", "text": "Press HOME to open the PSP exit dialog. Confirm the exit and allow PSPMAN to finish before removing the Memory Stick or turning off the PSP."}
+    ]},
+    {"number": 11, "title": "Supported files and limits", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "Audio"},
+      {"type": "text", "text": "PSPMAN accepts stereo 16-bit / 44.1 kHz FLAC. Other audio profiles and codecs are not supported."},
+      {"type": "heading", "before": "section", "text": "Library"},
+      {"type": "bullet", "spacing": "compact", "text": "PSPMAN scans MUSIC and PSP/MUSIC on the Memory Stick."},
+      {"type": "bullet", "spacing": "compact", "text": "The Library supports up to 512 tracks."},
+      {"type": "bullet", "spacing": "compact", "text": "Music may be stored up to 12 folder levels deep."},
+      {"type": "heading", "before": "section", "text": "Cover art"},
+      {"type": "text", "text": "PSPMAN supports embedded JPEG and PNG cover art. Cover art may take longer to appear the first time. If cover art cannot be displayed, PSPMAN shows No Cover."},
+      {"type": "heading", "before": "section", "text": "Text"},
+      {"type": "text", "text": "PSPMAN reads UTF-8 metadata. Some Japanese characters may not display correctly."}
+    ]},
+    {"number": 12, "title": "Troubleshooting: startup and library", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "PSPMAN does not appear or open"},
+      {"type": "text", "text": "Confirm that EBOOT.PBP is in PSP/GAME/PSPMAN and that custom firmware or another homebrew environment is working. PSPMAN requires a 64 MB model: PSP-2000, PSP-3000, PSP Go, or PSP Street (E1000). The original PSP-1000 is not supported because it has 32 MB of RAM."},
+      {"type": "heading", "before": "section", "text": "No songs found"},
+      {"type": "text", "text": "Place supported FLAC files in MUSIC or PSP/MUSIC. Restart PSPMAN and allow the scan to finish."},
+      {"type": "heading", "before": "section", "text": "A song is rejected"},
+      {"type": "text", "text": "Confirm that the file is stereo 16-bit / 44.1 kHz FLAC and that it opens normally on another device."}
+    ]},
+    {"number": 13, "title": "Troubleshooting: artwork and playback", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "Cover art is missing"},
+      {"type": "text", "text": "Wait for the first cover load to finish. PSPMAN supports embedded JPEG and PNG images. If the image cannot be displayed, PSPMAN shows No Cover."},
+      {"type": "heading", "before": "section", "text": "Japanese text is incomplete"},
+      {"type": "text", "text": "Some Japanese characters may not be included in the display font. The stored tags are not changed."},
+      {"type": "heading", "before": "section", "text": "Playback does not start"},
+      {"type": "text", "text": "Confirm that the song matches the supported audio profile and is not damaged. Try another supported track."},
+      {"type": "heading", "before": "section", "text": "Report a problem"},
+      {"type": "text", "text": "Pause playback, return to Library, and hold TRIANGLE to open Diagnostics. Reproduce the problem, exit with HOME, and keep the diagnostic files. Report the PSP model, firmware, track format, and steps that caused the problem at github.com/obsoletesony/PSPMAN/issues."}
+    ]},
+    {"number": 14, "title": "Credits, support, and legal", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "Support"},
+      {"type": "bullet", "spacing": "compact", "text": "Website: obsoletesony.com/pspman"},
+      {"type": "bullet", "spacing": "compact", "text": "Contact: @obsoletesony"},
+      {"type": "bullet", "spacing": "compact", "text": "Repository and issues: github.com/obsoletesony/PSPMAN"},
+      {"type": "text", "text": "PSPMAN is built with PocketJS."},
+      {"type": "heading", "before": "section", "text": "License and notices"},
+      {"type": "text", "text": "PSPMAN-owned source code is released under the MIT License. MIT License / Copyright 2026 ObsoleteSony. Full third-party notices and license texts are in THIRD_PARTY_NOTICES.md and LICENSES/ in the PSPMAN source repository."},
+      {"type": "heading", "before": "section", "text": "Brand and non-affiliation"},
+      {"type": "text", "text": "The MIT License does not grant rights to the ObsoleteSony name, logo, wordmark, or related artwork."},
+      {"type": "text", "text": "PSPMAN is an independent homebrew project and is not affiliated with or endorsed by Sony Group Corporation or Sony Interactive Entertainment."}
+    ]},
+    {"number": 15, "kind": "back-cover", "title": "PSPMAN"}
+  ]
+}

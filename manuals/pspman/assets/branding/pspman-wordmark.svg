@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 5617 833" role="img" aria-labelledby="title">
+  <title id="title">ObsoleteSony PSPMAN</title>
+  <defs>
+    <!-- The owner raster is rectilinear. Reusable glyph geometry keeps this
+         reconstruction exact, compact, and easy to maintain. -->
+    <path id="small-o" d="M0 0h98v11H0zm0 11h11v54H0zm87 0h11v54H87zM0 65h98v11H0z"/>
+    <path id="small-b" d="M0 0h99v11H0zm0 11h12v21H0zm87 0h12v21H87zM0 32h99v12H0zm0 12h12v21H0zm87 0h12v21H87zM0 65h99v11H0z"/>
+    <path id="small-s" d="M44 0h54v11H44zm0 11h11v54H44zM0 65h55v11H0z"/>
+    <path id="small-l" d="M0 0h12v65H0zm0 65h99v11H0z"/>
+    <path id="small-e" d="M0 0h98v11H0zm0 32h98v12H0zm0 12h11v21H0zm0 21h98v11H0z"/>
+    <path id="small-t" d="M0 0h98v11H0zm43 11h12v65H43z"/>
+    <path id="small-n" d="M0 0h99v11H0zm0 11h12v65H0zm87 0h12v65H87z"/>
+    <path id="small-y" d="M0 0h11v32H0zm87 0h11v32H87zM0 32h98v12H0zm87 12h11v21H87zM0 65h98v11H0z"/>
+
+    <path id="large-p" d="M0 0h845v33H0zm816 33h29v183h-29zM0 216h845v33H0zm0 33h33v219H0z"/>
+    <path id="large-s" d="M433 0h466v33H433zm0 33h36v403h-36zM0 436h469v32H0z"/>
+    <path id="large-m" d="M0 0h844v34H0zm0 34h30v436H0zm391 0h30v436h-30zm423 0h30v436h-30z"/>
+    <path id="large-a" d="M0 0h844v34H0zm0 34h30v183H0zm814 0h30v183h-30zM0 217h844v33H0zm0 33h32v220H0zm812 0h32v220h-32z"/>
+    <path id="large-n" d="M0 0h844v34H0zm0 34h30v436H0zm814 0h30v436h-30z"/>
+  </defs>
+
+  <g fill="#fff" id="obsoletesony-attribution">
+    <use xlink:href="#small-o" x="1874"/>
+    <use xlink:href="#small-b" x="2029"/>
+    <use xlink:href="#small-s" x="2185"/>
+    <use xlink:href="#small-o" x="2341"/>
+    <use xlink:href="#small-l" x="2496"/>
+    <use xlink:href="#small-e" x="2652"/>
+    <use xlink:href="#small-t" x="2808"/>
+    <use xlink:href="#small-e" x="2963"/>
+    <use xlink:href="#small-s" x="3119"/>
+    <use xlink:href="#small-o" x="3275"/>
+    <use xlink:href="#small-n" x="3430"/>
+    <use xlink:href="#small-y" x="3586"/>
+  </g>
+
+  <g fill="#fff" id="pspman-wordmark">
+    <use xlink:href="#large-p" x="0" y="364"/>
+    <use xlink:href="#large-s" x="846" y="364"/>
+    <use xlink:href="#large-p" x="1873" y="364"/>
+    <use xlink:href="#large-m" x="2841" y="363"/>
+    <use xlink:href="#large-a" x="3807" y="363"/>
+    <use xlink:href="#large-n" x="4773" y="363"/>
+  </g>
+</svg>

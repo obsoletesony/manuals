@@ -1,0 +1,12 @@
+[project]
+name = "obsoletesony-manuals-preservation"
+version = "0.0.0"
+description = "Exact local preservation environment for the PSPMAN User's Guide generator"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "Pillow==12.3.0",
+  "pypdf==6.10.0",
+  "pypdfium2==5.12.1",
+  "reportlab==4.4.9",
+]
+

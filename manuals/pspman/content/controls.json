@@ -1,0 +1,10 @@
+{
+  "screens": [
+    ["Library Home", "D-pad moves between categories and player controls. CROSS opens or activates. SQUARE opens Now Playing."],
+    ["Library lists", "Up/Down selects. CROSS opens a group or plays a track. CIRCLE returns. TRIANGLE opens a contextual action where available."],
+    ["Now Playing", "D-pad moves focus or opens shortcuts. CROSS activates. START plays or pauses. Tap L/R to change track; hold to seek. TRIANGLE opens Track Information. SQUARE opens Cassette."],
+    ["Track Information", "Left/Right or L/R changes page. Up/Down scrolls. CIRCLE or TRIANGLE returns."],
+    ["Cassette View", "Left/Right changes color. START or CROSS plays or pauses. CIRCLE or SQUARE returns to Now Playing."],
+    ["Global", "SELECT opens About. HOME opens the PSP exit dialog. Pause playback, return to Library, and hold TRIANGLE for Diagnostics."]
+  ]
+}

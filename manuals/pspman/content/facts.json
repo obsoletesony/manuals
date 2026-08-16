@@ -1,0 +1,59 @@
+{
+  "status": "Current-state fact sheet for PSPMAN 0.1.0-alpha.2 User's Guide",
+  "recorded": "2026-08-16",
+  "sourceCommit": "d2dc64587697b83a8e412df78a2b52428ce2c1fd",
+  "sourceTree": "871a8e6e8c62dcc85fe893034a6bb99ebc264299",
+  "versionSource": "package.json",
+  "identity": {
+    "product": "PSPMAN",
+    "creator": "ObsoleteSony",
+    "description": "Walkman-inspired FLAC music player for Sony PSP, built with PocketJS.",
+    "contact": "@obsoletesony",
+    "website": "https://obsoletesony.com/pspman",
+    "source": "https://github.com/obsoletesony/PSPMAN",
+    "license": "MIT License / Copyright 2026 ObsoleteSony"
+  },
+  "installation": {
+    "applicationDirectory": "PSP/GAME/PSPMAN/",
+    "entryPoint": "EBOOT.PBP",
+    "musicRoots": ["ms0:/MUSIC", "ms0:/PSP/MUSIC"]
+  },
+  "hardware": {
+    "minimumRam": "64 MB",
+    "supportedModels": ["PSP-2000", "PSP-3000", "PSP Go", "PSP Street (E1000)"],
+    "unsupportedModels": ["PSP-1000 (32 MB RAM)"],
+    "softwareRequirement": "Custom firmware or another working homebrew environment"
+  },
+  "audio": {
+    "compatibilitySource": "compatibility.json",
+    "supported": "stereo 16-bit / 44.1 kHz FLAC",
+    "output": "signed 16-bit / 44.1 kHz stereo PCM",
+    "gapless": "Not claimed"
+  },
+  "metadata": {
+    "fields": ["title", "artist", "album", "album artist", "track number", "disc number", "date", "genre", "composer", "duration", "source format", "file identity"],
+    "flac": "Vorbis comments and embedded PICTURE front cover",
+    "display": "UTF-8 metadata is preserved; some Japanese characters may not display correctly"
+  },
+  "artwork": {
+    "formats": ["JPEG", "PNG"],
+    "behavior": "Cover art may take longer to appear the first time; images that cannot be displayed show No Cover",
+    "qualifiedExamples": ["500x500 embedded PNG", "1400x1400 embedded JPEG"]
+  },
+  "library": {
+    "organization": ["All Songs", "Album", "Artist", "Folder", "Favorites", "Recent", "Playlists"],
+    "maximumTracks": 512,
+    "maximumDirectoryLevels": 12,
+    "startup": "recursively scans enabled Memory Stick roots and reuses the persisted library index",
+    "persistence": ["library index", "Favorites", "Recent", "queue/session state", "artwork cache", "cassette preference", "playback settings"]
+  },
+  "controlsSource": "controls.json",
+  "about": "SELECT opens the global About overlay; any button closes it",
+  "help": "Settings contains Controls and Help",
+  "diagnostics": "Pause playback, return to Library, then hold TRIANGLE to open Diagnostics",
+  "quit": "HOME opens the PSP system confirmation; a confirmed exit completes PSPMAN's clean shutdown path",
+  "validation": {
+    "hardware": "PSP-2001 with 5.00 M33-4"
+  },
+  "thirdPartyNotices": ["THIRD_PARTY_NOTICES.md", "LICENSES/"]
+}

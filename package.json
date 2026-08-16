@@ -1,0 +1,53 @@
+{
+  "name": "pspman",
+  "version": "0.1.0-alpha.2",
+  "private": true,
+  "description": "A Walkman-inspired FLAC music player for the Sony PSP.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/obsoletesony/PSPMAN.git"
+  },
+  "homepage": "https://obsoletesony.com/pspman",
+  "keywords": [
+    "psp",
+    "playstation-portable",
+    "pocketjs",
+    "flac",
+    "music-player",
+    "homebrew"
+  ],
+  "type": "module",
+  "scripts": {
+    "materialize:pocketjs": "bun scripts/materialize-pocketjs.ts",
+    "bootstrap": "bun run materialize:pocketjs && bun scripts/bootstrap.ts",
+    "setup": "bun run materialize:pocketjs && bun scripts/setup.ts",
+    "check:guest": "bun run materialize:pocketjs && bun .pocket/pocketjs-overlay/tools/pocket.ts check --target psp --manifest pocket.json --project-root .",
+    "build:guest": "bun run materialize:pocketjs && bun .pocket/pocketjs-overlay/tools/pocket.ts compile --target psp --manifest pocket.json --project-root . --outdir dist/pocket/psp",
+    "build:baseline": "bun run materialize:pocketjs && bun .pocket/pocketjs-overlay/tools/pocket.ts build --target psp --manifest pocket.json --project-root . --outdir dist/baseline -- --release",
+    "deps:flac": "bun scripts/build-libflac.ts",
+    "deps:flac:host": "bun scripts/build-libflac.ts --host-tools",
+    "fixtures:flac": "bun scripts/generate-flac-fixture.ts",
+    "fixtures:library": "bun scripts/generate-library-fixtures.ts",
+    "generate:japanese-font": "bun run materialize:pocketjs && bun scripts/generate-japanese-fallback.ts",
+    "build:psp": "bun run materialize:pocketjs && bun scripts/psp.ts --release",
+    "build:psp:diagnostic": "bun run materialize:pocketjs && bun scripts/psp.ts --release --diagnostic",
+    "test": "bun run materialize:pocketjs && bun test ./test/*.test.ts",
+    "test:pocketjs-overlay": "bun test ./test/pocketjs-overlay.test.ts",
+    "test:audio-fidelity": "bun test ./test/audio-fidelity.test.ts",
+    "test:psp-buffer-contract": "bun test ./test/psp-buffer-contract.test.ts",
+    "test:artwork-transitions": "bun test ./test/artwork-transitions.test.ts",
+    "verify:repository": "bun scripts/repository-check.mjs",
+    "verify:submodules": "bun scripts/verify-submodules.ts",
+    "verify:production": "bun scripts/verify-production.mjs"
+  },
+  "devDependencies": {
+    "@napi-rs/canvas": "1.0.2",
+    "@pocketjs/framework": "file:.pocket/pocketjs-overlay",
+    "@types/bun": "1.3.14",
+    "@types/opentype.js": "1.3.10",
+    "opentype.js": "1.3.5",
+    "solid-js": "1.9.14",
+    "typescript": "5.9.3"
+  }
+}

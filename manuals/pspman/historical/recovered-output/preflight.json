@@ -1,0 +1,33 @@
+{
+  "pages": 15,
+  "spreads": 8,
+  "visibleFonts": [
+    "/AAAAAA+Inter-Bold",
+    "/AAAAAA+Inter-Regular",
+    "/AAAAAA+InterDisplay-Bold",
+    "/AAAAAA+InterDisplay-Regular"
+  ],
+  "embeddedFonts": "pass",
+  "requiredText": "pass",
+  "pageHeadings": "pass",
+  "metadata": "pass",
+  "bookmarks": "pass",
+  "linkAnnotations": 12,
+  "hyperlinks": [
+    "https://github.com/obsoletesony/PSPMAN"
+  ],
+  "spreadPairing": "pass",
+  "blankPages": "pass",
+  "printBoxes": "pass",
+  "screenshots": "pass",
+  "monochrome": "pass",
+  "measurementReport": "pass",
+  "contactSheet": "D:\\PSPMAN\\PSPMAN-Japanese-Fallback\\docs\\manual\\rendered\\contact-sheet.png",
+  "spreadRenders": "D:\\PSPMAN\\PSPMAN-Japanese-Fallback\\docs\\manual\\rendered\\spread-02-03.png ... D:\\PSPMAN\\PSPMAN-Japanese-Fallback\\docs\\manual\\rendered\\spread-14-15.png",
+  "diagnosticGridContactSheet": "not generated",
+  "deterministic": {
+    "PSPMAN-User-Guide.pdf": true,
+    "PSPMAN-User-Guide-Spreads.pdf": true,
+    "PSPMAN-User-Guide-Print.pdf": true
+  }
+}

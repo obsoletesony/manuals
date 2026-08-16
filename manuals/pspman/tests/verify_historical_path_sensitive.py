@@ -1,4 +1,4 @@
-"""Verify the portable PSPMAN build against the immutable approved reference."""
+"""Archived verifier for preservation root 6e1ce483; run from that commit."""
 
 from __future__ import annotations
 
@@ -25,28 +25,28 @@ RENDER_DIR = TEST_DIR / "rendered"
 
 APPROVED_SHA256 = "1c8d586db251fbde9d96d20fc58685b3cf99dee0a129677d311431130a90201b"
 APPROVED_BYTES = 227_124
-PORTABLE_SHA256 = "01680c55b20ab944593cf600f1f6824a83cc0f1c136bafc287c3290ab937d12a"
-PORTABLE_BYTES = 227_118
+RELOCATED_SHA256 = "2f2da3de2b749e99eef21461a5f85c1c1bb2d1deeeac33a8976b043f2cc501b8"
+RELOCATED_BYTES = 227_120
 EXPECTED_PAGES = 15
 EXPECTED_PAGE_POINTS = 340.1575
 
 APPROVED_COVER_NAME = "/FormXob.0a5a692857f3d4c7b01de761e63a0cbb"
-PORTABLE_COVER_NAME = "/FormXob.491de1e9ee92f99a1d59f3282f625ebe"
+RELOCATED_COVER_NAME = "/FormXob.0819ac937093cb9a14c6e855026d3781"
 NORMALIZED_COVER_NAME = "/FormXob.PSPMAN_COVER"
 EXPECTED_RAW_DIFFERING_OBJECTS = [5, 34, 68, 82]
 
 EXPECTED_OUTPUTS = {
     "PSPMAN-User-Guide.pdf": {
-        "bytes": PORTABLE_BYTES,
-        "sha256": PORTABLE_SHA256,
+        "bytes": RELOCATED_BYTES,
+        "sha256": RELOCATED_SHA256,
     },
     "PSPMAN-User-Guide-Print.pdf": {
-        "bytes": 229_260,
-        "sha256": "37f54941b87c3730de925c5a4ca32d24f65cb0ca71f6ca6e7f85ec9da3ca294e",
+        "bytes": 229_262,
+        "sha256": "829b7362087088ce580b1ce738f4c8f97642ef168bcd7b548b502be3cf218f97",
     },
     "PSPMAN-User-Guide-Spreads.pdf": {
         "bytes": 506_415,
-        "sha256": "07c05ea3b71e09c99a0458290ebf3bf51ac6ec4a108df166fcb9a2d974009f4b",
+        "sha256": "5e05244be9fa297e29d78f492b4f266c7c08570495c7d165ac691206c26d87d7",
     },
 }
 
@@ -82,7 +82,7 @@ def object_value(value):
 
 def normalize_text(value: str) -> str:
     return value.replace(APPROVED_COVER_NAME, NORMALIZED_COVER_NAME).replace(
-        PORTABLE_COVER_NAME, NORMALIZED_COVER_NAME
+        RELOCATED_COVER_NAME, NORMALIZED_COVER_NAME
     )
 
 
@@ -102,7 +102,7 @@ def canonical_object(value, *, normalize_cover: bool):
             payload = payload.replace(
                 APPROVED_COVER_NAME.encode("ascii"), NORMALIZED_COVER_NAME.encode("ascii")
             ).replace(
-                PORTABLE_COVER_NAME.encode("ascii"), NORMALIZED_COVER_NAME.encode("ascii")
+                RELOCATED_COVER_NAME.encode("ascii"), NORMALIZED_COVER_NAME.encode("ascii")
             )
         return [
             "stream",
@@ -134,19 +134,19 @@ def canonical_object(value, *, normalize_cover: bool):
 
 
 def parsed_object_differences(
-    approved: PdfReader, portable: PdfReader, *, normalize_cover: bool
+    approved: PdfReader, relocated: PdfReader, *, normalize_cover: bool
 ) -> list[int]:
     require(
-        int(approved.trailer["/Size"]) == int(portable.trailer["/Size"]),
+        int(approved.trailer["/Size"]) == int(relocated.trailer["/Size"]),
         "PDF object counts differ",
     )
     differences: list[int] = []
     for object_id in range(1, int(approved.trailer["/Size"])):
         approved_object = approved.get_object(object_id)
-        portable_object = portable.get_object(object_id)
+        relocated_object = relocated.get_object(object_id)
         if canonical_object(
             approved_object, normalize_cover=normalize_cover
-        ) != canonical_object(portable_object, normalize_cover=normalize_cover):
+        ) != canonical_object(relocated_object, normalize_cover=normalize_cover):
             differences.append(object_id)
     return differences
 
@@ -249,7 +249,7 @@ def build_clean_outputs() -> dict[str, dict]:
             )
             require(
                 completed.returncode == 0,
-                f"Clean portable build failed ({completed.returncode}): {completed.stderr}",
+                f"Clean relocated build failed ({completed.returncode}): {completed.stderr}",
             )
         results: dict[str, dict] = {}
         for filename, expected in EXPECTED_OUTPUTS.items():
@@ -274,19 +274,19 @@ def main() -> None:
         require(path.is_file(), f"Required PDF is missing: {path}")
 
     approved_hash = sha256_file(REFERENCE)
-    portable_hash = sha256_file(GENERATED)
+    relocated_hash = sha256_file(GENERATED)
     require(REFERENCE.stat().st_size == APPROVED_BYTES, "Approved reference size changed")
     require(approved_hash == APPROVED_SHA256, f"Approved reference hash changed: {approved_hash}")
-    require(GENERATED.stat().st_size == PORTABLE_BYTES, "Portable output size changed")
-    require(portable_hash == PORTABLE_SHA256, f"Portable output hash changed: {portable_hash}")
-    require(REFERENCE.read_bytes() != GENERATED.read_bytes(), "Portable output unexpectedly equals the historical artifact")
+    require(GENERATED.stat().st_size == RELOCATED_BYTES, "Relocated output size changed")
+    require(relocated_hash == RELOCATED_SHA256, f"Relocated output hash changed: {relocated_hash}")
+    require(REFERENCE.read_bytes() != GENERATED.read_bytes(), "Path-sensitive exception unexpectedly absent")
 
     approved_reader = PdfReader(str(REFERENCE))
-    portable_reader = PdfReader(str(GENERATED))
+    relocated_reader = PdfReader(str(GENERATED))
     require(len(approved_reader.pages) == EXPECTED_PAGES, "Approved page count changed")
-    require(len(portable_reader.pages) == EXPECTED_PAGES, "Portable page count changed")
+    require(len(relocated_reader.pages) == EXPECTED_PAGES, "Relocated page count changed")
 
-    for label, reader in (("approved", approved_reader), ("portable", portable_reader)):
+    for label, reader in (("approved", approved_reader), ("relocated", relocated_reader)):
         for page_number, page in enumerate(reader.pages, 1):
             width = float(page.mediabox.width)
             height = float(page.mediabox.height)
@@ -296,35 +296,35 @@ def main() -> None:
         require(metadata == EXPECTED_METADATA, f"{label} metadata mismatch: {metadata}")
 
     approved_text = [page.extract_text() or "" for page in approved_reader.pages]
-    portable_text = [page.extract_text() or "" for page in portable_reader.pages]
-    require(approved_text == portable_text, "Extracted page text differs")
-    all_text = "\n".join(portable_text)
+    relocated_text = [page.extract_text() or "" for page in relocated_reader.pages]
+    require(approved_text == relocated_text, "Extracted page text differs")
+    all_text = "\n".join(relocated_text)
     require("OS-PSPMAN-01 (2)" not in all_text, "Visible document code remains")
     require("PSPMAN USER'S GUIDE" not in all_text, "Removed interior footer label remains")
     require("Parts and controls" not in all_text, "Removed controls page remains")
     require("OPERATING INSTRUCTIONS" not in all_text.upper(), "Obsolete title remains")
 
-    require(font_inventory(approved_reader) == font_inventory(portable_reader), "Embedded font inventory differs")
+    require(font_inventory(approved_reader) == font_inventory(relocated_reader), "Embedded font inventory differs")
     require(
         image_inventory(approved_reader, normalize_cover=True)
-        == image_inventory(portable_reader, normalize_cover=True),
+        == image_inventory(relocated_reader, normalize_cover=True),
         "Decoded image inventory differs after the single cover-name normalization",
     )
 
     raw_differences = parsed_object_differences(
-        approved_reader, portable_reader, normalize_cover=False
+        approved_reader, relocated_reader, normalize_cover=False
     )
     require(
         raw_differences == EXPECTED_RAW_DIFFERING_OBJECTS,
         f"Unexpected raw PDF-object differences: {raw_differences}",
     )
     normalized_differences = parsed_object_differences(
-        approved_reader, portable_reader, normalize_cover=True
+        approved_reader, relocated_reader, normalize_cover=True
     )
     require(not normalized_differences, f"Unrelated PDF-object differences: {normalized_differences}")
     require(
         canonical_object(approved_reader.trailer, normalize_cover=False)
-        == canonical_object(portable_reader.trailer, normalize_cover=False),
+        == canonical_object(relocated_reader.trailer, normalize_cover=False),
         "PDF trailers differ",
     )
 
@@ -333,24 +333,24 @@ def main() -> None:
         "Approved cover resource-name occurrence count changed",
     )
     require(
-        GENERATED.read_bytes().count(PORTABLE_COVER_NAME.encode("ascii")) == 2,
-        "Portable cover resource-name occurrence count changed",
+        GENERATED.read_bytes().count(RELOCATED_COVER_NAME.encode("ascii")) == 2,
+        "Relocated cover resource-name occurrence count changed",
     )
 
     approved_renders = render_inventory(REFERENCE, RENDER_DIR / "approved")
-    portable_renders = render_inventory(GENERATED, RENDER_DIR / "portable")
-    require(approved_renders == portable_renders, "Rendered page pixels or PNGs differ")
+    relocated_renders = render_inventory(GENERATED, RENDER_DIR / "relocated")
+    require(approved_renders == relocated_renders, "Rendered page pixels or PNGs differ")
 
     clean_builds = build_clean_outputs()
     result = {
-        "status": "PORTABLE-BUILD-MATCHES-APPROVED-RENDER",
+        "status": "PRESERVATION-EQUIVALENT-PATH-SENSITIVE",
         "approvedReference": {
             "bytes": APPROVED_BYTES,
             "sha256": approved_hash,
         },
-        "portableOutput": {
-            "bytes": PORTABLE_BYTES,
-            "sha256": portable_hash,
+        "relocatedOutput": {
+            "bytes": RELOCATED_BYTES,
+            "sha256": relocated_hash,
         },
         "cleanBuilds": clean_builds,
         "pages": EXPECTED_PAGES,
@@ -363,7 +363,7 @@ def main() -> None:
         "normalizedDifferingObjectIds": normalized_differences,
         "normalizedDifference": {
             "approved": APPROVED_COVER_NAME,
-            "portable": PORTABLE_COVER_NAME,
+            "relocated": RELOCATED_COVER_NAME,
         },
         "pageRenders": "pixel-identical",
         "renderedPagesCompared": len(approved_renders),

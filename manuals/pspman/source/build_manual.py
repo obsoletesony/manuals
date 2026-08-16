@@ -6,11 +6,13 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+from io import BytesIO
 import subprocess
 from pathlib import Path
 
 from pypdf import PdfReader, PdfWriter, Transformation
 from pypdf._page import PageObject
+from reportlab.lib.utils import ImageReader
 from reportlab.pdfgen import canvas
 
 from diagrams import DIAGRAMS, psp_front
@@ -89,11 +91,12 @@ def cover(c, page: ManualPage, *, back: bool = False) -> None:
     c.setFillColor(CHARCOAL)
     c.rect(0, 0, c._pagesize[0], c._pagesize[1], fill=1, stroke=0)
     x0, y0 = page.x0, page.y0
+    cover_logo = ImageReader(BytesIO(PSPMAN3_COVER_LOGO.read_bytes()))
     if back:
         logo_width = TRIM - mm(30)
         logo_height = logo_width * 356 / 2400
         c.drawImage(
-            str(PSPMAN3_COVER_LOGO),
+            cover_logo,
             x0 + mm(15),
             y0 + TRIM - mm(42),
             logo_width,
@@ -115,7 +118,7 @@ def cover(c, page: ManualPage, *, back: bool = False) -> None:
     logo_width = TRIM - mm(30)
     logo_height = logo_width * 356 / 2400
     c.drawImage(
-        str(PSPMAN3_COVER_LOGO),
+        cover_logo,
         x0 + mm(15),
         y0 + TRIM - mm(42),
         logo_width,

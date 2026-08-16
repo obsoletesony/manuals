@@ -1,16 +1,16 @@
-# ObsoleteSony manuals preservation
+# ObsoleteSony manuals
 
 This repository preserves the exact PSPMAN manual generator recovered from
 `D:\PSPMAN\PSPMAN-Japanese-Fallback` at commit
 `3e2fb4c11886f69ff89800edadd9545377e83acb` (tree
-`df5a3b9d3d9ab2ae6865f48de7fc5ed6b6a4e826`). It is a preservation checkpoint,
-not a generalized manual framework.
+`df5a3b9d3d9ab2ae6865f48de7fc5ed6b6a4e826`). The immutable preservation root is
+commit `6e1ce48372faa523c370aadb885cee32d1e36ebb`. This remains a focused PSPMAN
+manual repository, not a generalized framework.
 
-The relocated generator is deterministic. Its one accepted difference from the
-approved reference is the absolute-path-derived cover XObject name and the PDF
-bookkeeping mechanically affected by that name. Complete PDF hashes remain
-pinned, and the verifier rejects every other content, resource, metadata, text,
-dimension, or render difference. See `RECOVERY.md`.
+The preservation root records the recovered path-sensitive ReportLab behavior.
+The current generator makes image identity content-derived by passing the cover
+PNG to ReportLab as an `ImageReader` backed by its bytes. Builds are now
+byte-identical across different absolute checkout paths. See `RECOVERY.md`.
 
 The immutable approved reader artifact is
 `manuals/pspman/reference/PSPMAN-User-Guide-approved.pdf`:
@@ -28,14 +28,16 @@ The immutable approved reader artifact is
 - `manuals/pspman/output/`: ignored regenerated outputs and reports
 - `manuals/pspman/reference/`: immutable approved reader artifact
 - `manuals/pspman/historical/`: recovered editions, reports, and path-control output
-- `manuals/pspman/tests/verify_preservation.py`: independent identity comparison
+- `manuals/pspman/tests/verify_historical_path_sensitive.py`: archived preservation-root verifier
+- `manuals/pspman/tests/verify_preservation.py`: current build/reference comparison
+- `manuals/pspman/tests/verify_cross_root_portability.py`: clean-checkout portability test
 - `LICENSES/Inter-OFL-1.1.txt`: bundled Inter font license
 - `package.json`: preserved generator input used only to resolve PSPMAN version
 
 No PSPMAN runtime, audio, firmware, application, website, or private-media source
 is included.
 
-## Exact environment used for this checkpoint
+## Reproducible environment
 
 - Python 3.12.13
 - ReportLab 4.4.9
@@ -50,6 +52,14 @@ The exact dependency pins are in `pyproject.toml`. The original build does not
 use Poppler; it renders through pypdfium2. Poppler 26.05.0 was available for
 external inspection only.
 
+Current canonical outputs:
+
+| Edition | Bytes | SHA-256 |
+| --- | ---: | --- |
+| Reader | 227118 | `01680c55b20ab944593cf600f1f6824a83cc0f1c136bafc287c3290ab937d12a` |
+| Print | 229260 | `37f54941b87c3730de925c5a4ca32d24f65cb0ca71f6ca6e7f85ec9da3ca294e` |
+| Spreads | 506415 | `07c05ea3b71e09c99a0458290ebf3bf51ac6ec4a108df166fcb9a2d974009f4b` |
+
 ## Build
 
 From the repository root in PowerShell:
@@ -59,11 +69,11 @@ $python = 'C:\Users\Eddie\.cache\codex-runtimes\codex-primary-runtime\dependenci
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-pspman-manual.ps1 -Python $python
 ```
 
-The recovered generator validates the canonical PSPMAN origin. This repository
-intentionally has no remote, so the wrapper creates a disposable bare Git
-context under the operating-system temporary directory, supplies the expected
-origin there, and removes the context afterward. It never adds a remote to this
-repository and performs no network operation.
+The recovered generator validates the canonical PSPMAN application origin. The
+wrapper creates a disposable bare Git context under the operating-system
+temporary directory, supplies that application origin there, and removes the
+context afterward. It does not alter this repository's remote and performs no
+network operation during a build.
 
 The recovered generator's original command was:
 
@@ -78,11 +88,21 @@ $python = 'C:\Users\Eddie\.cache\codex-runtimes\codex-primary-runtime\dependenci
 powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verify-pspman-manual.ps1 -Python $python
 ```
 
-The verification wrapper runs the recovered build, the recovered structural and
-visual validator (`--render --determinism`), and the preservation comparison. The
-last step pins both complete PDF hashes, performs two additional clean relocated
-builds, and compares page count, size, metadata, extracted text, embedded fonts,
-decoded images, parsed objects, and every page render against the approved
-artifact. Success is reported as `PRESERVATION-EQUIVALENT-PATH-SENSITIVE`.
+The verification wrapper runs the build, structural and visual validation
+(`--render --determinism`), and current build/reference comparison. It pins the
+complete PDF hashes and compares page count, size, metadata, text, embedded
+fonts, decoded images, parsed objects, and every page render against the approved
+artifact. Success is reported as `PORTABLE-BUILD-MATCHES-APPROVED-RENDER`.
+
+After committing a clean candidate, verify two builds in each of two genuinely
+different clean checkout paths:
+
+```powershell
+& $python .\manuals\pspman\tests\verify_cross_root_portability.py
+```
+
+Success is reported as `PATH-INDEPENDENT-BUILDS-VERIFIED` and requires raw-byte,
+size, and SHA-256 identity for Reader, Print, and Spreads both within and across
+the two roots.
 
 See `RECOVERY.md` for the discovery and provenance inventory.

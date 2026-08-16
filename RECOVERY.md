@@ -195,3 +195,43 @@ The exception does not permit any other byte or object difference. It fails if
 either complete PDF hash changes, if the raw differing object set is not exactly
 `5`, `34`, `68`, and `82`, or if any parsed object remains different after only
 the two documented XObject names are normalized.
+
+The preservation-root verifier remains available as
+`manuals/pspman/tests/verify_historical_path_sensitive.py`. It is intended for
+commit `6e1ce48372faa523c370aadb885cee32d1e36ebb`; the complete root commit and its
+original verifier also remain recoverable from Git history and
+`D:\PSPMAN\manuals-preservation.bundle`.
+
+## Path-independent canonical generator
+
+The portability follow-up changes only cover-image loading in
+`source/build_manual.py`: the unchanged PNG bytes are wrapped in ReportLab
+`ImageReader(BytesIO(...))` before `drawImage`. Screenshot and diagram paths
+already use byte-backed `ImageReader` instances. No dimensions, coordinates,
+masks, scaling, interpolation, assets, content, metadata, or PDF bytes are
+post-processed.
+
+The content-derived cover resource name is
+`/FormXob.491de1e9ee92f99a1d59f3282f625ebe`. Current canonical outputs are:
+
+| Edition | Bytes | SHA-256 |
+| --- | ---: | --- |
+| Reader | 227118 | `01680c55b20ab944593cf600f1f6824a83cc0f1c136bafc287c3290ab937d12a` |
+| Print | 229260 | `37f54941b87c3730de925c5a4ca32d24f65cb0ca71f6ca6e7f85ec9da3ca294e` |
+| Spreads | 506415 | `07c05ea3b71e09c99a0458290ebf3bf51ac6ec4a108df166fcb9a2d974009f4b` |
+
+These hashes were established using Python 3.12.13, ReportLab 4.4.9, pypdf
+6.10.0, pypdfium2 5.12.1, Pillow 12.3.0, Git 2.53.0.windows.2, Windows locale
+`en-US`, and UTF-8 console encoding. `SOURCE_DATE_EPOCH`, `PYTHONHASHSEED`,
+`LANG`, `LC_ALL`, and `TZ` were unset.
+
+`verify_cross_root_portability.py` creates two clean clones at different
+absolute paths, builds every edition twice in each clone, and compares file
+size, SHA-256, and raw bytes within each root and across roots. It uses only
+explicit temporary directories and removes them through Python's scoped
+temporary-directory handling.
+
+The current verifier proves the portable Reader remains semantically and
+pixel-identical to the immutable approved reference. The approved PDF remains
+the authoritative released artifact; portability establishes reproducible
+future builds without changing that historical status.

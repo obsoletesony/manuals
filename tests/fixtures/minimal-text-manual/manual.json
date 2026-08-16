@@ -1,0 +1,66 @@
+{
+  "document": {
+    "title": "Minimal Text Manual",
+    "subtitle": "A fixture for deterministic text layout",
+    "author": "Documentation Team",
+    "subject": "Text-only manual fixture",
+    "keywords": "manual, fixture, text",
+    "filenameStem": "minimal-text-manual"
+  },
+  "sections": [
+    {
+      "title": "Start here",
+      "blocks": [
+        {
+          "type": "paragraph",
+          "text": "This fixture checks the smallest useful document structure. It contains only text and rules needed to separate a code block and a compact table."
+        },
+        {
+          "type": "ordered-list",
+          "items": [
+            "Read the requirement.",
+            "Complete the action.",
+            "Check the result."
+          ]
+        },
+        {
+          "type": "code",
+          "text": "docs/example/manual.json"
+        }
+      ]
+    },
+    {
+      "title": "Reference",
+      "blocks": [
+        {
+          "type": "subheading",
+          "text": "Available states"
+        },
+        {
+          "type": "unordered-list",
+          "items": [
+            "Ready means the input is complete.",
+            "Pending means the next action is known."
+          ]
+        },
+        {
+          "type": "table",
+          "columns": [
+            "State",
+            "Meaning"
+          ],
+          "rows": [
+            [
+              "Ready",
+              "Continue"
+            ],
+            [
+              "Pending",
+              "Complete the listed action"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

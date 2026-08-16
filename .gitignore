@@ -3,7 +3,7 @@ __pycache__/
 .venv/
 .pytest_cache/
 tmp/
-manuals/pspman/output/
-manuals/pspman/rendered/
+manuals/*/output/
+manuals/*/rendered/
 manuals/pspman/tests/rendered/
 manuals/pspman/tests/failure-analysis-renders/

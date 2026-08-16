@@ -30,20 +30,33 @@ def edition_paths(output_dir: Path, filename_stem: str) -> EditionPaths:
     )
 
 
-def add_print_boxes(path: Path, *, print_size: float, bleed: float, trim: float) -> None:
+def _dimensions(value: float | tuple[float, float]) -> tuple[float, float]:
+    return value if isinstance(value, tuple) else (value, value)
+
+
+def add_print_boxes(
+    path: Path,
+    *,
+    print_size: float | tuple[float, float],
+    bleed: float | tuple[float, float],
+    trim: float | tuple[float, float],
+) -> None:
     """Apply media, bleed, trim, and crop boxes to a print edition."""
 
+    print_width, print_height = _dimensions(print_size)
+    bleed_x, bleed_y = _dimensions(bleed)
+    trim_width, trim_height = _dimensions(trim)
     reader = PdfReader(str(path))
     writer = PdfWriter()
     for page in reader.pages:
         page.mediabox.lower_left = (0, 0)
-        page.mediabox.upper_right = (print_size, print_size)
+        page.mediabox.upper_right = (print_width, print_height)
         page.bleedbox.lower_left = (0, 0)
-        page.bleedbox.upper_right = (print_size, print_size)
-        page.trimbox.lower_left = (bleed, bleed)
-        page.trimbox.upper_right = (bleed + trim, bleed + trim)
+        page.bleedbox.upper_right = (print_width, print_height)
+        page.trimbox.lower_left = (bleed_x, bleed_y)
+        page.trimbox.upper_right = (bleed_x + trim_width, bleed_y + trim_height)
         page.cropbox.lower_left = (0, 0)
-        page.cropbox.upper_right = (print_size, print_size)
+        page.cropbox.upper_right = (print_width, print_height)
         writer.add_page(page)
     writer.add_metadata(reader.metadata or {})
     with path.open("wb") as handle:

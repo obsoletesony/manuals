@@ -1,58 +1,101 @@
 # ObsoleteSony manuals
 
-This repository preserves the exact PSPMAN manual generator recovered from
-`D:\PSPMAN\PSPMAN-Japanese-Fallback` at commit
-`3e2fb4c11886f69ff89800edadd9545377e83acb` (tree
-`df5a3b9d3d9ab2ae6865f48de7fc5ed6b6a4e826`). The immutable preservation root is
-commit `6e1ce48372faa523c370aadb885cee32d1e36ebb`. This remains a focused PSPMAN
-manual repository, not a generalized framework.
+This repository contains shared PDF build mechanics and product-local manual
+projects. New manuals begin as plain text. Graphics are added only when they
+make an instruction easier to understand.
 
-The preservation root records the recovered path-sensitive ReportLab behavior.
-The current generator makes image identity content-derived by passing the cover
-PNG to ReportLab as an `ImageReader` backed by its bytes. Builds are now
-byte-identical across different absolute checkout paths. See `RECOVERY.md`.
+The PSPMAN User's Guide remains the preserved reference project. Its content,
+layout, branding, and canonical PDF bytes are protected by exact regression
+tests.
 
-The immutable approved reader artifact is
-`manuals/pspman/reference/PSPMAN-User-Guide-approved.pdf`:
+## Repository layout
 
-- 15 pages
-- 227,124 bytes
-- SHA-256 `1c8d586db251fbde9d96d20fc58685b3cf99dee0a129677d311431130a90201b`
-- 340.1575 x 340.1575 points per page (reported as 340.158 x 340.158)
+- `manualkit/` contains product-neutral build, project, theme, and validation code.
+- `manuals/pspman/` contains the PSPMAN-specific compositor, content, assets, and tests.
+- `docs/ARCHITECTURE.md` defines the shared and product-local boundary.
+- `docs/EDITORIAL-GUIDE.md` defines the text-first editorial policy.
+- `tests/fixtures/minimal-text-manual/` is a generic text-only test input.
+- `scripts/` contains common commands and the preserved PSPMAN wrappers.
 
-## Preserved layout
+The shared runtime does not choose product wording, page count, branding, or
+visuals. PSPMAN keeps those decisions in its own project.
 
-- `manuals/pspman/source/`: recovered generator and validator, byte-for-byte
-- `manuals/pspman/content/`: recovered PSPMAN manual data
-- `manuals/pspman/assets/`: recovered fonts, branding, diagrams, and screenshots
-- `manuals/pspman/output/`: ignored regenerated outputs and reports
-- `manuals/pspman/reference/`: immutable approved reader artifact
-- `manuals/pspman/historical/`: recovered editions, reports, and path-control output
-- `manuals/pspman/tests/verify_historical_path_sensitive.py`: archived preservation-root verifier
-- `manuals/pspman/tests/verify_preservation.py`: current build/reference comparison
-- `manuals/pspman/tests/verify_cross_root_portability.py`: clean-checkout portability test
-- `LICENSES/Inter-OFL-1.1.txt`: bundled Inter font license
-- `package.json`: preserved generator input used only to resolve PSPMAN version
+## Requirements
 
-No PSPMAN runtime, audio, firmware, application, website, or private-media source
-is included.
-
-## Reproducible environment
-
-- Python 3.12.13
-- ReportLab 4.4.9
+- Python 3.12
+- Pillow 12.3.0
 - pypdf 6.10.0
 - pypdfium2 5.12.1
-- Pillow 12.3.0
-- Git 2.53.0.windows.2
-- Windows locale `en-US`; console encoding `utf-8`
-- `SOURCE_DATE_EPOCH`, `PYTHONHASHSEED`, `LANG`, `LC_ALL`, and `TZ` unset
+- ReportLab 4.4.9
 
-The exact dependency pins are in `pyproject.toml`. The original build does not
-use Poppler; it renders through pypdfium2. Poppler 26.05.0 was available for
-external inspection only.
+Exact pins are in `pyproject.toml`.
 
-Current canonical outputs:
+## Create a manual
+
+Run this from the repository root:
+
+```powershell
+.\scripts\new-manual.ps1 `
+  -Slug "product-name" `
+  -Title "Product Name User's Guide"
+```
+
+The command creates only:
+
+```text
+manuals/product-name/
+  README.md
+  manual.json
+```
+
+It refuses invalid slugs and existing directories. The starter content is
+clearly marked for editing and contains no product claims, artwork directory,
+chart, diagram, screenshot, icon, or image placeholder.
+
+## Build and validate
+
+```powershell
+.\scripts\build-manual.ps1 -Slug "product-name"
+.\scripts\validate-manual.ps1 -Slug "product-name"
+```
+
+Builds produce Reader, Print, and Spreads editions under the project's ignored
+`output/` directory. Validation checks metadata, page geometry, print boxes,
+text bounds, raster-image absence, repeated-build determinism, and rendering.
+
+The PSPMAN-specific commands remain supported:
+
+```powershell
+.\scripts\build-pspman-manual.ps1
+.\scripts\verify-pspman-manual.ps1
+```
+
+## Editorial policy
+
+Start with prose. Add a visual only when removing it would make the instructions
+harder to understand. The scaffold does not create decorative panels, cards,
+graphics, or empty visual sections. See `docs/EDITORIAL-GUIDE.md`.
+
+## Reproducibility tests
+
+Run the generic fixture and scaffold tests:
+
+```powershell
+python -m unittest discover -s tests -p "test_*.py"
+```
+
+The tests build the fixture and a fresh scaffold repeatedly from different
+absolute paths and compare file size, SHA-256, and raw bytes for all editions.
+They render every page and reject clipping, overflow, raster images, or shared
+runtime product assumptions.
+
+PSPMAN has an additional clean-checkout gate:
+
+```powershell
+python .\manuals\pspman\tests\verify_cross_root_portability.py
+```
+
+## PSPMAN canonical outputs
 
 | Edition | Bytes | SHA-256 |
 | --- | ---: | --- |
@@ -60,49 +103,11 @@ Current canonical outputs:
 | Print | 229260 | `37f54941b87c3730de925c5a4ca32d24f65cb0ca71f6ca6e7f85ec9da3ca294e` |
 | Spreads | 506415 | `07c05ea3b71e09c99a0458290ebf3bf51ac6ec4a108df166fcb9a2d974009f4b` |
 
-## Build
+The immutable approved Reader PDF remains separately preserved at
+`manuals/pspman/reference/PSPMAN-User-Guide-approved.pdf`. Historical builds and
+reports remain under `manuals/pspman/historical/`; the original path-sensitive
+verifier remains under `manuals/pspman/tests/` and in Git history. See
+`RECOVERY.md` for provenance.
 
-From the repository root in PowerShell:
-
-```powershell
-$python = 'C:\Users\Eddie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\build-pspman-manual.ps1 -Python $python
-```
-
-The recovered generator validates the canonical PSPMAN application origin. The
-wrapper creates a disposable bare Git context under the operating-system
-temporary directory, supplies that application origin there, and removes the
-context afterward. It does not alter this repository's remote and performs no
-network operation during a build.
-
-The recovered generator's original command was:
-
-```powershell
-python docs/manual/source/build_manual.py
-```
-
-## Verify
-
-```powershell
-$python = 'C:\Users\Eddie\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\verify-pspman-manual.ps1 -Python $python
-```
-
-The verification wrapper runs the build, structural and visual validation
-(`--render --determinism`), and current build/reference comparison. It pins the
-complete PDF hashes and compares page count, size, metadata, text, embedded
-fonts, decoded images, parsed objects, and every page render against the approved
-artifact. Success is reported as `PORTABLE-BUILD-MATCHES-APPROVED-RENDER`.
-
-After committing a clean candidate, verify two builds in each of two genuinely
-different clean checkout paths:
-
-```powershell
-& $python .\manuals\pspman\tests\verify_cross_root_portability.py
-```
-
-Success is reported as `PATH-INDEPENDENT-BUILDS-VERIFIED` and requires raw-byte,
-size, and SHA-256 identity for Reader, Print, and Spreads both within and across
-the two roots.
-
-See `RECOVERY.md` for the discovery and provenance inventory.
+This repository contains no PSPMAN application runtime, private media, website,
+or deployment configuration.

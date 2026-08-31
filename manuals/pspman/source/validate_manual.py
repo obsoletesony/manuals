@@ -130,7 +130,7 @@ def validate() -> dict:
     package_version = json.loads((REPO_ROOT / "package.json").read_text(encoding="utf-8"))["version"]
     required = [
         "PSPMAN", "User's Guide",
-        "obsoletesony.com/pspman", "@obsoletesony", "github.com/obsoletesony/PSPMAN-Issues",
+        "obsoletesony.com/pspman", "obsoletesony.com/pspman/report-a-bug", "github.com/obsoletesony/PSPMAN-Issues",
         "0.1.0-alpha.2", "stereo 16-bit / 44.1 kHz FLAC", "Cassette View", "Track Information",
         "Supported files and limits", "PSP-1000", "64 MB of RAM", "PSP Street (E1000)",
         "Custom firmware or another working homebrew environment", "1,000 tracks", "12 folder levels",

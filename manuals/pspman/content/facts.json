@@ -8,7 +8,7 @@
     "product": "PSPMAN",
     "creator": "ObsoleteSony",
     "description": "Walkman-inspired FLAC music player for Sony PSP, built with PocketJS.",
-    "contact": "@obsoletesony",
+    "support": "https://obsoletesony.com/pspman/report-a-bug",
     "website": "https://obsoletesony.com/pspman",
     "sourceAvailability": "Private-source during active development; source code is not included with the Public Alpha",
     "publicIssueTracker": "https://github.com/obsoletesony/PSPMAN-Issues",

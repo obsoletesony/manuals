@@ -1,6 +1,6 @@
 # PSPMAN User's Guide
 
-This directory contains the adapted editable source for the deterministic 15-page PSPMAN User's Guide. The 16 August 2026 edition describes PSPMAN 0.1.0-alpha.2 at source commit `d2dc64587697b83a8e412df78a2b52428ce2c1fd`. The generator records a non-circular SHA-256 digest of the manual inputs in `output/checksums.json` and resolves the application version from `package.json`.
+This directory contains the adapted editable source for the deterministic 15-page PSPMAN User's Guide. The 31 August 2026 edition describes PSPMAN 0.1.0-alpha.2 at source commit `d2dc64587697b83a8e412df78a2b52428ce2c1fd`. The generator records a non-circular SHA-256 digest of the manual inputs in `output/checksums.json` and resolves the application version from `package.json`.
 
 ## Rebuild
 

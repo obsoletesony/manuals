@@ -130,12 +130,12 @@ def validate() -> dict:
     package_version = json.loads((REPO_ROOT / "package.json").read_text(encoding="utf-8"))["version"]
     required = [
         "PSPMAN", "User's Guide",
-        "obsoletesony.com/pspman", "@obsoletesony", "github.com/obsoletesony/PSPMAN",
+        "obsoletesony.com/pspman", "@obsoletesony", "github.com/obsoletesony/PSPMAN-Issues",
         "0.1.0-alpha.2", "stereo 16-bit / 44.1 kHz FLAC", "Cassette View", "Track Information",
         "Supported files and limits", "PSP-1000", "64 MB of RAM", "PSP Street (E1000)",
         "Custom firmware or another working homebrew environment", "512 tracks", "12 folder levels",
         "embedded JPEG and PNG cover art", "No Cover", "Some Japanese characters may not display correctly",
-        "MIT License / Copyright 2026 ObsoleteSony", "PSPMAN is built with PocketJS.",
+        "Copyright 2026 ObsoleteSony. All rights reserved.", "PSPMAN is built with PocketJS.",
         "These instructions use CROSS, CIRCLE, SQUARE, TRIANGLE, L, R, START, SELECT, and HOME as labeled on the PSP.",
     ]
     missing_text = [value for value in required if value.casefold() not in normalized_text.casefold()]
@@ -243,7 +243,7 @@ def validate() -> dict:
         for annotation in page.get("/Annots", [])
         if annotation.get_object().get("/A", {}).get("/URI")
     }
-    expected_uris = {"https://github.com/obsoletesony/PSPMAN"}
+    expected_uris = {"https://www.obsoletesony.com/pspman"}
     if not expected_uris.issubset(uris):
         raise AssertionError(f"Required hyperlinks missing: {sorted(expected_uris - uris)}")
     pairs: list[tuple[int | None, int]] = (

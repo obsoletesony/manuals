@@ -1,6 +1,6 @@
 {
   "status": "Current-state fact sheet for PSPMAN 0.1.0-alpha.2 User's Guide",
-  "recorded": "2026-08-16",
+  "recorded": "2026-08-31",
   "sourceCommit": "d2dc64587697b83a8e412df78a2b52428ce2c1fd",
   "sourceTree": "871a8e6e8c62dcc85fe893034a6bb99ebc264299",
   "versionSource": "package.json",
@@ -10,8 +10,9 @@
     "description": "Walkman-inspired FLAC music player for Sony PSP, built with PocketJS.",
     "contact": "@obsoletesony",
     "website": "https://obsoletesony.com/pspman",
-    "source": "https://github.com/obsoletesony/PSPMAN",
-    "license": "MIT License / Copyright 2026 ObsoleteSony"
+    "sourceAvailability": "Private-source during active development; source code is not included with the Public Alpha",
+    "publicIssueTracker": "https://github.com/obsoletesony/PSPMAN-Issues",
+    "license": "Copyright 2026 ObsoleteSony. All rights reserved."
   },
   "installation": {
     "applicationDirectory": "PSP/GAME/PSPMAN/",

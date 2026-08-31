@@ -5,7 +5,7 @@
     "description": "Walkman-inspired FLAC music player for Sony PSP, built with PocketJS.",
     "creator": "ObsoleteSony",
     "version": "0.1.0-alpha.2",
-    "edition": "16 August 2026",
+    "edition": "31 August 2026",
     "site": "obsoletesony.com/pspman",
     "handle": "@obsoletesony",
     "repository": "https://github.com/obsoletesony/PSPMAN"
@@ -84,7 +84,7 @@
     ]},
     {"number": 10, "title": "About, diagnostics, and safe exit", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "About"},
-      {"type": "text", "text": "Press SELECT from a normal screen to open About. It shows PSPMAN version 0.1.0-alpha.2, the creator, website, repository, and license. Press any button to close it."},
+      {"type": "text", "text": "Press SELECT from a normal screen to open About. It shows PSPMAN version 0.1.0-alpha.2, the creator, website, copyright, and non-affiliation notice. Press any button to close it."},
       {"type": "heading", "before": "section", "text": "Diagnostics"},
       {"type": "text", "text": "Use Diagnostics only when reporting a problem. Pause playback, return to Library, then hold TRIANGLE. Use CIRCLE to return. Keep the diagnostic files created during the problem session."},
       {"type": "heading", "before": "section", "text": "Safe exit"},
@@ -118,18 +118,19 @@
       {"type": "heading", "before": "section", "text": "Playback does not start"},
       {"type": "text", "text": "Confirm that the song matches the supported audio profile and is not damaged. Try another supported track."},
       {"type": "heading", "before": "section", "text": "Report a problem"},
-      {"type": "text", "text": "Pause playback, return to Library, and hold TRIANGLE to open Diagnostics. Reproduce the problem, exit with HOME, and keep the diagnostic files. Report the PSP model, firmware, track format, and steps that caused the problem at github.com/obsoletesony/PSPMAN/issues."}
+      {"type": "text", "text": "Pause playback, return to Library, and hold TRIANGLE to open Diagnostics. Reproduce the problem, exit with HOME, and keep the diagnostic files. Report the PSP model, firmware, track format, and steps that caused the problem at obsoletesony.com/pspman/report-a-bug."}
     ]},
     {"number": 14, "title": "Credits, support, and legal", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "Support"},
       {"type": "bullet", "spacing": "compact", "text": "Website: obsoletesony.com/pspman"},
       {"type": "bullet", "spacing": "compact", "text": "Contact: @obsoletesony"},
-      {"type": "bullet", "spacing": "compact", "text": "Repository and issues: github.com/obsoletesony/PSPMAN"},
+      {"type": "bullet", "spacing": "compact", "text": "Public issue tracker: github.com/obsoletesony/PSPMAN-Issues"},
       {"type": "text", "text": "PSPMAN is built with PocketJS."},
       {"type": "heading", "before": "section", "text": "License and notices"},
-      {"type": "text", "text": "PSPMAN-owned source code is released under the MIT License. MIT License / Copyright 2026 ObsoleteSony. Full third-party notices and license texts are in THIRD_PARTY_NOTICES.md and LICENSES/ in the PSPMAN source repository."},
+      {"type": "text", "text": "PSPMAN-owned code is private-source. Copyright 2026 ObsoleteSony. All rights reserved. Source code is not included with the Public Alpha."},
+      {"type": "text", "text": "Third-party components remain subject to their respective license terms. Required notices and license texts accompany the release package."},
       {"type": "heading", "before": "section", "text": "Brand and non-affiliation"},
-      {"type": "text", "text": "The MIT License does not grant rights to the ObsoleteSony name, logo, wordmark, or related artwork."},
+      {"type": "text", "text": "The ObsoleteSony name, logo, wordmark, and related artwork remain protected brand assets."},
       {"type": "text", "text": "PSPMAN is an independent homebrew project and is not affiliated with or endorsed by Sony Group Corporation or Sony Interactive Entertainment."}
     ]},
     {"number": 15, "kind": "back-cover", "title": "PSPMAN"}

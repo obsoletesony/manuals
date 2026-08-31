@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.2",
   "private": true,
   "description": "A Walkman-inspired FLAC music player for the Sony PSP.",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/obsoletesony/PSPMAN.git"

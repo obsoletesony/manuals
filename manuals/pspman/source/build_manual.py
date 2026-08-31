@@ -105,7 +105,7 @@ def cover(c, page: ManualPage, *, back: bool = False) -> None:
             mask="auto",
         )
         c.linkURL(
-            "https://github.com/obsoletesony/PSPMAN",
+            "https://www.obsoletesony.com/pspman",
             (
                 x0 + mm(15),
                 y0 + TRIM - mm(42),

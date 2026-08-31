@@ -56,9 +56,9 @@ Current canonical outputs:
 
 | Edition | Bytes | SHA-256 |
 | --- | ---: | --- |
-| Reader | 227118 | `01680c55b20ab944593cf600f1f6824a83cc0f1c136bafc287c3290ab937d12a` |
-| Print | 229260 | `37f54941b87c3730de925c5a4ca32d24f65cb0ca71f6ca6e7f85ec9da3ca294e` |
-| Spreads | 506415 | `07c05ea3b71e09c99a0458290ebf3bf51ac6ec4a108df166fcb9a2d974009f4b` |
+| Reader | 227187 | `bb25334733bbaa89e70aa4304f14d1fbe520105bd86b4a75b0b2388bb4075dc9` |
+| Print | 229328 | `d22a06144c2295163e69534832c28cb7be584106f1d4e492944c466bfbe92ec5` |
+| Spreads | 506861 | `98ed3763ca76eb01665abd45abf7a5491045522150455df888062737cc5a0c5a` |
 
 ## Build
 

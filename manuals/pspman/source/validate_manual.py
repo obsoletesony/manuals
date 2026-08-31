@@ -133,7 +133,7 @@ def validate() -> dict:
         "obsoletesony.com/pspman", "@obsoletesony", "github.com/obsoletesony/PSPMAN-Issues",
         "0.1.0-alpha.2", "stereo 16-bit / 44.1 kHz FLAC", "Cassette View", "Track Information",
         "Supported files and limits", "PSP-1000", "64 MB of RAM", "PSP Street (E1000)",
-        "Custom firmware or another working homebrew environment", "512 tracks", "12 folder levels",
+        "Custom firmware or another working homebrew environment", "1,000 tracks", "12 folder levels",
         "embedded JPEG and PNG cover art", "No Cover", "Some Japanese characters may not display correctly",
         "Copyright 2026 ObsoleteSony. All rights reserved.", "PSPMAN is built with PocketJS.",
         "These instructions use CROSS, CIRCLE, SQUARE, TRIANGLE, L, R, START, SELECT, and HOME as labeled on the PSP.",

@@ -95,7 +95,7 @@
       {"type": "text", "text": "PSPMAN accepts stereo 16-bit / 44.1 kHz FLAC. Other audio profiles and codecs are not supported."},
       {"type": "heading", "before": "section", "text": "Library"},
       {"type": "bullet", "spacing": "compact", "text": "PSPMAN scans MUSIC and PSP/MUSIC on the Memory Stick."},
-      {"type": "bullet", "spacing": "compact", "text": "The Library supports up to 512 tracks."},
+      {"type": "bullet", "spacing": "compact", "text": "The Library supports up to 1,000 tracks."},
       {"type": "bullet", "spacing": "compact", "text": "Music may be stored up to 12 folder levels deep."},
       {"type": "heading", "before": "section", "text": "Cover art"},
       {"type": "text", "text": "PSPMAN supports embedded JPEG and PNG cover art. Cover art may take longer to appear the first time. If cover art cannot be displayed, PSPMAN shows No Cover."},

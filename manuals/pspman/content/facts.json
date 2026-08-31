@@ -43,7 +43,7 @@
   },
   "library": {
     "organization": ["All Songs", "Album", "Artist", "Folder", "Favorites", "Recent", "Playlists"],
-    "maximumTracks": 512,
+    "maximumTracks": 1000,
     "maximumDirectoryLevels": 12,
     "startup": "recursively scans enabled Memory Stick roots and reuses the persisted library index",
     "persistence": ["library index", "Favorites", "Recent", "queue/session state", "artwork cache", "cassette preference", "playback settings"]

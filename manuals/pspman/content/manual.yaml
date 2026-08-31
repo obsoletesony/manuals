@@ -7,7 +7,6 @@
     "version": "0.1.0-alpha.2",
     "edition": "31 August 2026",
     "site": "obsoletesony.com/pspman",
-    "handle": "@obsoletesony",
     "repository": "https://github.com/obsoletesony/PSPMAN"
   },
   "pages": [
@@ -123,7 +122,6 @@
     {"number": 14, "title": "Credits, support, and legal", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "Support"},
       {"type": "bullet", "spacing": "compact", "text": "Website: obsoletesony.com/pspman"},
-      {"type": "bullet", "spacing": "compact", "text": "Contact: @obsoletesony"},
       {"type": "bullet", "spacing": "compact", "text": "Public issue tracker: github.com/obsoletesony/PSPMAN-Issues"},
       {"type": "text", "text": "PSPMAN is built with PocketJS."},
       {"type": "heading", "before": "section", "text": "License and notices"},

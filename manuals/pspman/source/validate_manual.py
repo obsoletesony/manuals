@@ -136,7 +136,6 @@ def validate() -> dict:
         "Custom firmware or another working homebrew environment", "1,000 tracks", "12 folder levels",
         "embedded JPEG and PNG cover art", "No Cover", "Some Japanese characters may not display correctly",
         "Copyright 2026 ObsoleteSony. All rights reserved.", "PSPMAN is built with PocketJS.",
-        "These instructions use CROSS, CIRCLE, SQUARE, TRIANGLE, L, R, START, SELECT, and HOME as labeled on the PSP.",
     ]
     missing_text = [value for value in required if value.casefold() not in normalized_text.casefold()]
     if missing_text:
@@ -172,6 +171,8 @@ def validate() -> dict:
         "qualified Japanese characters", "packaging and interaction preflight",
         "rendered title width", "truly exceeds the space", "decoded samples",
         "bounded buffers", "native audio path", "PPSSPP",
+        "These instructions use CROSS, CIRCLE, SQUARE, TRIANGLE, L, R, START, SELECT, and HOME as labeled on the PSP.",
+        "Safe listening", "Real-hardware testing currently covers", "PSP-2001", "5.00 M33-4",
     ]
     present_forbidden = [value for value in forbidden if re.search(re.escape(value), text, re.IGNORECASE)]
     if present_forbidden:
@@ -188,9 +189,6 @@ def validate() -> dict:
         raise AssertionError("The removed interior footer label remains in the manual")
     if "OS-PSPMAN-01 (2)" in normalized_text:
         raise AssertionError("The removed document code remains on a manual page")
-    button_names = "These instructions use CROSS, CIRCLE, SQUARE, TRIANGLE, L, R, START, SELECT, and HOME as labeled on the PSP."
-    if normalized_text.count(button_names) != 1:
-        raise AssertionError("The button-naming sentence must appear exactly once")
     wrong_titles = [
         f"page {record['number']}: {record['title']}"
         for record in expected_titles

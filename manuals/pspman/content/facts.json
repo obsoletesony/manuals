@@ -17,7 +17,7 @@
   "installation": {
     "applicationDirectory": "PSP/GAME/PSPMAN/",
     "entryPoint": "EBOOT.PBP",
-    "musicRoots": ["ms0:/MUSIC", "ms0:/PSP/MUSIC"]
+    "musicRoots": ["MUSIC", "PSP/MUSIC"]
   },
   "hardware": {
     "minimumRam": "64 MB",
@@ -39,13 +39,13 @@
   "artwork": {
     "formats": ["JPEG", "PNG"],
     "behavior": "Cover art may take longer to appear the first time; images that cannot be displayed show No Cover",
-    "qualifiedExamples": ["500x500 embedded PNG", "1400x1400 embedded JPEG"]
+    "guidance": "Embedded JPEG or PNG; artwork that cannot be displayed falls back to No Cover"
   },
   "library": {
     "organization": ["All Songs", "Album", "Artist", "Folder", "Favorites", "Recent", "Playlists"],
     "maximumTracks": 1000,
     "maximumDirectoryLevels": 12,
-    "startup": "recursively scans enabled Memory Stick roots and reuses the persisted library index",
+    "startup": "recursively scans enabled storage roots and reuses the persisted library index",
     "persistence": ["library index", "Favorites", "Recent", "queue/session state", "artwork cache", "cassette preference", "playback settings"]
   },
   "controlsSource": "controls.json",
@@ -53,8 +53,5 @@
   "help": "Settings contains Controls and Help",
   "diagnostics": "Pause playback, return to Library, then hold TRIANGLE to open Diagnostics",
   "quit": "HOME opens the PSP system confirmation; a confirmed exit completes PSPMAN's clean shutdown path",
-  "validation": {
-    "hardware": "PSP-2001 with 5.00 M33-4"
-  },
   "thirdPartyNotices": ["THIRD_PARTY_NOTICES.md", "LICENSES/"]
 }

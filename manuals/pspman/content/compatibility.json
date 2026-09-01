@@ -10,7 +10,7 @@
     {"area": "Audio", "supported": "FLAC", "notes": "Stereo 16-bit / 44.1 kHz"},
     {"area": "Library", "supported": "Up to 1,000 tracks", "notes": "Up to 12 directory levels"},
     {"area": "Artwork", "supported": "Embedded JPEG / PNG", "notes": "No Cover appears when an image cannot be displayed"},
-    {"area": "Storage", "supported": "Memory Stick", "notes": "MUSIC and PSP/MUSIC roots"}
+    {"area": "Storage", "supported": "PSP storage", "notes": "MUSIC and PSP/MUSIC roots"}
   ],
   "unsupported": [
     "FLAC profiles other than stereo 16-bit / 44.1 kHz",

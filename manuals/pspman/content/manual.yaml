@@ -12,14 +12,14 @@
   "pages": [
     {"number": 1, "kind": "cover", "title": "PSPMAN"},
     {"number": 2, "title": "Read this first", "density": "standard", "template": "standard-text", "blocks": [
-      {"type": "text", "text": "PSPMAN is a Walkman-inspired FLAC music player for Sony PSP. It scans compatible music on the Memory Stick and organizes it in an offline library."},
+      {"type": "text", "text": "PSPMAN is a Walkman-inspired FLAC music player for Sony PSP. It scans compatible music on your PSP storage and organizes it in an offline library."},
       {"type": "heading", "before": "section", "text": "Requirements"},
       {"type": "bullet", "spacing": "compact", "text": "PSPMAN requires a PSP with 64 MB of RAM."},
       {"type": "bullet", "spacing": "compact", "text": "Supported models are PSP-2000, PSP-3000, PSP Go, and PSP Street (E1000)."},
       {"type": "bullet", "spacing": "compact", "text": "The original PSP-1000 is not supported because it has only 32 MB of RAM."},
       {"type": "bullet", "spacing": "compact", "text": "Custom firmware or another working homebrew environment is required."},
       {"type": "bullet", "spacing": "compact", "text": "Use stereo 16-bit / 44.1 kHz FLAC music."},
-      {"type": "bullet", "spacing": "compact", "text": "Keep enough free Memory Stick space for PSPMAN, music, saved data, and cover art."},
+      {"type": "bullet", "spacing": "compact", "text": "Keep enough free storage space for PSPMAN, music, saved data, and cover art."},
       {"type": "heading", "before": "section", "text": "Music files"},
       {"type": "text", "text": "PSPMAN does not retag, move, or delete source music files. It does not require a network connection."}
     ]},
@@ -30,7 +30,7 @@
         "Copy the application: PSP/GAME/PSPMAN/EBOOT.PBP",
         "Copy music: Copy supported FLAC files to MUSIC or PSP/MUSIC.",
         "Disconnect safely: Eject the storage, then disconnect the USB cable or card reader.",
-        "Start PSPMAN: On the XMB, open Game > Memory Stick and start PSPMAN by ObsoleteSony.",
+        "Start PSPMAN: On the XMB, open Game and start PSPMAN by ObsoleteSony.",
         "Finish the scan: Allow the first scan to finish. Restart PSPMAN after adding music."
       ]}
     ]},
@@ -38,9 +38,9 @@
       {"type": "screenshot", "file": "library-home-480x272.png", "width": 64},
       {"type": "bullet", "spacing": "compact", "text": "All Songs lists every compatible track."},
       {"type": "bullet", "spacing": "compact", "text": "Album and Artist group tracks by their stored metadata."},
-      {"type": "bullet", "spacing": "compact", "text": "Folder follows the folder structure on the Memory Stick."},
+      {"type": "bullet", "spacing": "compact", "text": "Folder follows the folder structure on your PSP storage."},
       {"type": "bullet", "spacing": "compact", "text": "Favorites contains tracks you marked with the star on Now Playing."},
-      {"type": "bullet", "spacing": "compact", "text": "Recent lists recently added tracks. Playlists shows M3U and M3U8 playlists found during scanning."},
+      {"type": "bullet", "spacing": "compact", "text": "Recent contains your recent tracks. Playlists shows M3U and M3U8 playlists found during scanning."},
       {"type": "bullet", "spacing": "compact", "text": "The player strip shows the current track and Previous, Play/Pause, and Next controls."},
       {"type": "text", "text": "Use the D-pad to choose an item. Press CROSS to open a category or play a track. Press CIRCLE to return."}
     ]},
@@ -85,13 +85,13 @@
       {"type": "heading", "before": "section", "text": "Diagnostics"},
       {"type": "text", "text": "Use Diagnostics only when reporting a problem. Pause playback, return to Library, then hold TRIANGLE. Use CIRCLE to return. Keep the diagnostic files created during the problem session."},
       {"type": "heading", "before": "section", "text": "Safe exit"},
-      {"type": "text", "text": "Press HOME to open the PSP exit dialog. Confirm the exit and allow PSPMAN to finish before removing the Memory Stick or turning off the PSP."}
+      {"type": "text", "text": "Press HOME to open the PSP exit dialog. Confirm the exit and allow PSPMAN to finish before removing storage or turning off the PSP."}
     ]},
     {"number": 11, "title": "Supported files and limits", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "Audio"},
       {"type": "text", "text": "PSPMAN accepts stereo 16-bit / 44.1 kHz FLAC. Other audio profiles and codecs are not supported."},
       {"type": "heading", "before": "section", "text": "Library"},
-      {"type": "bullet", "spacing": "compact", "text": "PSPMAN scans MUSIC and PSP/MUSIC on the Memory Stick."},
+      {"type": "bullet", "spacing": "compact", "text": "PSPMAN scans MUSIC and PSP/MUSIC on your PSP storage."},
       {"type": "bullet", "spacing": "compact", "text": "The Library supports up to 1,000 tracks."},
       {"type": "bullet", "spacing": "compact", "text": "Music may be stored up to 12 folder levels deep."},
       {"type": "heading", "before": "section", "text": "Cover art"},

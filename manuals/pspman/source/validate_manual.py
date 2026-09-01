@@ -171,8 +171,10 @@ def validate() -> dict:
         "qualified Japanese characters", "packaging and interaction preflight",
         "rendered title width", "truly exceeds the space", "decoded samples",
         "bounded buffers", "native audio path", "PPSSPP",
+        "Button names",
         "These instructions use CROSS, CIRCLE, SQUARE, TRIANGLE, L, R, START, SELECT, and HOME as labeled on the PSP.",
-        "Safe listening", "Real-hardware testing currently covers", "PSP-2001", "5.00 M33-4",
+        "Safe listening", "Set a comfortable volume",
+        "Real-hardware testing currently covers", "PSP-2001", "5.00 M33-4",
     ]
     present_forbidden = [value for value in forbidden if re.search(re.escape(value), text, re.IGNORECASE)]
     if present_forbidden:

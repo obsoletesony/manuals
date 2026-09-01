@@ -21,9 +21,7 @@
       {"type": "bullet", "spacing": "compact", "text": "Use stereo 16-bit / 44.1 kHz FLAC music."},
       {"type": "bullet", "spacing": "compact", "text": "Keep enough free Memory Stick space for PSPMAN, music, saved data, and cover art."},
       {"type": "heading", "before": "section", "text": "Music files"},
-      {"type": "text", "text": "PSPMAN does not retag, move, or delete source music files. It does not require a network connection."},
-      {"type": "heading", "before": "section", "text": "Button names"},
-      {"type": "text", "text": "These instructions use CROSS, CIRCLE, SQUARE, TRIANGLE, L, R, START, SELECT, and HOME as labeled on the PSP."}
+      {"type": "text", "text": "PSPMAN does not retag, move, or delete source music files. It does not require a network connection."}
     ]},
     {"number": 3, "title": "Table of Contents", "kind": "contents", "density": "standard", "template": "standard-text"},
     {"number": 4, "title": "Install and add music", "density": "dense", "template": "visual", "blocks": [

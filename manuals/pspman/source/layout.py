@@ -445,6 +445,7 @@ class ManualPage:
         color=INK,
         leading: float | None = None,
         gap: float = SPACE_4,
+        url: str | None = None,
     ) -> float:
         width = self.width if width is None else width
         x = self.left if x is None else x
@@ -460,6 +461,8 @@ class ManualPage:
                 raise RuntimeError(f"Page {self.page_number} text exceeds its measured box")
             draw_inline_line(self.c, line, x, baseline, font, size, color)
             baseline -= leading
+        if url:
+            self.c.linkURL(url, (box.x, box.y, box.right, box.top), relative=0)
         return box.y
 
     def heading(self, text: str, *, size: float = 8.0, gap: float = SPACE_4) -> None:
@@ -468,7 +471,15 @@ class ManualPage:
         self.c.setFont(FONT_BOLD, size)
         self.c.drawString(box.x, box.top - size, text)
 
-    def bullet(self, text: str, *, color=INK, size: float = 6.45, gap: float = SPACE_4) -> None:
+    def bullet(
+        self,
+        text: str,
+        *,
+        color=INK,
+        size: float = 6.45,
+        gap: float = SPACE_4,
+        url: str | None = None,
+    ) -> None:
         text_x = self.left + SPACE_16
         width = self.right - text_x
         leading = size * 1.4
@@ -482,6 +493,8 @@ class ManualPage:
         for line in lines:
             draw_inline_line(self.c, line, text_x, baseline, FONT_REGULAR, size, color)
             baseline -= leading
+        if url:
+            self.c.linkURL(url, (box.x, box.y, box.right, box.top), relative=0)
 
     def step(self, number: int, title: str, body: str) -> None:
         text_x = self.left + SPACE_24

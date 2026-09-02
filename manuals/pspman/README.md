@@ -27,13 +27,13 @@ The build reads the application version from the root `package.json`; it is not 
 
 `output/checksums.json` is exclusively user-guide provenance. Its `manualProvenance` block identifies the exact paths and bytes used to produce the tracked PDFs: `package.json` and files under `docs/manual/content`, `docs/manual/assets`, and `docs/manual/source`. It is not application-release provenance and deliberately contains no Git commit field, because a tracked generated file cannot identify the commit that contains itself. Application release candidates capture a clean canonical Git HEAD separately and write their manifests only under the ignored `release/` directory.
 
-The source screenshots remain in their original form. The PDF builder converts all embedded raster assets to grayscale and uses a neutral vector palette, so the release-candidate documents are fully monochrome without destructively editing source assets.
+The source screenshots remain in their original form. The PDF builder converts embedded raster assets to grayscale while preserving the approved orange page markers, Public Alpha cover treatment, and back-cover URL without destructively editing source assets.
 
 Page composition uses measured `dense`, `standard`, and `sparse` modes. The builder measures each major content block before placement, distributes available height between modules, and preserves the footer exclusion zone. The consolidated edition favors short paragraphs and lists, retains only useful screenshots and the PSP control illustration, and removes the audio-pipeline diagram.
 
 ## Outputs and review status
 
-`output/` contains the approved monochrome 15-page reader PDF, 8-spread reader PDF, individual-page print PDF with 3 mm bleed and trim boxes, checksums, preflight results, measurement results, and `layout-review.json`. The layout report identifies visual-review candidates for content occupancy, major-group spacing, footer clearance, and screenshot sizing; it reports candidates without changing the page automatically.
+`output/` contains the approved orange-accented 15-page reader PDF, 8-spread reader PDF, individual-page print PDF with 3 mm bleed and trim boxes, checksums, preflight results, measurement results, and `layout-review.json`. The layout report identifies visual-review candidates for content occupancy, major-group spacing, footer clearance, and screenshot sizing; it reports candidates without changing the page automatically.
 
 `rendered/` is reproducible visual-QA output and remains local. Run validation with `--render` whenever the layout changes. Generated page PNGs, contact sheets, Python caches, temporary files, and duplicate dated PDF aliases are intentionally ignored; the source, canonical assets, reports, and three stable PDF editions are tracked.
 

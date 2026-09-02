@@ -13,6 +13,7 @@ from pathlib import Path
 from pypdf import PdfReader, PdfWriter, Transformation
 from pypdf._page import PageObject
 from reportlab.lib.utils import ImageReader
+from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfgen import canvas
 
 from diagrams import DIAGRAMS, psp_front
@@ -64,6 +65,8 @@ PSPMAN3_COVER_LOGO = ASSET_DIR / "branding" / "pspman3-cover-white.png"
 BRAND_DIR = ASSET_DIR / "branding"
 DEFAULT_OUTPUT = MANUAL_DIR / "output"
 COVER_FOOTER_LABEL = "USER'S GUIDE"
+PDF_INVARIANT_DATE = b"D:20000101000000+00'00'"
+PDF_REVISION_DATE = b"D:20260902000000+00'00'"
 
 
 def load_json(path: Path):
@@ -105,12 +108,27 @@ def cover(c, page: ManualPage, *, back: bool = False) -> None:
             mask="auto",
         )
         c.linkURL(
-            "https://www.obsoletesony.com/pspman",
+            "https://obsoletesony.com/pspman",
             (
                 x0 + mm(15),
                 y0 + TRIM - mm(42),
                 x0 + mm(15) + logo_width,
                 y0 + TRIM - mm(42) + logo_height,
+            ),
+            relative=0,
+        )
+        site = "obsoletesony.com/pspman"
+        c.setFillColor(ORANGE)
+        c.setFont(FONT_DISPLAY_BOLD, 10.5)
+        c.drawCentredString(x0 + TRIM / 2, y0 + mm(17), site)
+        site_width = pdfmetrics.stringWidth(site, FONT_DISPLAY_BOLD, 10.5)
+        c.linkURL(
+            "https://obsoletesony.com/pspman",
+            (
+                x0 + (TRIM - site_width) / 2,
+                y0 + mm(15),
+                x0 + (TRIM + site_width) / 2,
+                y0 + mm(20),
             ),
             relative=0,
         )
@@ -126,7 +144,12 @@ def cover(c, page: ManualPage, *, back: bool = False) -> None:
         preserveAspectRatio=True,
         mask="auto",
     )
+    c.setFillColor(ORANGE)
+    c.setFont(FONT_DISPLAY_BOLD, 9)
+    c.drawString(x0 + mm(15), y0 + mm(17), "PUBLIC ALPHA")
     c.setFillColor(MUTED)
+    c.setFont(FONT_DISPLAY, 6.5)
+    c.drawString(x0 + mm(15), y0 + mm(11), app_version())
     c.setFont(FONT_DISPLAY, 14)
     c.drawRightString(x0 + TRIM - mm(15), y0 + mm(17), COVER_FOOTER_LABEL)
 
@@ -417,13 +440,13 @@ def draw_blocks(
         elif anchor == "secondary-relaxed":
             page.align_to(page.relaxed_secondary_content_y, "relaxed secondary content")
         kind = block["type"]
-        if kind == "text": page.text(block["text"])
+        if kind == "text": page.text(block["text"], url=block.get("url"))
         elif kind == "heading": page.heading(block["text"])
         elif kind == "bullet":
             spacing = block.get("spacing", "standard")
             if spacing not in BULLET_GAPS:
                 raise RuntimeError(f"Unknown bullet spacing token: {spacing}")
-            page.bullet(block["text"], gap=BULLET_GAPS[spacing])
+            page.bullet(block["text"], gap=BULLET_GAPS[spacing], url=block.get("url"))
         elif kind == "step": page.step(block["number"], block["title"], block["text"])
         elif kind == "callout":
             page.callout(
@@ -607,6 +630,10 @@ def build_pages(
             page.qa_overlay()
         c.showPage()
     c.save()
+    pdf_bytes = path.read_bytes()
+    if pdf_bytes.count(PDF_INVARIANT_DATE) != 2:
+        raise RuntimeError(f"Unexpected invariant metadata date count in {path.name}")
+    path.write_bytes(pdf_bytes.replace(PDF_INVARIANT_DATE, PDF_REVISION_DATE))
     return reviews
 
 
@@ -671,7 +698,7 @@ def main() -> None:
     compatibility = load_json(CONTENT_DIR / "compatibility.json")
     version = app_version()
     input_digest, input_file_count = manual_input_digest(REPO_ROOT, MANUAL_DIR)
-    if canonical_origin().lower() != content["document"]["repository"].lower():
+    if canonical_origin().lower() != content["document"]["sourceRepository"].lower():
         raise RuntimeError(f"Repository URL mismatch: {canonical_origin()}")
     page_count = len(content["pages"])
     if page_count != 15 or [p["number"] for p in content["pages"]] != list(range(1, page_count + 1)):

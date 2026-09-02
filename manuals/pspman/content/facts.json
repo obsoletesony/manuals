@@ -15,11 +15,13 @@
   "installation": {
     "applicationDirectory": "PSP/GAME/PSPMAN/",
     "entryPoint": "EBOOT.PBP",
+    "storage": "Memory Stick; PSP Go requires Memory Stick Micro (M2)",
+    "pspGoInternalStorage": "Not supported in this Public Alpha",
     "musicRoots": ["MUSIC", "PSP/MUSIC"]
   },
   "hardware": {
     "minimumRam": "64 MB",
-    "supportedModels": ["PSP-2000", "PSP-3000", "PSP Go", "PSP Street (E1000)"],
+    "supportedModels": ["PSP-2000", "PSP-3000", "PSP Go with Memory Stick Micro (M2)", "PSP Street (E1000)"],
     "unsupportedModels": ["PSP-1000 (32 MB RAM)"],
     "softwareRequirement": "Custom firmware or another working homebrew environment"
   },

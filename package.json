@@ -1,8 +1,8 @@
 {
   "name": "pspman",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0-alpha.3",
   "private": true,
-  "description": "A Walkman-inspired FLAC music player for the Sony PSP.",
+  "description": "A Walkman-inspired FLAC and MP3 music player for the Sony PSP.",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
     "playstation-portable",
     "pocketjs",
     "flac",
+    "mp3",
     "music-player",
     "homebrew"
   ],

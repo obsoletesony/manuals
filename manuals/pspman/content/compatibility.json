@@ -7,14 +7,16 @@
   },
   "output": "signed 16-bit / 44.1 kHz stereo PCM",
   "limits": [
-    {"area": "Audio", "supported": "FLAC", "notes": "Stereo 16-bit / 44.1 kHz"},
+    {"area": "FLAC audio", "supported": "FLAC", "notes": "Stereo 16-bit / 44.1 kHz"},
+    {"area": "MP3 audio", "supported": "MPEG-1 Layer III", "notes": "44.1 kHz; CBR or VBR; mono or stereo; through 320 kbps"},
     {"area": "Library", "supported": "Up to 1,000 tracks", "notes": "Up to 12 directory levels"},
     {"area": "Artwork", "supported": "Embedded JPEG / PNG", "notes": "No Cover appears when an image cannot be displayed"},
     {"area": "Storage", "supported": "PSP storage", "notes": "MUSIC and PSP/MUSIC roots"}
   ],
   "unsupported": [
     "FLAC profiles other than stereo 16-bit / 44.1 kHz",
-    "MP3, WAV, AIFF, ALAC, AAC, ATRAC, WMA, Ogg Vorbis, Opus, APE, and other codecs",
+    "48 kHz MP3, MPEG-2, MPEG-2.5, and MP3 profiles outside the documented Alpha 3 support",
+    "WAV, AIFF, ALAC, AAC, ATRAC, WMA, Ogg Vorbis, Opus, APE, and other codecs",
     "Files outside the 1,000-track and 12-directory-level library bounds",
     "Artwork that cannot be displayed"
   ]

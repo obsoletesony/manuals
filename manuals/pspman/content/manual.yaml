@@ -1,25 +1,26 @@
 {
   "document": {
     "title": "PSPMAN User's Guide",
-    "code": "OS-PSPMAN-01 (2)",
-    "description": "Walkman-inspired FLAC music player for Sony PSP, built with PocketJS.",
+    "code": "OS-PSPMAN-01 (3)",
+    "description": "Walkman-inspired FLAC and MP3 music player for Sony PSP, built with PocketJS.",
     "creator": "ObsoleteSony",
-    "version": "0.1.0-alpha.2",
-    "edition": "31 August 2026",
+    "version": "0.1.0-alpha.3",
+    "edition": "2 September 2026",
     "site": "obsoletesony.com/pspman",
-    "repository": "https://github.com/obsoletesony/PSPMAN"
+    "repository": "https://github.com/obsoletesony/PSPMAN",
+    "sourceRepository": "https://github.com/obsoletesony/manuals"
   },
   "pages": [
     {"number": 1, "kind": "cover", "title": "PSPMAN"},
     {"number": 2, "title": "Read this first", "density": "standard", "template": "standard-text", "blocks": [
-      {"type": "text", "text": "PSPMAN is a Walkman-inspired FLAC music player for Sony PSP. It scans compatible music on your PSP storage and organizes it in an offline library."},
+      {"type": "text", "text": "PSPMAN is a Walkman-inspired FLAC and MP3 music player for Sony PSP. It scans compatible music on your PSP storage and organizes it in an offline library."},
       {"type": "heading", "before": "section", "text": "Requirements"},
       {"type": "bullet", "spacing": "compact", "text": "PSPMAN requires a PSP with 64 MB of RAM."},
-      {"type": "bullet", "spacing": "compact", "text": "Supported models are PSP-2000, PSP-3000, PSP Go, and PSP Street (E1000)."},
+      {"type": "bullet", "spacing": "compact", "text": "Supported models are PSP-2000, PSP-3000, PSP Go with Memory Stick Micro (M2), and PSP Street (E1000). PSP Go internal system storage is not supported in this Public Alpha."},
       {"type": "bullet", "spacing": "compact", "text": "The original PSP-1000 is not supported because it has only 32 MB of RAM."},
       {"type": "bullet", "spacing": "compact", "text": "Custom firmware or another working homebrew environment is required."},
-      {"type": "bullet", "spacing": "compact", "text": "Use stereo 16-bit / 44.1 kHz FLAC music."},
-      {"type": "bullet", "spacing": "compact", "text": "Keep enough free storage space for PSPMAN, music, saved data, and cover art."},
+      {"type": "bullet", "spacing": "compact", "text": "Use stereo 16-bit / 44.1 kHz FLAC, or MPEG-1 Layer III MP3 at 44.1 kHz."},
+      {"type": "bullet", "spacing": "compact", "text": "Keep enough free Memory Stick space for PSPMAN, music, saved data, and cover art."},
       {"type": "heading", "before": "section", "text": "Music files"},
       {"type": "text", "text": "PSPMAN does not retag, move, or delete source music files. It does not require a network connection."}
     ]},
@@ -27,8 +28,8 @@
     {"number": 4, "title": "Install and add music", "density": "dense", "template": "visual", "blocks": [
       {"type": "numbered-list", "items": [
         "Extract PSPMAN: Extract the package. Confirm that the PSPMAN folder contains EBOOT.PBP.",
-        "Copy the application: PSP/GAME/PSPMAN/EBOOT.PBP",
-        "Copy music: Copy supported FLAC files to MUSIC or PSP/MUSIC.",
+        "Copy the application: On the Memory Stick, use PSP/GAME/PSPMAN/EBOOT.PBP.",
+        "Copy music: On the same Memory Stick, copy supported FLAC or MP3 files to MUSIC or PSP/MUSIC.",
         "Disconnect safely: Eject the storage, then disconnect the USB cable or card reader.",
         "Start PSPMAN: On the XMB, open Game and start PSPMAN by ObsoleteSony.",
         "Finish the scan: Allow the first scan to finish. Restart PSPMAN after adding music."
@@ -81,7 +82,7 @@
     ]},
     {"number": 10, "title": "About, diagnostics, and safe exit", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "About"},
-      {"type": "text", "text": "Press SELECT from a normal screen to open About. It shows PSPMAN version 0.1.0-alpha.2, the creator, website, copyright, and non-affiliation notice. Press any button to close it."},
+      {"type": "text", "text": "Press SELECT from a normal screen to open About. It shows PSPMAN version 0.1.0-alpha.3, the creator, website, copyright, and non-affiliation notice. Press any button to close it."},
       {"type": "heading", "before": "section", "text": "Diagnostics"},
       {"type": "text", "text": "Use Diagnostics only when reporting a problem. Pause playback, return to Library, then hold TRIANGLE. Use CIRCLE to return. Keep the diagnostic files created during the problem session."},
       {"type": "heading", "before": "section", "text": "Safe exit"},
@@ -89,38 +90,38 @@
     ]},
     {"number": 11, "title": "Supported files and limits", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "Audio"},
-      {"type": "text", "text": "PSPMAN accepts stereo 16-bit / 44.1 kHz FLAC. Other audio profiles and codecs are not supported."},
+      {"type": "text", "text": "PSPMAN accepts stereo 16-bit / 44.1 kHz FLAC. It also accepts MPEG-1 Layer III MP3 at 44.1 kHz, CBR or VBR, mono or stereo, through 320 kbps. 48 kHz MP3, MPEG-2, MPEG-2.5, and other audio codecs are not supported."},
       {"type": "heading", "before": "section", "text": "Library"},
       {"type": "bullet", "spacing": "compact", "text": "PSPMAN scans MUSIC and PSP/MUSIC on your PSP storage."},
       {"type": "bullet", "spacing": "compact", "text": "The Library supports up to 1,000 tracks."},
       {"type": "bullet", "spacing": "compact", "text": "Music may be stored up to 12 folder levels deep."},
       {"type": "heading", "before": "section", "text": "Cover art"},
-      {"type": "text", "text": "PSPMAN supports embedded JPEG and PNG cover art. Cover art may take longer to appear the first time. If cover art cannot be displayed, PSPMAN shows No Cover."},
+      {"type": "text", "text": "PSPMAN supports embedded JPEG and PNG cover art. Under memory pressure, PNG or unusually large artwork may show No Cover. Playback is unaffected."},
       {"type": "heading", "before": "section", "text": "Text"},
       {"type": "text", "text": "PSPMAN reads UTF-8 metadata. Some Japanese characters may not display correctly."}
     ]},
     {"number": 12, "title": "Troubleshooting: startup and library", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "PSPMAN does not appear or open"},
-      {"type": "text", "text": "Confirm that EBOOT.PBP is in PSP/GAME/PSPMAN and that custom firmware or another homebrew environment is working. PSPMAN requires a 64 MB model: PSP-2000, PSP-3000, PSP Go, or PSP Street (E1000). The original PSP-1000 is not supported because it has 32 MB of RAM."},
+      {"type": "text", "text": "Confirm that EBOOT.PBP is in PSP/GAME/PSPMAN on the Memory Stick and that custom firmware or another homebrew environment is working. PSPMAN requires a 64 MB model: PSP-2000, PSP-3000, PSP Go with Memory Stick Micro (M2), or PSP Street (E1000). PSP Go internal system storage is not supported in this Public Alpha. The original PSP-1000 is not supported because it has 32 MB of RAM."},
       {"type": "heading", "before": "section", "text": "No songs found"},
-      {"type": "text", "text": "Place supported FLAC files in MUSIC or PSP/MUSIC. Restart PSPMAN and allow the scan to finish."},
+      {"type": "text", "text": "Place supported FLAC or MP3 files in MUSIC or PSP/MUSIC. Restart PSPMAN and allow the scan to finish."},
       {"type": "heading", "before": "section", "text": "A song is rejected"},
-      {"type": "text", "text": "Confirm that the file is stereo 16-bit / 44.1 kHz FLAC and that it opens normally on another device."}
+      {"type": "text", "text": "For FLAC, confirm stereo 16-bit / 44.1 kHz. For MP3, confirm MPEG-1 Layer III at 44.1 kHz. Check that the file opens normally on another device."}
     ]},
     {"number": 13, "title": "Troubleshooting: artwork and playback", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "Cover art is missing"},
-      {"type": "text", "text": "Wait for the first cover load to finish. PSPMAN supports embedded JPEG and PNG images. If the image cannot be displayed, PSPMAN shows No Cover."},
+      {"type": "text", "text": "Wait for the first cover load to finish. Under memory pressure, PNG or unusually large artwork may show No Cover. Playback is unaffected. A smaller embedded JPEG is the temporary workaround."},
       {"type": "heading", "before": "section", "text": "Japanese text is incomplete"},
       {"type": "text", "text": "Some Japanese characters may not be included in the display font. The stored tags are not changed."},
       {"type": "heading", "before": "section", "text": "Playback does not start"},
       {"type": "text", "text": "Confirm that the song matches the supported audio profile and is not damaged. Try another supported track."},
       {"type": "heading", "before": "section", "text": "Report a problem"},
-      {"type": "text", "text": "Pause playback, return to Library, and hold TRIANGLE to open Diagnostics. Reproduce the problem, exit with HOME, and keep the diagnostic files. Report the PSP model, firmware, track format, and steps that caused the problem at obsoletesony.com/pspman/report-a-bug."}
+      {"type": "text", "url": "https://obsoletesony.com/pspman/report-a-bug", "text": "Pause playback, return to Library, and hold TRIANGLE to open Diagnostics. Reproduce the problem, exit with HOME, and keep the diagnostic files. Report the PSP model, firmware, track format, and steps that caused the problem at obsoletesony.com/pspman/report-a-bug."}
     ]},
     {"number": 14, "title": "Credits, support, and legal", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "Support"},
-      {"type": "bullet", "spacing": "compact", "text": "Website: obsoletesony.com/pspman"},
-      {"type": "bullet", "spacing": "compact", "text": "Public issue tracker: github.com/obsoletesony/PSPMAN-Issues"},
+      {"type": "bullet", "spacing": "compact", "url": "https://obsoletesony.com/pspman", "text": "Website: obsoletesony.com/pspman"},
+      {"type": "bullet", "spacing": "compact", "url": "https://github.com/obsoletesony/PSPMAN-Issues", "text": "Public issue tracker: github.com/obsoletesony/PSPMAN-Issues"},
       {"type": "text", "text": "PSPMAN is built with PocketJS."},
       {"type": "heading", "before": "section", "text": "License and notices"},
       {"type": "text", "text": "PSPMAN-owned code is private-source. Copyright 2026 ObsoleteSony. All rights reserved. Source code is not included with the Public Alpha."},

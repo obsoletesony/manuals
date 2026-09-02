@@ -12,7 +12,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from PIL import Image, ImageChops, ImageDraw
+from PIL import Image, ImageDraw
 from pypdf import PdfReader
 import pypdfium2 as pdfium
 
@@ -88,14 +88,21 @@ def approved_screenshots() -> None:
             raise AssertionError(f"Unapproved screenshot filename: {path.name}")
 
 
-def assert_monochrome(path: Path) -> None:
-    """Require every rendered production page to contain neutral RGB values."""
+def assert_orange_accents(path: Path) -> None:
+    """Require the intended orange marker treatment on every page."""
     document = pdfium.PdfDocument(str(path))
     for page_number in range(len(document)):
         image = document[page_number].render(scale=0.75).to_pil().convert("RGB")
-        red, green, blue = image.split()
-        if ImageChops.difference(red, green).getbbox() or ImageChops.difference(red, blue).getbbox():
-            raise AssertionError(f"Production PDF contains color on page {page_number + 1}")
+        orange_pixels = sum(
+            1
+            for red, green, blue in image.getdata()
+            if red >= 200 and 25 <= green <= 120 and blue <= 90
+        )
+        if orange_pixels < 12:
+            raise AssertionError(
+                f"Production PDF is missing orange accents on page {page_number + 1}: "
+                f"{orange_pixels} qualifying pixels"
+            )
 
 
 def validate() -> dict:
@@ -125,16 +132,18 @@ def validate() -> dict:
     text = "\n".join(page_text)
     normalized_text = re.sub(r"\s+", " ", text).strip()
     textless_pages = [index for index, value in enumerate(page_text, 1) if not value.strip()]
-    if textless_pages != [page_count] or expected_titles[-1].get("kind") != "back-cover":
+    if textless_pages or expected_titles[-1].get("kind") != "back-cover":
         raise AssertionError(f"Reader PDF contains an accidental blank page: {textless_pages}")
     package_version = json.loads((REPO_ROOT / "package.json").read_text(encoding="utf-8"))["version"]
     required = [
         "PSPMAN", "User's Guide",
         "obsoletesony.com/pspman", "obsoletesony.com/pspman/report-a-bug", "github.com/obsoletesony/PSPMAN-Issues",
-        "0.1.0-alpha.2", "stereo 16-bit / 44.1 kHz FLAC", "Cassette View", "Track Information",
+        "0.1.0-alpha.3", "stereo 16-bit / 44.1 kHz FLAC", "MPEG-1 Layer III MP3", "Cassette View", "Track Information",
         "Supported files and limits", "PSP-1000", "64 MB of RAM", "PSP Street (E1000)",
+        "PSP Go with Memory Stick Micro (M2)",
+        "PSP Go internal system storage is not supported in this Public Alpha",
         "Custom firmware or another working homebrew environment", "1,000 tracks", "12 folder levels",
-        "embedded JPEG and PNG cover art", "No Cover", "Some Japanese characters may not display correctly",
+        "embedded JPEG and PNG cover art", "Under memory pressure", "Playback is unaffected", "No Cover", "Some Japanese characters may not display correctly",
         "Copyright 2026 ObsoleteSony. All rights reserved.", "PSPMAN is built with PocketJS.",
     ]
     missing_text = [value for value in required if value.casefold() not in normalized_text.casefold()]
@@ -215,6 +224,9 @@ def validate() -> dict:
         raise AssertionError(f"Unexpected PDF title: {metadata.get('/Title')}")
     if metadata.get("/Subject") != "User's guide for PSPMAN":
         raise AssertionError(f"Unexpected PDF subject: {metadata.get('/Subject')}")
+    for key in ("/CreationDate", "/ModDate"):
+        if metadata.get(key) != "D:20260902000000+00'00'":
+            raise AssertionError(f"Unexpected reader PDF {key}: {metadata.get(key)}")
     if spreads.metadata.get("/Subject") != "User's guide for PSPMAN":
         raise AssertionError(f"Unexpected spread PDF subject: {spreads.metadata.get('/Subject')}")
     if print_pdf.metadata.get("/Subject") != "User's guide for PSPMAN":
@@ -232,6 +244,10 @@ def validate() -> dict:
     compatibility_count = normalized_text.count(compatibility_statement)
     if compatibility_count != 1:
         raise AssertionError(f"Definitive compatibility statement must appear exactly once, found {compatibility_count}")
+    mp3_statement = "It also accepts MPEG-1 Layer III MP3 at 44.1 kHz, CBR or VBR, mono or stereo, through 320 kbps."
+    mp3_count = normalized_text.count(mp3_statement)
+    if mp3_count != 1:
+        raise AssertionError(f"Definitive MP3 compatibility statement must appear exactly once, found {mp3_count}")
     if not reader.outline:
         raise AssertionError("Reader PDF has no bookmarks")
     annotations = sum(len(page.get("/Annots", [])) for page in reader.pages)
@@ -243,7 +259,11 @@ def validate() -> dict:
         for annotation in page.get("/Annots", [])
         if annotation.get_object().get("/A", {}).get("/URI")
     }
-    expected_uris = {"https://www.obsoletesony.com/pspman"}
+    expected_uris = {
+        "https://obsoletesony.com/pspman",
+        "https://obsoletesony.com/pspman/report-a-bug",
+        "https://github.com/obsoletesony/PSPMAN-Issues",
+    }
     if not expected_uris.issubset(uris):
         raise AssertionError(f"Required hyperlinks missing: {sorted(expected_uris - uris)}")
     pairs: list[tuple[int | None, int]] = (
@@ -261,7 +281,7 @@ def validate() -> dict:
             if marker not in spread_text[index]:
                 raise AssertionError(f"Spread {index + 1} is missing paired page {page_number}: {marker}")
     approved_screenshots()
-    assert_monochrome(reader_path)
+    assert_orange_accents(reader_path)
     measurement_path = OUTPUT / "measurement-report.json"
     if not measurement_path.exists():
         raise AssertionError("Measurement report is missing")
@@ -292,7 +312,7 @@ def validate() -> dict:
         "requiredText": "pass", "pageHeadings": "pass", "metadata": "pass",
         "bookmarks": "pass", "linkAnnotations": annotations,
         "hyperlinks": sorted(uris), "spreadPairing": "pass", "blankPages": "pass",
-        "printBoxes": "pass", "screenshots": "pass", "monochrome": "pass", "measurementReport": "pass",
+        "printBoxes": "pass", "screenshots": "pass", "orangeAccents": "pass", "measurementReport": "pass",
     }
 
 

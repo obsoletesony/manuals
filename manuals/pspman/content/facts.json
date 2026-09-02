@@ -1,13 +1,11 @@
 {
-  "status": "Current-state fact sheet for PSPMAN 0.1.0-alpha.2 User's Guide",
-  "recorded": "2026-08-31",
-  "sourceCommit": "d2dc64587697b83a8e412df78a2b52428ce2c1fd",
-  "sourceTree": "871a8e6e8c62dcc85fe893034a6bb99ebc264299",
+  "status": "Staged fact sheet for PSPMAN 0.1.0-alpha.3 User's Guide",
+  "recorded": "2026-09-02",
   "versionSource": "package.json",
   "identity": {
     "product": "PSPMAN",
     "creator": "ObsoleteSony",
-    "description": "Walkman-inspired FLAC music player for Sony PSP, built with PocketJS.",
+    "description": "Walkman-inspired FLAC and MP3 music player for Sony PSP, built with PocketJS.",
     "support": "https://obsoletesony.com/pspman/report-a-bug",
     "website": "https://obsoletesony.com/pspman",
     "sourceAvailability": "Private-source during active development; source code is not included with the Public Alpha",
@@ -27,19 +25,20 @@
   },
   "audio": {
     "compatibilitySource": "compatibility.json",
-    "supported": "stereo 16-bit / 44.1 kHz FLAC",
+    "supported": "stereo 16-bit / 44.1 kHz FLAC; MPEG-1 Layer III MP3 at 44.1 kHz, CBR or VBR, mono or stereo, through 320 kbps",
     "output": "signed 16-bit / 44.1 kHz stereo PCM",
     "gapless": "Not claimed"
   },
   "metadata": {
     "fields": ["title", "artist", "album", "album artist", "track number", "disc number", "date", "genre", "composer", "duration", "source format", "file identity"],
     "flac": "Vorbis comments and embedded PICTURE front cover",
+    "mp3": "ID3 title, artist, album, track, and disc fields with embedded APIC JPEG or PNG front cover",
     "display": "UTF-8 metadata is preserved; some Japanese characters may not display correctly"
   },
   "artwork": {
     "formats": ["JPEG", "PNG"],
-    "behavior": "Cover art may take longer to appear the first time; images that cannot be displayed show No Cover",
-    "guidance": "Embedded JPEG or PNG; artwork that cannot be displayed falls back to No Cover"
+    "behavior": "Under memory pressure, some embedded artwork may not load; playback is unaffected and images that cannot be displayed show No Cover",
+    "guidance": "Embedded JPEG or PNG; use smaller JPEG artwork as a temporary workaround when PNG or unusually large artwork does not display"
   },
   "library": {
     "organization": ["All Songs", "Album", "Artist", "Folder", "Favorites", "Recent", "Playlists"],

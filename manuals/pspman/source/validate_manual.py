@@ -131,10 +131,10 @@ def validate() -> dict:
     required = [
         "PSPMAN", "User's Guide",
         "obsoletesony.com/pspman", "obsoletesony.com/pspman/report-a-bug", "github.com/obsoletesony/PSPMAN-Issues",
-        "0.1.0-alpha.2", "stereo 16-bit / 44.1 kHz FLAC", "Cassette View", "Track Information",
+        "0.1.0-alpha.3", "stereo 16-bit / 44.1 kHz FLAC", "MPEG-1 Layer III MP3", "Cassette View", "Track Information",
         "Supported files and limits", "PSP-1000", "64 MB of RAM", "PSP Street (E1000)",
         "Custom firmware or another working homebrew environment", "1,000 tracks", "12 folder levels",
-        "embedded JPEG and PNG cover art", "No Cover", "Some Japanese characters may not display correctly",
+        "embedded JPEG and PNG cover art", "Under memory pressure", "Playback is unaffected", "No Cover", "Some Japanese characters may not display correctly",
         "Copyright 2026 ObsoleteSony. All rights reserved.", "PSPMAN is built with PocketJS.",
     ]
     missing_text = [value for value in required if value.casefold() not in normalized_text.casefold()]
@@ -232,6 +232,10 @@ def validate() -> dict:
     compatibility_count = normalized_text.count(compatibility_statement)
     if compatibility_count != 1:
         raise AssertionError(f"Definitive compatibility statement must appear exactly once, found {compatibility_count}")
+    mp3_statement = "It also accepts MPEG-1 Layer III MP3 at 44.1 kHz, CBR or VBR, mono or stereo, through 320 kbps."
+    mp3_count = normalized_text.count(mp3_statement)
+    if mp3_count != 1:
+        raise AssertionError(f"Definitive MP3 compatibility statement must appear exactly once, found {mp3_count}")
     if not reader.outline:
         raise AssertionError("Reader PDF has no bookmarks")
     annotations = sum(len(page.get("/Annots", [])) for page in reader.pages)

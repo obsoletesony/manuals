@@ -1,6 +1,6 @@
 # PSPMAN User's Guide
 
-This directory contains the adapted editable source for the deterministic 15-page PSPMAN User's Guide. The 31 August 2026 edition describes PSPMAN 0.1.0-alpha.2 at source commit `d2dc64587697b83a8e412df78a2b52428ce2c1fd`. The generator records a non-circular SHA-256 digest of the manual inputs in `output/checksums.json` and resolves the application version from `package.json`.
+This directory contains the adapted editable source for the deterministic 15-page PSPMAN User's Guide. The 2 September 2026 staged edition describes PSPMAN 0.1.0-alpha.3 and its FLAC and MP3 compatibility. The final application commit and package identity belong to the release manifest, so the guide does not hardcode a pre-qualification candidate commit. The generator records a non-circular SHA-256 digest of the manual inputs in `output/checksums.json` and resolves the application version from `package.json`.
 
 ## Rebuild
 
@@ -16,7 +16,7 @@ The first command rebuilds the reader, spread, and print editions. The second ru
 ## Source organization
 
 - `content/manual.yaml` contains the page architecture and prose. The file uses JSON syntax, which is valid YAML 1.2 and can be read without an additional YAML package.
-- `content/facts.json`, `compatibility.json`, and `controls.json` record the exact current FLAC, library, artwork, input, and hardware-qualification facts used by the manual.
+- `content/facts.json`, `compatibility.json`, and `controls.json` record the exact current FLAC, MP3, library, artwork, input, and hardware-qualification facts used by the manual.
 - `source/` contains reusable layout, style, vector-diagram, build, and validation code.
 - `assets/branding/` contains the manual wordmark artwork.
 - `assets/screenshots/` contains public-safe native 480x272 PSPMAN captures using only project-owned demonstration metadata and artwork.
@@ -41,6 +41,6 @@ The optional A4 booklet imposition is not generated. The validated primary print
 
 ## Reference and rights
 
-The supplied Sony guide was used only to study general editorial organization and physical-document discipline. It is deliberately kept outside this repository. No reference pages, traced illustrations, Sony logos, Walkman logos, commercial media, private audio, or demonstration FLAC are stored here.
+The supplied Sony guide was used only to study general editorial organization and physical-document discipline. It is deliberately kept outside this repository. No reference pages, traced illustrations, Sony logos, Walkman logos, commercial media, private audio, or demonstration music files are stored here.
 
 The diagrams are original vectors. The screenshots contain only PSPMAN, ObsoleteSony, Digital Music Player, and project-owned cover artwork.

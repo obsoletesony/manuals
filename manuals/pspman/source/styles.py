@@ -28,14 +28,23 @@ FONT_DISPLAY = "InterDisplay"
 FONT_DISPLAY_BOLD = "InterDisplay-Bold"
 
 
-def register_fonts(repo_root: Path) -> None:
+def register_fonts(repo_root: Path, *, locale: str = "en") -> None:
     font_dir = Path(__file__).resolve().parent.parent / "assets" / "fonts"
-    definitions = {
-        FONT_REGULAR: font_dir / "Inter-Regular.ttf",
-        FONT_BOLD: font_dir / "Inter-Bold.ttf",
-        FONT_DISPLAY: font_dir / "InterDisplay-Regular.ttf",
-        FONT_DISPLAY_BOLD: font_dir / "InterDisplay-Bold.ttf",
-    }
+    if locale == "ja":
+        japanese_font_dir = font_dir / "ja"
+        definitions = {
+            FONT_REGULAR: japanese_font_dir / "NotoSansJP-Regular-subset.ttf",
+            FONT_BOLD: japanese_font_dir / "NotoSansJP-Bold-subset.ttf",
+            FONT_DISPLAY: japanese_font_dir / "NotoSansJP-Regular-subset.ttf",
+            FONT_DISPLAY_BOLD: japanese_font_dir / "NotoSansJP-Bold-subset.ttf",
+        }
+    else:
+        definitions = {
+            FONT_REGULAR: font_dir / "Inter-Regular.ttf",
+            FONT_BOLD: font_dir / "Inter-Bold.ttf",
+            FONT_DISPLAY: font_dir / "InterDisplay-Regular.ttf",
+            FONT_DISPLAY_BOLD: font_dir / "InterDisplay-Bold.ttf",
+        }
     for name, path in definitions.items():
         if name not in pdfmetrics.getRegisteredFontNames():
             pdfmetrics.registerFont(TTFont(name, str(path)))

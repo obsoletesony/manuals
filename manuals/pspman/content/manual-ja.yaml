@@ -1,0 +1,138 @@
+{
+  "document": {
+    "title": "PSPMAN ユーザーガイド",
+    "code": "OS-PSPMAN-01-JP (1)",
+    "description": "ソニーのPSP向けに開発された、ウォークマンに着想を得たFLAC／MP3音楽プレーヤー。",
+    "subject": "PSPMANの日本語ユーザーガイド",
+    "creator": "ObsoleteSony",
+    "version": "0.1.0-alpha.3",
+    "edition": "2026年9月2日",
+    "site": "obsoletesony.com/jp/pspman",
+    "repository": "https://github.com/obsoletesony/PSPMAN",
+    "sourceRepository": "https://github.com/obsoletesony/manuals",
+    "coverLabel": "ユーザーガイド",
+    "publicLabel": "PUBLIC ALPHA"
+  },
+  "pages": [
+    {"number": 1, "kind": "cover", "title": "PSPMAN"},
+    {"number": 2, "title": "はじめに", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "text", "text": "PSPMANは、ソニーのPSP向けに開発された、ウォークマンに着想を得たFLAC／MP3音楽プレーヤーです。PSPのストレージ内にある対応ファイルをスキャンし、オフラインのライブラリとして整理します。"},
+      {"type": "heading", "before": "section", "text": "必要な環境"},
+      {"type": "bullet", "spacing": "compact", "text": "PSPMANの動作には64MBのRAMを搭載したPSPが必要です。"},
+      {"type": "bullet", "spacing": "compact", "text": "対応機種はPSP-2000、PSP-3000、メモリースティック マイクロ（M2）を使用するPSP Go、PSP Street（E1000）です。このPublic Alphaでは、PSP Goの本体ストレージには対応していません。"},
+      {"type": "bullet", "spacing": "compact", "text": "初代PSP-1000はRAMが32MBのため正式対応外です。"},
+      {"type": "bullet", "spacing": "compact", "text": "CFW（カスタムファームウェア）など、Homebrew（自作アプリ）を起動できる環境が必要です。"},
+      {"type": "bullet", "spacing": "compact", "text": "ステレオ16-bit／44.1kHzのFLAC、または44.1kHzのMPEG-1 Layer III MP3をご使用ください。"},
+      {"type": "bullet", "spacing": "compact", "text": "PSPMAN、音楽、保存データ、カバーアートのために、メモリースティックに十分な空き容量を確保してください。"},
+      {"type": "heading", "before": "section", "text": "音楽ファイル"},
+      {"type": "text", "text": "PSPMANが元の音楽ファイルのタグを書き換えたり、ファイルを移動・削除したりすることはありません。インターネット接続も不要です。"}
+    ]},
+    {"number": 3, "title": "目次", "kind": "contents", "density": "standard", "template": "standard-text"},
+    {"number": 4, "title": "インストールと音楽の追加", "density": "dense", "template": "visual", "blocks": [
+      {"type": "numbered-list", "items": [
+        "PSPMANを展開: ダウンロードしたファイルを展開し、PSPMANフォルダー内にEBOOT.PBPがあることを確認します。",
+        "アプリをコピー: メモリースティックのPSP/GAME/PSPMAN/EBOOT.PBPに配置します。",
+        "音楽をコピー: 同じメモリースティックのMUSICまたはPSP/MUSICに、対応するFLAC／MP3をコピーします。",
+        "安全に取り外す: ストレージを取り出す操作を行ってから、USBケーブルまたはカードリーダーを外します。",
+        "PSPMANを起動: XMBの［ゲーム］からObsoleteSonyのPSPMANを起動します。",
+        "スキャンを完了: 最初のスキャンが終わるまで待ちます。音楽を追加した後はPSPMANを再起動してください。"
+      ]}
+    ]},
+    {"number": 5, "title": "ライブラリ", "density": "standard", "template": "visual", "blocks": [
+      {"type": "screenshot", "file": "library-home-480x272.png", "width": 64},
+      {"type": "bullet", "spacing": "compact", "text": "［All Songs］には、対応するすべての曲が表示されます。"},
+      {"type": "bullet", "spacing": "compact", "text": "［Album］と［Artist］では、保存されているメタデータを使って曲を分類します。"},
+      {"type": "bullet", "spacing": "compact", "text": "［Folder］では、PSPのストレージ内のフォルダー構成をそのまま表示します。"},
+      {"type": "bullet", "spacing": "compact", "text": "［Favorites］には、再生中画面の星印で登録した曲が表示されます。"},
+      {"type": "bullet", "spacing": "compact", "text": "［Recent］には最近再生した曲が表示されます。［Playlists］には、スキャン時に見つかったM3U／M3U8プレイリストが表示されます。"},
+      {"type": "bullet", "spacing": "compact", "text": "画面下部のプレーヤーには、再生中の曲と、前の曲、再生／一時停止、次の曲の操作が表示されます。"},
+      {"type": "text", "text": "方向キーで項目を選び、×ボタンでカテゴリーを開くか曲を再生します。○ボタンで前の画面に戻ります。"}
+    ]},
+    {"number": 6, "title": "再生", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "再生を始める"},
+      {"type": "text", "text": "ライブラリで曲を選び、×ボタンを押します。PSPMANが曲を再生し、選択した一覧からキューを作成します。"},
+      {"type": "heading", "before": "section", "text": "基本操作"},
+      {"type": "bullet", "spacing": "relaxed", "text": "STARTボタン、または画面の［Play/Pause］を選ぶと、一時停止／再開できます。"},
+      {"type": "bullet", "spacing": "relaxed", "text": "Lボタンを短く押すと前の曲、Rボタンを短く押すと次の曲へ移動します。再生開始から3秒を過ぎている場合、Lボタンで現在の曲の先頭に戻ります。"},
+      {"type": "bullet", "spacing": "relaxed", "text": "Lボタンを長押しすると巻き戻し、Rボタンを長押しすると早送りします。"},
+      {"type": "heading", "before": "section", "text": "シャッフルとリピート"},
+      {"type": "text", "text": "シャッフルは現在のキューの再生順を変更します。リピートでは、キュー全体または現在の曲を繰り返せます。曲が終わると、現在のキューとリピート設定に従って次の曲を再生します。"}
+    ]},
+    {"number": 7, "title": "再生中画面", "density": "standard", "template": "visual", "blocks": [
+      {"type": "screenshot", "file": "now-playing-480x272.png", "width": 72},
+      {"type": "bullet", "anchor": "secondary", "spacing": "compact", "text": "ライブラリのホーム画面で□ボタンを押すと、再生中画面が開きます。"},
+      {"type": "bullet", "spacing": "compact", "text": "再生中画面には、カバーアート、曲名、アーティスト名、アルバム名、ファイル情報、再生時間、進行状況、再生操作が表示されます。"},
+      {"type": "bullet", "spacing": "compact", "text": "方向キーで操作項目を選び、×ボタンで実行します。"},
+      {"type": "bullet", "spacing": "compact", "text": "上でライブラリ、左でキュー、右でお気に入り、下でオーディオ画面を開きます。"},
+      {"type": "bullet", "spacing": "compact", "text": "星印を選ぶと、現在の曲をお気に入りに追加／削除できます。"},
+      {"type": "bullet", "spacing": "compact", "text": "△ボタンで曲情報、□ボタンでカセット表示を開きます。"}
+    ]},
+    {"number": 8, "title": "キュー、お気に入り、曲情報", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "キュー"},
+      {"type": "text", "text": "再生中画面で左を押すと、現在のキューが開きます。曲を選び、×ボタンを押すと再生します。"},
+      {"type": "heading", "before": "section", "text": "お気に入り"},
+      {"type": "text", "text": "再生中画面で右を押すか、ライブラリのホーム画面から［Favorites］を開きます。曲を選び、×ボタンを押すと再生します。"},
+      {"type": "heading", "before": "section", "text": "曲情報"},
+      {"type": "text", "text": "再生中画面で△ボタンを押します。1ページ目にはファイルとメタデータの情報、2ページ目にはトラブルシューティング用の再生状態が表示されます。左右またはL／Rボタンでページを切り替え、上下でスクロールします。○ボタンまたは△ボタンで戻ります。"}
+    ]},
+    {"number": 9, "title": "カセット表示", "density": "standard", "template": "visual", "blocks": [
+      {"type": "screenshot", "file": "cassette-480x272.png", "width": 72},
+      {"type": "bullet", "anchor": "secondary", "spacing": "relaxed", "text": "再生中画面で□ボタンを押すと、カセット表示が開きます。"},
+      {"type": "bullet", "spacing": "relaxed", "text": "音楽の再生中はリールが回転し、一時停止すると止まります。"},
+      {"type": "bullet", "spacing": "relaxed", "text": "左右でカセットの色を選べます。選んだ色はPSPMANを終了するまで保持されます。"},
+      {"type": "bullet", "spacing": "relaxed", "text": "STARTボタンまたは×ボタンで再生／一時停止します。"},
+      {"type": "bullet", "spacing": "relaxed", "text": "○ボタンまたは□ボタンで再生中画面に戻ります。"}
+    ]},
+    {"number": 10, "title": "PSPMANについて、診断、安全な終了", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "PSPMANについて"},
+      {"type": "text", "text": "通常の画面でSELECTボタンを押すと、About画面が開きます。PSPMANのバージョン0.1.0-alpha.3、制作者、ウェブサイト、著作権、ソニーとの非提携に関する表示を確認できます。いずれかのボタンを押すと閉じます。"},
+      {"type": "heading", "before": "section", "text": "診断情報"},
+      {"type": "text", "text": "Diagnosticsは問題を報告するときだけ使用してください。再生を一時停止し、ライブラリに戻ってから△ボタンを長押しします。○ボタンで戻ります。問題が起きたセッションで作成された診断ファイルを保管してください。"},
+      {"type": "heading", "before": "section", "text": "安全な終了"},
+      {"type": "text", "text": "HOMEボタンを押してPSPの終了確認画面を開きます。終了を選び、PSPMANの処理が完了してからストレージを取り外すか、PSPの電源を切ってください。"}
+    ]},
+    {"number": 11, "title": "対応ファイルと上限", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "音声"},
+      {"type": "text", "text": "PSPMANはステレオ16-bit／44.1kHzのFLACに対応しています。MP3は44.1kHzのMPEG-1 Layer III、CBR／VBR、モノラル／ステレオ、最大320kbpsに対応しています。48kHz MP3、MPEG-2、MPEG-2.5、その他の音声コーデックには対応していません。"},
+      {"type": "heading", "before": "section", "text": "ライブラリ"},
+      {"type": "bullet", "spacing": "compact", "text": "PSPのストレージ内のMUSICとPSP/MUSICをスキャンします。"},
+      {"type": "bullet", "spacing": "compact", "text": "ライブラリは最大1,000曲に対応しています。"},
+      {"type": "bullet", "spacing": "compact", "text": "音楽は最大12階層のフォルダー内に保存できます。"},
+      {"type": "heading", "before": "section", "text": "カバーアート"},
+      {"type": "text", "text": "埋め込みJPEG／PNGのカバーアートに対応しています。メモリが不足すると、PNGや非常に大きな画像が「No Cover」と表示される場合があります。再生には影響しません。"},
+      {"type": "heading", "before": "section", "text": "文字"},
+      {"type": "text", "text": "UTF-8のメタデータを読み込みます。一部の日本語文字が正しく表示されない場合があります。"}
+    ]},
+    {"number": 12, "title": "トラブルシューティング：起動とライブラリ", "tocTitle": "トラブルシューティング", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "PSPMANが表示されない／起動しない"},
+      {"type": "text", "text": "メモリースティックのPSP/GAME/PSPMANにEBOOT.PBPがあること、CFWなどのHomebrewを起動できる環境が正常に動作していることを確認してください。PSPMANには64MBのRAMを搭載したPSP-2000、PSP-3000、メモリースティック マイクロ（M2）を使用するPSP Go、PSP Street（E1000）が必要です。このPublic AlphaではPSP Goの本体ストレージには対応していません。PSP-1000はRAMが32MBのため正式対応外です。"},
+      {"type": "heading", "before": "section", "text": "曲が見つからない"},
+      {"type": "text", "text": "対応するFLAC／MP3をMUSICまたはPSP/MUSICに入れてください。PSPMANを再起動し、スキャンが終わるまで待ちます。"},
+      {"type": "heading", "before": "section", "text": "曲が拒否される"},
+      {"type": "text", "text": "FLACはステレオ16-bit／44.1kHz、MP3は44.1kHzのMPEG-1 Layer IIIであることを確認してください。また、別の機器でファイルを正常に開けるか確認してください。"}
+    ]},
+    {"number": 13, "title": "トラブルシューティング：カバーアートと再生", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "カバーアートが表示されない"},
+      {"type": "text", "text": "最初のカバーアートの読み込みが終わるまで待ってください。メモリが不足すると、PNGや非常に大きな画像が「No Cover」と表示される場合があります。再生には影響しません。一時的な回避策として、小さめの埋め込みJPEGをご使用ください。"},
+      {"type": "heading", "before": "section", "text": "日本語が一部表示されない"},
+      {"type": "text", "text": "表示用フォントに一部の日本語文字が含まれていない場合があります。保存されているタグは変更されません。"},
+      {"type": "heading", "before": "section", "text": "再生が始まらない"},
+      {"type": "text", "text": "曲が対応する音声形式で、ファイルが破損していないことを確認してください。別の対応曲でもお試しください。"},
+      {"type": "heading", "before": "section", "text": "問題を報告する"},
+      {"type": "text", "url": "https://obsoletesony.com/jp/pspman/report-a-bug", "text": "再生を一時停止し、ライブラリに戻ってから△ボタンを長押ししてDiagnosticsを開きます。問題を再現し、HOMEボタンで終了して、診断ファイルを保管してください。PSPの機種、CFW、曲の形式、問題が起きるまでの手順をobsoletesony.com/jp/pspman/report-a-bugからお知らせください。"}
+    ]},
+    {"number": 14, "title": "クレジット、サポート、法的情報", "density": "standard", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "サポート"},
+      {"type": "bullet", "spacing": "compact", "url": "https://obsoletesony.com/jp/pspman", "text": "ウェブサイト：obsoletesony.com/jp/pspman"},
+      {"type": "bullet", "spacing": "compact", "url": "https://github.com/obsoletesony/PSPMAN-Issues", "text": "公開Issue一覧：github.com/obsoletesony/PSPMAN-Issues"},
+      {"type": "text", "text": "PSPMANはPocketJSを基盤として開発されています。"},
+      {"type": "heading", "before": "section", "text": "ライセンスと表記"},
+      {"type": "text", "text": "PSPMAN固有のコードは非公開です。Copyright 2026 ObsoleteSony. All rights reserved. Public Alphaにはソースコードは含まれていません。"},
+      {"type": "text", "text": "第三者が提供する各コンポーネントには、それぞれのライセンス条件が適用されます。必要な表記とライセンス文書は配布パッケージに同梱されています。"},
+      {"type": "heading", "before": "section", "text": "ブランドとソニーとの関係"},
+      {"type": "text", "text": "ObsoleteSonyの名称、ロゴ、ワードマーク、関連アートワークは、保護されたブランド資産です。"},
+      {"type": "text", "text": "PSPMANは独立したHomebrew（自作アプリ）プロジェクトであり、Sony Group CorporationおよびSony Interactive Entertainmentとの提携、承認、公式な関係はありません。"}
+    ]},
+    {"number": 15, "kind": "back-cover", "title": "PSPMAN"}
+  ]
+}

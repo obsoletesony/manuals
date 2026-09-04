@@ -3,6 +3,7 @@
     "title": "PSPMAN User's Guide",
     "code": "OS-PSPMAN-01 (3)",
     "description": "Walkman-inspired FLAC and MP3 music player for Sony PSP, built with PocketJS.",
+    "subject": "User's guide for PSPMAN",
     "creator": "ObsoleteSony",
     "version": "0.1.0-alpha.3",
     "edition": "2 September 2026",
@@ -100,7 +101,7 @@
       {"type": "heading", "before": "section", "text": "Text"},
       {"type": "text", "text": "PSPMAN reads UTF-8 metadata. Some Japanese characters may not display correctly."}
     ]},
-    {"number": 12, "title": "Troubleshooting: startup and library", "density": "standard", "template": "standard-text", "blocks": [
+    {"number": 12, "title": "Troubleshooting: startup and library", "tocTitle": "Troubleshooting", "density": "standard", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "PSPMAN does not appear or open"},
       {"type": "text", "text": "Confirm that EBOOT.PBP is in PSP/GAME/PSPMAN on the Memory Stick and that custom firmware or another homebrew environment is working. PSPMAN requires a 64 MB model: PSP-2000, PSP-3000, PSP Go with Memory Stick Micro (M2), or PSP Street (E1000). PSP Go internal system storage is not supported in this Public Alpha. The original PSP-1000 is not supported because it has 32 MB of RAM."},
       {"type": "heading", "before": "section", "text": "No songs found"},

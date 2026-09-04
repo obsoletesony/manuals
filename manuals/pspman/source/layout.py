@@ -6,6 +6,7 @@ from functools import lru_cache
 from io import BytesIO
 from dataclasses import dataclass
 from pathlib import Path
+import re
 from typing import Iterable
 
 from PIL import Image, ImageOps
@@ -79,9 +80,62 @@ LOWER_CONTENT_LIMIT = FOOTER_RULE + SPACE_12
 TWO_COLUMN_GUTTER = SPACE_12
 SCREEN_ASPECT = 480 / 272
 BUTTON_SYMBOLS = frozenset({"×", "○", "□", "△"})
+_CJK_PATTERN = re.compile(r"[\u3000-\u30ff\u3400-\u9fff\uf900-\ufaff]")
+_CJK_UNITS = re.compile(r"[A-Za-z0-9][A-Za-z0-9._:/-]*|[ \t]+|.", re.DOTALL)
+_CJK_CLOSING = frozenset("、。，．・：；？！ー）］｝〉》」』】〕〗〙〛’”ぁぃぅぇぉっゃゅょァィゥェォッャュョヵヶ")
+_CJK_OPENING = frozenset("（［｛〈《「『【〔〖〘〚‘“")
+
+
+def _contains_cjk(text: str) -> bool:
+    return bool(_CJK_PATTERN.search(text))
+
+
+def _wrap_cjk_lines(text: str, measure, width: float) -> list[str]:
+    units = _CJK_UNITS.findall(text)
+    lines: list[str] = []
+    line = ""
+    for unit in units:
+        if not line and unit.isspace():
+            continue
+        trial = f"{line}{unit}"
+        if not line or measure(trial) <= width:
+            line = trial
+            continue
+
+        if unit[0] in _CJK_CLOSING and len(line.rstrip()) > 1:
+            stripped = line.rstrip()
+            carry = stripped[-1]
+            lines.append(stripped[:-1])
+            line = f"{carry}{unit.lstrip()}"
+            continue
+
+        carry = ""
+        stripped = line.rstrip()
+        while stripped and stripped[-1] in _CJK_OPENING:
+            carry = stripped[-1] + carry
+            stripped = stripped[:-1]
+        if stripped:
+            lines.append(stripped)
+        line = f"{carry}{unit.lstrip()}"
+
+        if measure(line) > width and len(line) > 1:
+            fragment = ""
+            for character in line:
+                candidate = fragment + character
+                if fragment and measure(candidate) > width:
+                    lines.append(fragment)
+                    fragment = character
+                else:
+                    fragment = candidate
+            line = fragment
+    if line.strip() or not lines:
+        lines.append(line.rstrip())
+    return lines
 
 
 def wrap_lines(text: str, font: str, size: float, width: float) -> list[str]:
+    if _contains_cjk(text):
+        return _wrap_cjk_lines(text, lambda value: pdfmetrics.stringWidth(value, font, size), width)
     words = text.split()
     if not words:
         return [""]
@@ -120,6 +174,15 @@ def _inline_word_width(word: str, font: str, size: float) -> float:
 
 def wrap_inline_lines(text: str, font: str, size: float, width: float) -> list[list[str]]:
     """Wrap words while treating face-button symbols as fixed-width vector objects."""
+    if _contains_cjk(text):
+        return [
+            [line]
+            for line in _wrap_cjk_lines(
+                text,
+                lambda value: _inline_word_width(value, font, size),
+                width,
+            )
+        ]
     words = text.split()
     if not words:
         return [[]]

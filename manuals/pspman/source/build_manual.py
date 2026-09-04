@@ -64,7 +64,6 @@ SCREENSHOT_DIR = ASSET_DIR / "screenshots"
 PSPMAN3_COVER_LOGO = ASSET_DIR / "branding" / "pspman3-cover-white.png"
 BRAND_DIR = ASSET_DIR / "branding"
 DEFAULT_OUTPUT = MANUAL_DIR / "output"
-COVER_FOOTER_LABEL = "USER'S GUIDE"
 PDF_INVARIANT_DATE = b"D:20000101000000+00'00'"
 PDF_REVISION_DATE = b"D:20260902000000+00'00'"
 
@@ -82,19 +81,23 @@ def canonical_origin() -> str:
     return remote.removesuffix(".git").replace("https://github.com/ObsoleteSony/", "https://github.com/obsoletesony/")
 
 
-def metadata(c: canvas.Canvas) -> None:
-    c.setTitle("PSPMAN User's Guide")
+def metadata(c: canvas.Canvas, content: dict) -> None:
+    document = content["document"]
+    c.setTitle(document["title"])
     c.setAuthor("ObsoleteSony")
     c.setCreator("ObsoleteSony")
-    c.setSubject("User's guide for PSPMAN")
+    c.setSubject(document.get("subject", document["description"]))
     c.setKeywords("PSPMAN, ObsoleteSony, PlayStation Portable, user's guide")
 
 
-def cover(c, page: ManualPage, *, back: bool = False) -> None:
+def cover(c, page: ManualPage, content: dict, *, back: bool = False) -> None:
     c.setFillColor(CHARCOAL)
     c.rect(0, 0, c._pagesize[0], c._pagesize[1], fill=1, stroke=0)
     x0, y0 = page.x0, page.y0
     cover_logo = ImageReader(BytesIO(PSPMAN3_COVER_LOGO.read_bytes()))
+    document = content["document"]
+    site = document["site"]
+    site_url = f"https://{site}"
     if back:
         logo_width = TRIM - mm(30)
         logo_height = logo_width * 356 / 2400
@@ -108,7 +111,7 @@ def cover(c, page: ManualPage, *, back: bool = False) -> None:
             mask="auto",
         )
         c.linkURL(
-            "https://obsoletesony.com/pspman",
+            site_url,
             (
                 x0 + mm(15),
                 y0 + TRIM - mm(42),
@@ -117,13 +120,12 @@ def cover(c, page: ManualPage, *, back: bool = False) -> None:
             ),
             relative=0,
         )
-        site = "obsoletesony.com/pspman"
         c.setFillColor(ORANGE)
         c.setFont(FONT_DISPLAY_BOLD, 10.5)
         c.drawCentredString(x0 + TRIM / 2, y0 + mm(17), site)
         site_width = pdfmetrics.stringWidth(site, FONT_DISPLAY_BOLD, 10.5)
         c.linkURL(
-            "https://obsoletesony.com/pspman",
+            site_url,
             (
                 x0 + (TRIM - site_width) / 2,
                 y0 + mm(15),
@@ -146,30 +148,31 @@ def cover(c, page: ManualPage, *, back: bool = False) -> None:
     )
     c.setFillColor(ORANGE)
     c.setFont(FONT_DISPLAY_BOLD, 9)
-    c.drawString(x0 + mm(15), y0 + mm(17), "PUBLIC ALPHA")
+    c.drawString(x0 + mm(15), y0 + mm(17), document.get("publicLabel", "PUBLIC ALPHA"))
     c.setFillColor(MUTED)
     c.setFont(FONT_DISPLAY, 6.5)
     c.drawString(x0 + mm(15), y0 + mm(11), app_version())
     c.setFont(FONT_DISPLAY, 14)
-    c.drawRightString(x0 + TRIM - mm(15), y0 + mm(17), COVER_FOOTER_LABEL)
+    c.drawRightString(x0 + TRIM - mm(15), y0 + mm(17), document.get("coverLabel", "USER'S GUIDE"))
 
 
-TOC = [
-    ("Read this first", 2), ("Install and add music", 4),
-    ("Library", 5), ("Playback", 6),
-    ("Now Playing", 7), ("Queue, Favorites, and Track Information", 8),
-    ("Cassette View", 9), ("About, diagnostics, and safe exit", 10),
-    ("Supported files and limits", 11), ("Troubleshooting", 12),
-    ("Credits, support, and legal", 14),
-]
+TOC_PAGE_NUMBERS = (2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14)
 
 
-def draw_contents(page: ManualPage) -> None:
-    page.section_title("Table of Contents")
+def table_of_contents(content: dict) -> list[tuple[str, int]]:
+    pages = {record["number"]: record for record in content["pages"]}
+    return [
+        (pages[number].get("tocTitle", pages[number]["title"]), number)
+        for number in TOC_PAGE_NUMBERS
+    ]
+
+
+def draw_contents(page: ManualPage, toc: list[tuple[str, int]]) -> None:
+    page.section_title(page.title)
     c = page.c
     entries_box = page.reserve(mm(66), "table of contents entries", gap=0)
-    row_pitch = (entries_box.height - SPACE_16) / (len(TOC) - 1)
-    for index, (label, number) in enumerate(TOC):
+    row_pitch = (entries_box.height - SPACE_16) / (len(toc) - 1)
+    for index, (label, number) in enumerate(toc):
         left = page.left
         right = page.right
         label_baseline = entries_box.top - SPACE_8 - index * row_pitch
@@ -191,7 +194,7 @@ def draw_contents(page: ManualPage) -> None:
         c.setFont(FONT_DISPLAY_BOLD, 8)
         c.drawRightString(right, label_baseline, number_text)
         hit_top = label_baseline + SPACE_8
-        hit_bottom = label_baseline - row_pitch + SPACE_8 if index < len(TOC) - 1 else entries_box.y
+        hit_bottom = label_baseline - row_pitch + SPACE_8 if index < len(toc) - 1 else entries_box.y
         page.c.linkRect("", f"page-{number}", (left, hit_bottom, right, hit_top), relative=0, thickness=0)
 def draw_grid(
     page: ManualPage,
@@ -592,9 +595,10 @@ def build_pages(
     page_size = (PRINT_SIZE, PRINT_SIZE) if print_edition else (TRIM, TRIM)
     bleed = BLEED if print_edition else 0
     c = canvas.Canvas(str(path), pagesize=page_size, pageCompression=1, invariant=1)
-    metadata(c)
+    metadata(c, content)
     reviews: list[dict] = []
-    outline_pages = {1, len(content["pages"]), *(number for _, number in TOC)}
+    toc = table_of_contents(content)
+    outline_pages = {1, len(content["pages"]), *(number for _, number in toc)}
     for record in content["pages"]:
         number = record["number"]
         page = ManualPage(c, number, record["title"], bleed=bleed, qa=qa)
@@ -602,9 +606,9 @@ def build_pages(
         if number in outline_pages:
             c.addOutlineEntry(record["title"], f"page-{number}", level=0, closed=False)
         if record.get("kind") == "cover":
-            cover(c, page)
+            cover(c, page, content)
         elif record.get("kind") == "back-cover":
-            cover(c, page, back=True)
+            cover(c, page, content, back=True)
         else:
             template = record.get("template", "standard-text")
             if template not in PAGE_TEMPLATES:
@@ -614,7 +618,7 @@ def build_pages(
             page.background()
             page.running_header()
             kind = record.get("kind", "blocks")
-            if kind == "contents": draw_contents(page)
+            if kind == "contents": draw_contents(page, toc)
             elif kind == "controls-by-screen": draw_controls_by_screen(page, controls)
             else:
                 page.section_title(record["title"])
@@ -655,7 +659,7 @@ def add_print_boxes(path: Path) -> None:
         writer.write(handle)
 
 
-def build_spreads(reader_path: Path, spread_path: Path) -> None:
+def build_spreads(reader_path: Path, spread_path: Path, content: dict) -> None:
     reader = PdfReader(str(reader_path))
     total_pages = len(reader.pages)
     pairs: list[tuple[int | None, int]] = (
@@ -669,8 +673,8 @@ def build_spreads(reader_path: Path, spread_path: Path) -> None:
         spread.merge_transformed_page(reader.pages[right_number - 1], Transformation().translate(TRIM, 0))
         writer.add_page(spread)
     writer.add_metadata({
-        "/Title": "PSPMAN User's Guide - Reader Spreads",
-        "/Subject": "User's guide for PSPMAN",
+        "/Title": f"{content['document']['title']} - Reader Spreads",
+        "/Subject": content["document"].get("subject", content["document"]["description"]),
         "/Author": "ObsoleteSony",
         "/Creator": "PSPMAN deterministic manual builder",
     })
@@ -690,10 +694,12 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--qa-output", type=Path)
+    parser.add_argument("--locale", choices=("en", "ja"), default="en")
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
-    register_fonts(REPO_ROOT)
-    content = load_json(CONTENT_DIR / "manual.yaml")
+    register_fonts(REPO_ROOT, locale=args.locale)
+    content_filename = "manual-ja.yaml" if args.locale == "ja" else "manual.yaml"
+    content = load_json(CONTENT_DIR / content_filename)
     controls = load_json(CONTENT_DIR / "controls.json")
     compatibility = load_json(CONTENT_DIR / "compatibility.json")
     version = app_version()
@@ -703,13 +709,14 @@ def main() -> None:
     page_count = len(content["pages"])
     if page_count != 15 or [p["number"] for p in content["pages"]] != list(range(1, page_count + 1)):
         raise RuntimeError("Manual content must define pages 1 through 15 exactly")
-    reader = args.output_dir / "PSPMAN-User-Guide.pdf"
-    spreads = args.output_dir / "PSPMAN-User-Guide-Spreads.pdf"
-    print_pdf = args.output_dir / "PSPMAN-User-Guide-Print.pdf"
+    output_stem = "PSPMAN-User-Guide-JP" if args.locale == "ja" else "PSPMAN-User-Guide"
+    reader = args.output_dir / f"{output_stem}.pdf"
+    spreads = args.output_dir / f"{output_stem}-Spreads.pdf"
+    print_pdf = args.output_dir / f"{output_stem}-Print.pdf"
     layout_reviews = build_pages(reader, print_edition=False, content=content, controls=controls, compatibility=compatibility)
     build_pages(print_pdf, print_edition=True, content=content, controls=controls, compatibility=compatibility)
     add_print_boxes(print_pdf)
-    build_spreads(reader, spreads)
+    build_spreads(reader, spreads, content)
     if args.qa_output:
         args.qa_output.parent.mkdir(parents=True, exist_ok=True)
         build_pages(
@@ -728,12 +735,13 @@ def main() -> None:
             "inputDigestAlgorithm": "sha256",
             "inputTreeSha256": input_digest,
             "inputFileCount": input_file_count,
-            "definition": "Paths and bytes of package.json plus docs/manual content, assets, and source",
+            "definition": "Paths and bytes of package.json plus manuals/pspman content, assets, and source",
         },
         "documentCode": content["document"]["code"],
         "outputs": {p.name: {"bytes": p.stat().st_size, "sha256": sha256(p)} for p in [reader, spreads, print_pdf]},
     }
-    (args.output_dir / "checksums.json").write_text(
+    report_suffix = "-ja" if args.locale == "ja" else ""
+    (args.output_dir / f"checksums{report_suffix}.json").write_text(
         json.dumps(manifest, indent=2) + "\n",
         encoding="utf-8",
         newline="\n",
@@ -752,7 +760,7 @@ def main() -> None:
             if review["candidates"]
         ],
     }
-    (args.output_dir / "layout-review.json").write_text(
+    (args.output_dir / f"layout-review{report_suffix}.json").write_text(
         json.dumps(review_report, indent=2) + "\n",
         encoding="utf-8",
         newline="\n",
@@ -762,7 +770,7 @@ def main() -> None:
         "coordinateSystem": "PDF points; X from left, first-content from top, last-content from bottom",
         "pages": layout_reviews,
     }
-    (args.output_dir / "measurement-report.json").write_text(
+    (args.output_dir / f"measurement-report{report_suffix}.json").write_text(
         json.dumps(measurement_report, indent=2) + "\n",
         encoding="utf-8",
         newline="\n",

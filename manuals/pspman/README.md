@@ -1,6 +1,6 @@
 # PSPMAN User's Guide
 
-This directory contains the adapted editable source for the deterministic 15-page PSPMAN User's Guide in English and Japanese. The 2 September 2026 staged edition describes PSPMAN 0.1.0-alpha.3 and its FLAC and MP3 compatibility. The final application commit and package identity belong to the release manifest, so the guide does not hardcode a pre-qualification candidate commit. The generator records a non-circular SHA-256 digest of the manual inputs in each edition's checksum report and resolves the application version from `package.json`.
+This directory contains the adapted editable source for the deterministic 15-page PSPMAN User's Guide in English and Japanese. The 15 September 2026 staged edition describes PSPMAN 0.1.0-alpha.5, including the ten-band Spectrum Analyzer, palette controls, and FLAC and MP3 compatibility. The final application commit and package identity belong to the release manifest, so the guide does not hardcode a pre-qualification candidate commit. The generator records a non-circular SHA-256 digest of the manual inputs in each edition's checksum report and resolves the application version from `package.json`.
 
 ## Rebuild
 

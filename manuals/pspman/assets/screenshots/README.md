@@ -1,6 +1,6 @@
 # Screenshot provenance
 
-These five images are public-safe PSPMAN captures at the native 480x272
+These six images are public-safe PSPMAN captures at the native 480x272
 framebuffer size.
 
 The three current captures are unscaled internal 480x272 framebuffer images.
@@ -11,6 +11,12 @@ Current source captures from candidate `d2dc64587697b83a8e412df78a2b52428ce2c1fd
 - `assets/screenshots/library-home.png` - Library Home
 - `assets/screenshots/now-playing.png` - Now Playing
 - `assets/screenshots/cassette.png` - Cassette View
+
+The owner-supplied Alpha 5 capture is normalized to the native framebuffer
+size and uses generic placeholder metadata:
+
+- `assets/screenshots/spectrum-480x272.png` - Spectrum Analyzer (owner-supplied
+  Alpha 5 screenshot, captured 14 September 2026)
 
 The preserved `all-songs-480x272.png` and `about-480x272.png` captures remain
 available as public-safe reference assets, but this edition does not rely on

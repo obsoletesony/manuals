@@ -5,8 +5,8 @@
     "description": "Walkman-inspired FLAC and MP3 music player for Sony PSP, built with PocketJS.",
     "subject": "User's guide for PSPMAN",
     "creator": "ObsoleteSony",
-    "version": "0.1.0-alpha.3",
-    "edition": "2 September 2026",
+    "version": "0.1.0-alpha.5",
+    "edition": "15 September 2026",
     "site": "obsoletesony.com/pspman",
     "repository": "https://github.com/obsoletesony/PSPMAN",
     "sourceRepository": "https://github.com/obsoletesony/manuals"
@@ -63,15 +63,14 @@
       {"type": "bullet", "spacing": "compact", "text": "Use the D-pad to move focus. Press CROSS to activate the focused control."},
       {"type": "bullet", "spacing": "compact", "text": "Up returns to Library. Left opens Queue. Right opens Favorites. Down opens Audio."},
       {"type": "bullet", "spacing": "compact", "text": "Activate the star to add or remove the current track from Favorites."},
-      {"type": "bullet", "spacing": "compact", "text": "Press TRIANGLE for Track Information or SQUARE for Cassette View."}
+      {"type": "bullet", "spacing": "compact", "text": "Press TRIANGLE for the Spectrum Analyzer or SQUARE for Cassette View."}
     ]},
-    {"number": 8, "title": "Queue, Favorites, and Track Information", "density": "standard", "template": "standard-text", "blocks": [
-      {"type": "heading", "text": "Queue"},
-      {"type": "text", "text": "Press Left on Now Playing to open the current queue. Choose a track and press CROSS to play it."},
-      {"type": "heading", "before": "section", "text": "Favorites"},
-      {"type": "text", "text": "Press Right on Now Playing or open Favorites from Library Home. Select a favorite track and press CROSS to play it."},
-      {"type": "heading", "before": "section", "text": "Track Information"},
-      {"type": "text", "text": "Press TRIANGLE on Now Playing. The first page shows file and metadata information. The second page shows playback status for troubleshooting. Use Left or Right, or L or R, to change page. Use Up or Down to scroll. Press CIRCLE or TRIANGLE to return."}
+    {"number": 8, "title": "Spectrum Analyzer", "density": "standard", "template": "visual", "blocks": [
+      {"type": "screenshot", "file": "spectrum-480x272.png", "width": 72},
+      {"type": "bullet", "anchor": "secondary", "spacing": "compact", "text": "Press TRIANGLE on Now Playing to open the ten-band Spectrum Analyzer."},
+      {"type": "bullet", "spacing": "compact", "text": "It visualizes live PCM at 31 Hz, 63 Hz, 125 Hz, 250 Hz, 500 Hz, 1 kHz, 2 kHz, 4 kHz, 8 kHz, and 16 kHz without changing the sound."},
+      {"type": "bullet", "spacing": "compact", "text": "Press Left or Right to cycle Classic, Amber, Green, Monochrome, and Multicolor. The palette remains selected until exit and is separate from Cassette colors."},
+      {"type": "bullet", "spacing": "compact", "text": "Tap L or R to change track. Press CIRCLE or TRIANGLE for Now Playing, or SQUARE for Cassette View."}
     ]},
     {"number": 9, "title": "Cassette View", "density": "standard", "template": "visual", "blocks": [
       {"type": "screenshot", "file": "cassette-480x272.png", "width": 72},
@@ -81,9 +80,11 @@
       {"type": "bullet", "spacing": "relaxed", "text": "Press START or CROSS to play or pause."},
       {"type": "bullet", "spacing": "relaxed", "text": "Press CIRCLE or SQUARE to return to Now Playing."}
     ]},
-    {"number": 10, "title": "About, diagnostics, and safe exit", "density": "standard", "template": "standard-text", "blocks": [
-      {"type": "heading", "text": "About"},
-      {"type": "text", "text": "Press SELECT from a normal screen to open About. It shows PSPMAN version 0.1.0-alpha.3, the creator, website, copyright, and non-affiliation notice. Press any button to close it."},
+    {"number": 10, "title": "Information, diagnostics, and safe exit", "density": "dense", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "Track Information"},
+      {"type": "text", "text": "Open Information and choose Track Information for file, metadata, and playback details. Use Left or Right, or L or R, to change page; Up or Down scrolls. Press CIRCLE to return."},
+      {"type": "heading", "before": "section", "text": "About"},
+      {"type": "text", "text": "Press SELECT from a normal screen to open About. It shows PSPMAN version 0.1.0-alpha.5, the creator, website, copyright, and non-affiliation notice. Press any button to close it."},
       {"type": "heading", "before": "section", "text": "Diagnostics"},
       {"type": "text", "text": "Use Diagnostics only when reporting a problem. Pause playback, return to Library, then hold TRIANGLE. Use CIRCLE to return. Keep the diagnostic files created during the problem session."},
       {"type": "heading", "before": "section", "text": "Safe exit"},

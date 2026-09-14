@@ -1,6 +1,6 @@
 {
-  "status": "Staged fact sheet for PSPMAN 0.1.0-alpha.3 User's Guide",
-  "recorded": "2026-09-02",
+  "status": "Staged fact sheet for PSPMAN 0.1.0-alpha.5 User's Guide",
+  "recorded": "2026-09-15",
   "versionSource": "package.json",
   "identity": {
     "product": "PSPMAN",
@@ -47,7 +47,14 @@
     "maximumTracks": 1000,
     "maximumDirectoryLevels": 12,
     "startup": "recursively scans enabled storage roots and reuses the persisted library index",
-    "persistence": ["library index", "Favorites", "Recent", "queue/session state", "artwork cache", "cassette preference", "playback settings"]
+    "persistence": ["library index", "Favorites", "Recent", "queue/session state", "artwork cache", "cassette preference", "playback settings"],
+    "sessionOnly": ["spectrum palette"]
+  },
+  "spectrum": {
+    "bands": ["31 Hz", "63 Hz", "125 Hz", "250 Hz", "500 Hz", "1 kHz", "2 kHz", "4 kHz", "8 kHz", "16 kHz"],
+    "palettes": ["Classic", "Amber", "Green", "Monochrome", "Multicolor"],
+    "behavior": "Visualizes live PCM without changing the sound",
+    "paletteMemory": "Remembered while PSPMAN remains open; resets to Classic after the application exits; independent from Cassette colors"
   },
   "controlsSource": "controls.json",
   "about": "SELECT opens the global About overlay; any button closes it",

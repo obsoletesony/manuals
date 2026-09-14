@@ -65,14 +65,12 @@
       {"type": "bullet", "spacing": "compact", "text": "Activate the star to add or remove the current track from Favorites."},
       {"type": "bullet", "spacing": "compact", "text": "Press TRIANGLE for the Spectrum Analyzer or SQUARE for Cassette View."}
     ]},
-    {"number": 8, "title": "Queue, Favorites, and Spectrum", "density": "dense", "template": "standard-text", "blocks": [
-      {"type": "heading", "text": "Queue"},
-      {"type": "text", "text": "Press Left on Now Playing to open the current queue. Choose a track and press CROSS to play it."},
-      {"type": "heading", "before": "section", "text": "Favorites"},
-      {"type": "text", "text": "Press Right on Now Playing or open Favorites from Library Home. Select a favorite track and press CROSS to play it."},
-      {"type": "heading", "before": "section", "text": "Spectrum Analyzer"},
-      {"type": "text", "text": "Press TRIANGLE on Now Playing to open the ten-band Spectrum Analyzer. It visualizes live PCM at 31 Hz, 63 Hz, 125 Hz, 250 Hz, 500 Hz, 1 kHz, 2 kHz, 4 kHz, 8 kHz, and 16 kHz. It does not change the sound."},
-      {"type": "text", "text": "Press Left or Right to cycle Classic, Amber, Green, Monochrome, and Multicolor. PSPMAN remembers the Spectrum palette while the application remains open; it resets to Classic after exit and is independent from Cassette colors. Tap L or R to change track. Press CIRCLE or TRIANGLE to return to Now Playing, or SQUARE to open Cassette View."}
+    {"number": 8, "title": "Spectrum Analyzer", "density": "standard", "template": "visual", "blocks": [
+      {"type": "screenshot", "file": "spectrum-480x272.png", "width": 72},
+      {"type": "bullet", "anchor": "secondary", "spacing": "compact", "text": "Press TRIANGLE on Now Playing to open the ten-band Spectrum Analyzer."},
+      {"type": "bullet", "spacing": "compact", "text": "It visualizes live PCM at 31 Hz, 63 Hz, 125 Hz, 250 Hz, 500 Hz, 1 kHz, 2 kHz, 4 kHz, 8 kHz, and 16 kHz without changing the sound."},
+      {"type": "bullet", "spacing": "compact", "text": "Press Left or Right to cycle Classic, Amber, Green, Monochrome, and Multicolor. The palette remains selected until exit and is separate from Cassette colors."},
+      {"type": "bullet", "spacing": "compact", "text": "Tap L or R to change track. Press CIRCLE or TRIANGLE for Now Playing, or SQUARE for Cassette View."}
     ]},
     {"number": 9, "title": "Cassette View", "density": "standard", "template": "visual", "blocks": [
       {"type": "screenshot", "file": "cassette-480x272.png", "width": 72},

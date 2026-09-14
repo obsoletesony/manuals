@@ -74,6 +74,7 @@ def approved_screenshots() -> None:
     required = {
         "library-home-480x272.png", "all-songs-480x272.png",
         "now-playing-480x272.png", "cassette-480x272.png", "about-480x272.png",
+        "spectrum-480x272.png",
     }
     paths = sorted((MANUAL_DIR / "assets" / "screenshots").glob("*.png"))
     names = {path.name for path in paths}

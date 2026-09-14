@@ -138,7 +138,8 @@ def validate() -> dict:
     required = [
         "PSPMAN", "User's Guide",
         "obsoletesony.com/pspman", "obsoletesony.com/pspman/report-a-bug", "github.com/obsoletesony/PSPMAN-Issues",
-        "0.1.0-alpha.3", "stereo 16-bit / 44.1 kHz FLAC", "MPEG-1 Layer III MP3", "Cassette View", "Track Information",
+        "0.1.0-alpha.5", "stereo 16-bit / 44.1 kHz FLAC", "MPEG-1 Layer III MP3", "Cassette View", "Track Information",
+        "Spectrum Analyzer", "31 Hz", "16 kHz", "Classic", "Amber", "Green", "Monochrome", "Multicolor",
         "Supported files and limits", "PSP-1000", "64 MB of RAM", "PSP Street (E1000)",
         "PSP Go with Memory Stick Micro (M2)",
         "PSP Go internal system storage is not supported in this Public Alpha",

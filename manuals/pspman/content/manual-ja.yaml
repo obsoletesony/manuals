@@ -5,8 +5,8 @@
     "description": "ソニーのPSP向けに開発された、ウォークマンに着想を得たFLAC／MP3音楽プレーヤー。",
     "subject": "PSPMANの日本語ユーザーガイド",
     "creator": "ObsoleteSony",
-    "version": "0.1.0-alpha.3",
-    "edition": "2026年9月2日",
+    "version": "0.1.0-alpha.5",
+    "edition": "2026年9月15日",
     "site": "obsoletesony.com/jp/pspman",
     "repository": "https://github.com/obsoletesony/PSPMAN",
     "sourceRepository": "https://github.com/obsoletesony/manuals",
@@ -65,15 +65,16 @@
       {"type": "bullet", "spacing": "compact", "text": "方向キーで操作項目を選び、×ボタンで実行します。"},
       {"type": "bullet", "spacing": "compact", "text": "上でライブラリ、左でキュー、右でお気に入り、下でオーディオ画面を開きます。"},
       {"type": "bullet", "spacing": "compact", "text": "星印を選ぶと、現在の曲をお気に入りに追加／削除できます。"},
-      {"type": "bullet", "spacing": "compact", "text": "△ボタンで曲情報、□ボタンでカセット表示を開きます。"}
+      {"type": "bullet", "spacing": "compact", "text": "△ボタンでスペクトラム表示、□ボタンでカセット表示を開きます。"}
     ]},
-    {"number": 8, "title": "キュー、お気に入り、曲情報", "density": "standard", "template": "standard-text", "blocks": [
+    {"number": 8, "title": "キュー、お気に入り、スペクトラム", "density": "dense", "template": "standard-text", "blocks": [
       {"type": "heading", "text": "キュー"},
       {"type": "text", "text": "再生中画面で左を押すと、現在のキューが開きます。曲を選び、×ボタンを押すと再生します。"},
       {"type": "heading", "before": "section", "text": "お気に入り"},
       {"type": "text", "text": "再生中画面で右を押すか、ライブラリのホーム画面から［Favorites］を開きます。曲を選び、×ボタンを押すと再生します。"},
-      {"type": "heading", "before": "section", "text": "曲情報"},
-      {"type": "text", "text": "再生中画面で△ボタンを押します。1ページ目にはファイルとメタデータの情報、2ページ目にはトラブルシューティング用の再生状態が表示されます。左右またはL／Rボタンでページを切り替え、上下でスクロールします。○ボタンまたは△ボタンで戻ります。"}
+      {"type": "heading", "before": "section", "text": "スペクトラム表示"},
+      {"type": "text", "text": "再生中画面で△ボタンを押すと、10バンドのスペクトラム表示が開きます。再生中のPCMを31Hz、63Hz、125Hz、250Hz、500Hz、1kHz、2kHz、4kHz、8kHz、16kHzで表示します。音と音量は変わりません。"},
+      {"type": "text", "text": "方向キー左右で、クラシック、アンバー、グリーン、モノクローム、Multicolorを切り替えます。選んだパレットはPSPMANを終了するまで保持され、終了後はクラシックに戻ります。カセットの色とは別に保持されます。L／Rボタンを短く押すと曲を移動します。○ボタンまたは△ボタンで再生中画面に戻り、□ボタンでカセット表示を開きます。"}
     ]},
     {"number": 9, "title": "カセット表示", "density": "standard", "template": "visual", "blocks": [
       {"type": "screenshot", "file": "cassette-480x272.png", "width": 72},
@@ -83,9 +84,11 @@
       {"type": "bullet", "spacing": "relaxed", "text": "STARTボタンまたは×ボタンで再生／一時停止します。"},
       {"type": "bullet", "spacing": "relaxed", "text": "○ボタンまたは□ボタンで再生中画面に戻ります。"}
     ]},
-    {"number": 10, "title": "PSPMANについて、診断、安全な終了", "density": "standard", "template": "standard-text", "blocks": [
-      {"type": "heading", "text": "PSPMANについて"},
-      {"type": "text", "text": "通常の画面でSELECTボタンを押すと、About画面が開きます。PSPMANのバージョン0.1.0-alpha.3、制作者、ウェブサイト、著作権、ソニーとの非提携に関する表示を確認できます。いずれかのボタンを押すと閉じます。"},
+    {"number": 10, "title": "情報、診断、安全な終了", "density": "dense", "template": "standard-text", "blocks": [
+      {"type": "heading", "text": "曲情報"},
+      {"type": "text", "text": "Information画面から［Track Information］を選ぶと、ファイル、メタデータ、再生状態を確認できます。左右またはL／Rボタンでページを切り替え、上下でスクロールします。○ボタンで戻ります。"},
+      {"type": "heading", "before": "section", "text": "PSPMANについて"},
+      {"type": "text", "text": "通常の画面でSELECTボタンを押すと、About画面が開きます。PSPMANのバージョン0.1.0-alpha.5、制作者、ウェブサイト、著作権、ソニーとの非提携に関する表示を確認できます。いずれかのボタンを押すと閉じます。"},
       {"type": "heading", "before": "section", "text": "診断情報"},
       {"type": "text", "text": "Diagnosticsは問題を報告するときだけ使用してください。再生を一時停止し、ライブラリに戻ってから△ボタンを長押しします。○ボタンで戻ります。問題が起きたセッションで作成された診断ファイルを保管してください。"},
       {"type": "heading", "before": "section", "text": "安全な終了"},

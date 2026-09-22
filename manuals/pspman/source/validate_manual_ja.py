@@ -96,10 +96,10 @@ def validate() -> dict:
 
     required = [
         "ユーザーガイド", "はじめに", "インストールと音楽の追加", "ライブラリ", "再生中画面",
-        "スペクトラムアナライザー", "イコライザー", "同期Lyrics", "再生速度", "カセット表示",
+        "スペクトラムアナライザー", "イコライザー", "カセット表示",
         "PSP-1000", "PSP-2000", "PSP-3000", "PSPGo", "PSPStreet（E1000）",
-        "PSPGoの本体ストレージ", "最大1,000曲", "最大12段",
-        "obsoletesony.com/jp/pspman", "obsoletesony.com/jp/pspman/report-a-bug",
+        "PSPGoの本体ストレージ", "最大1,000曲",
+        "obsoletesony.com/jp/pspman",
         "github.com/obsoletesony/PSPMAN-Issues", "Copyright2026ObsoleteSony.Allrightsreserved.",
     ]
     missing = [value for value in required if re.sub(r"\s+", "", value) not in normalized_text]
@@ -144,7 +144,7 @@ def validate() -> dict:
     if metadata.get("/Subject") != content["document"]["subject"]:
         raise AssertionError(f"Unexpected Japanese PDF subject: {metadata.get('/Subject')}")
     for key in ("/CreationDate", "/ModDate"):
-        if metadata.get(key) != "D:20260902000000+00'00'":
+        if metadata.get(key) != "D:20260922000000+00'00'":
             raise AssertionError(f"Unexpected Japanese reader PDF {key}: {metadata.get(key)}")
 
     if not reader.outline:

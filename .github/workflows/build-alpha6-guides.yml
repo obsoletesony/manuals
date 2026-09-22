@@ -29,23 +29,14 @@ jobs:
       - name: Build Japanese guide
         run: python manuals/pspman/source/build_manual.py --locale ja
       - name: Validate Japanese guide
-        continue-on-error: true
         run: python manuals/pspman/source/validate_manual_ja.py
       - name: Commit generated outputs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -f manuals/pspman/assets/screenshots/eq-480x272.png
-          git add -f manuals/pspman/output/PSPMAN-User-Guide.pdf
-          git add -f manuals/pspman/output/PSPMAN-User-Guide-Spreads.pdf
-          git add -f manuals/pspman/output/PSPMAN-User-Guide-Print.pdf
-          git add -f manuals/pspman/output/PSPMAN-User-Guide-JP.pdf
-          git add -f manuals/pspman/output/PSPMAN-User-Guide-JP-Spreads.pdf
-          git add -f manuals/pspman/output/PSPMAN-User-Guide-JP-Print.pdf
-          git add -f manuals/pspman/output/checksums.json manuals/pspman/output/checksums-ja.json
-          git add -f manuals/pspman/output/preflight.json manuals/pspman/output/preflight-ja.json
-          git add -f manuals/pspman/output/layout-review.json manuals/pspman/output/layout-review-ja.json
-          git add -f manuals/pspman/output/measurement-report.json manuals/pspman/output/measurement-report-ja.json
+          git add -f manuals/pspman/output/*.pdf
+          git add -f manuals/pspman/output/*.json
           git diff --cached --quiet && exit 0
           git commit -m "Build PSPMAN Alpha 6 user guides [skip ci]"
           git push origin HEAD:alpha6-user-guide-prep

@@ -1,6 +1,6 @@
 # PSPMAN User's Guide
 
-This directory contains the adapted editable source for the deterministic 15-page PSPMAN User's Guide in English and Japanese. The 15 September 2026 staged edition describes PSPMAN 0.1.0-alpha.5, including the ten-band Spectrum Analyzer, palette controls, and FLAC and MP3 compatibility. The final application commit and package identity belong to the release manifest, so the guide does not hardcode a pre-qualification candidate commit. The generator records a non-circular SHA-256 digest of the manual inputs in each edition's checksum report and resolves the application version from `package.json`.
+This directory contains the adapted editable source for the deterministic 18-page PSPMAN User's Guide in English and Japanese. The 22 September 2026 staged edition describes PSPMAN 0.1.0-alpha.6 with Spectrum Analyzer, Equalizer, synchronized Lyrics, Playback Speed, automatic Cross/Circle assignment, PSP-1000 support, and PSP Go internal storage. The final application commit and package identity belong to the release manifest, so the guide does not hardcode a pre-qualification candidate commit. The generator records a non-circular SHA-256 digest of the manual inputs in each edition's checksum report and resolves the application version from `package.json`.
 
 ## Rebuild
 
@@ -32,7 +32,7 @@ The build reads the application version from the root `package.json`; it is not 
 
 The source screenshots remain in their original form. The PDF builder converts embedded raster assets to grayscale while preserving the approved orange page markers, Public Alpha cover treatment, and back-cover URL without destructively editing source assets.
 
-Page composition uses measured `dense`, `standard`, and `sparse` modes. The builder measures each major content block before placement, distributes available height between modules, and preserves the footer exclusion zone. The consolidated edition favors short paragraphs and lists, retains only useful screenshots and the PSP control illustration, and removes the audio-pipeline diagram.
+Page composition uses measured `dense`, `standard`, and `sparse` modes. The builder measures each major content block before placement, distributes available height between modules, and preserves the footer exclusion zone. The consolidated edition retains the Alpha 5 Spectrum documentation and adds dedicated Alpha 6 pages for Equalizer, synchronized Lyrics, and Playback Speed.
 
 ## Outputs and review status
 

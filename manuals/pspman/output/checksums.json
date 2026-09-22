@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0-alpha.6",
+  "manualProvenance": {
+    "scope": "user-guide-output",
+    "schemaVersion": 1,
+    "inputDigestAlgorithm": "sha256",
+    "inputTreeSha256": "cb6945c22af97b618927aa9f51ad8294ecbe74b7122ea0d1e290694c3d612d26",
+    "inputFileCount": 47,
+    "definition": "Paths and bytes of package.json plus manuals/pspman content, assets, and source"
+  },
+  "documentCode": "OS-PSPMAN-01 (4)",
+  "outputs": {
+    "PSPMAN-User-Guide.pdf": {
+      "bytes": 289468,
+      "sha256": "2bbb207dc699a4f31031b099924db4410a6094ea1da1131bff8a8b166b21e8e8"
+    },
+    "PSPMAN-User-Guide-Spreads.pdf": {
+      "bytes": 657220,
+      "sha256": "65b9e1c91cdbc63147da480ee78c42a9aa9ad9a58191832f6513a94871fdd968"
+    },
+    "PSPMAN-User-Guide-Print.pdf": {
+      "bytes": 292554,
+      "sha256": "3fb3309de1b15c9e080c1f4110bd6634afbf68e6765458e93fd6c593fbcb9ca9"
+    }
+  }
+}

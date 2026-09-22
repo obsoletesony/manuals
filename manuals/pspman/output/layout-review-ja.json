@@ -1,0 +1,622 @@
+{
+  "checks": {
+    "minimumMajorGroupGapPt": 4.0,
+    "minimumFooterClearPt": 12.0,
+    "primaryContentAnchorTolerancePt": 0.5,
+    "screenshotWidthReviewThreshold": 0.63
+  },
+  "pages": [
+    {
+      "page": 2,
+      "density": "standard",
+      "template": "standard-text",
+      "frameX0Pt": 34.0157,
+      "frameX1Pt": 297.6378,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 111.88,
+      "lowerClearanceToFooterRulePt": 79.88,
+      "occupancy": 0.685,
+      "topClearPt": 0.0,
+      "bottomClearPt": 67.88,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 79.88,
+      "minimumMajorGapPt": 9.8,
+      "majorGaps": [
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "bullet",
+          "before": "heading",
+          "gapPt": 9.8
+        }
+      ],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 3,
+      "density": "standard",
+      "template": "standard-text",
+      "frameX0Pt": 42.5197,
+      "frameX1Pt": 306.1417,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 72.07,
+      "lowerClearanceToFooterRulePt": 40.07,
+      "occupancy": 0.87,
+      "topClearPt": 0.0,
+      "bottomClearPt": 28.07,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 40.07,
+      "minimumMajorGapPt": null,
+      "majorGaps": [],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 4,
+      "density": "dense",
+      "template": "visual",
+      "frameX0Pt": 34.0157,
+      "frameX1Pt": 297.6378,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 161.36,
+      "lowerClearanceToFooterRulePt": 129.36,
+      "occupancy": 0.455,
+      "topClearPt": 0.0,
+      "bottomClearPt": 117.36,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 129.36,
+      "minimumMajorGapPt": null,
+      "majorGaps": [],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 5,
+      "density": "standard",
+      "template": "visual",
+      "frameX0Pt": 42.5197,
+      "frameX1Pt": 306.1417,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 45.99,
+      "lowerClearanceToFooterRulePt": 13.99,
+      "occupancy": 0.991,
+      "topClearPt": 0.0,
+      "bottomClearPt": 1.99,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 13.99,
+      "minimumMajorGapPt": 1.8,
+      "majorGaps": [
+        {
+          "after": "screenshot:library-home-480x272.png",
+          "before": "bullet",
+          "gapPt": 8.0
+        },
+        {
+          "after": "bullet",
+          "before": "text",
+          "gapPt": 1.8
+        }
+      ],
+      "principalVisuals": [
+        {
+          "name": "visible-screenshot:library-home-480x272.png",
+          "xPt": 83.62,
+          "topFromTopPt": 81.0,
+          "widthPt": 181.42,
+          "heightPt": 102.8
+        }
+      ],
+      "intentionalException": null,
+      "candidates": [
+        "major content groups are separated by less than 4 pt"
+      ]
+    },
+    {
+      "page": 6,
+      "density": "standard",
+      "template": "standard-text",
+      "frameX0Pt": 34.0157,
+      "frameX1Pt": 297.6378,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 92.34,
+      "lowerClearanceToFooterRulePt": 60.34,
+      "occupancy": 0.775,
+      "topClearPt": 0.0,
+      "bottomClearPt": 48.34,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 60.34,
+      "minimumMajorGapPt": 12.0,
+      "majorGaps": [
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "bullet",
+          "before": "heading",
+          "gapPt": 14.0
+        }
+      ],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 7,
+      "density": "standard",
+      "template": "visual",
+      "frameX0Pt": 42.5197,
+      "frameX1Pt": 306.1417,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 70.22,
+      "lowerClearanceToFooterRulePt": 38.22,
+      "occupancy": 0.878,
+      "topClearPt": 0.0,
+      "bottomClearPt": 26.22,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 38.22,
+      "minimumMajorGapPt": 11.91,
+      "majorGaps": [
+        {
+          "after": "screenshot:now-playing-480x272.png",
+          "before": "bullet",
+          "gapPt": 11.91
+        }
+      ],
+      "principalVisuals": [
+        {
+          "name": "visible-screenshot:now-playing-480x272.png",
+          "xPt": 72.28,
+          "topFromTopPt": 81.0,
+          "widthPt": 204.09,
+          "heightPt": 115.65
+        }
+      ],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 8,
+      "density": "standard",
+      "template": "visual",
+      "frameX0Pt": 34.0157,
+      "frameX1Pt": 297.6378,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 53.96,
+      "lowerClearanceToFooterRulePt": 21.96,
+      "occupancy": 0.954,
+      "topClearPt": 0.0,
+      "bottomClearPt": 9.96,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 21.96,
+      "minimumMajorGapPt": 11.91,
+      "majorGaps": [
+        {
+          "after": "screenshot:spectrum-480x272.png",
+          "before": "bullet",
+          "gapPt": 11.91
+        }
+      ],
+      "principalVisuals": [
+        {
+          "name": "visible-screenshot:spectrum-480x272.png",
+          "xPt": 63.78,
+          "topFromTopPt": 81.0,
+          "widthPt": 204.09,
+          "heightPt": 115.65
+        }
+      ],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 9,
+      "density": "dense",
+      "template": "visual",
+      "frameX0Pt": 42.5197,
+      "frameX1Pt": 306.1417,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 84.76,
+      "lowerClearanceToFooterRulePt": 52.76,
+      "occupancy": 0.811,
+      "topClearPt": 0.0,
+      "bottomClearPt": 40.76,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 52.76,
+      "minimumMajorGapPt": 8.0,
+      "majorGaps": [
+        {
+          "after": "screenshot:eq-480x272.png",
+          "before": "bullet",
+          "gapPt": 8.0
+        }
+      ],
+      "principalVisuals": [
+        {
+          "name": "visible-screenshot:eq-480x272.png",
+          "xPt": 86.46,
+          "topFromTopPt": 81.0,
+          "widthPt": 175.75,
+          "heightPt": 99.59
+        }
+      ],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 10,
+      "density": "standard",
+      "template": "standard-text",
+      "frameX0Pt": 34.0157,
+      "frameX1Pt": 297.6378,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 103.82,
+      "lowerClearanceToFooterRulePt": 71.82,
+      "occupancy": 0.722,
+      "topClearPt": 0.0,
+      "bottomClearPt": 59.82,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 71.82,
+      "minimumMajorGapPt": 12.0,
+      "majorGaps": [
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        }
+      ],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 11,
+      "density": "standard",
+      "template": "standard-text",
+      "frameX0Pt": 42.5197,
+      "frameX1Pt": 306.1417,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 113.48,
+      "lowerClearanceToFooterRulePt": 81.48,
+      "occupancy": 0.677,
+      "topClearPt": 0.0,
+      "bottomClearPt": 69.48,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 81.48,
+      "minimumMajorGapPt": 12.0,
+      "majorGaps": [
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        }
+      ],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 12,
+      "density": "standard",
+      "template": "visual",
+      "frameX0Pt": 34.0157,
+      "frameX1Pt": 297.6378,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 62.45,
+      "lowerClearanceToFooterRulePt": 30.45,
+      "occupancy": 0.914,
+      "topClearPt": 0.0,
+      "bottomClearPt": 18.45,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 30.45,
+      "minimumMajorGapPt": 11.91,
+      "majorGaps": [
+        {
+          "after": "screenshot:cassette-480x272.png",
+          "before": "bullet",
+          "gapPt": 11.91
+        }
+      ],
+      "principalVisuals": [
+        {
+          "name": "visible-screenshot:cassette-480x272.png",
+          "xPt": 63.78,
+          "topFromTopPt": 81.0,
+          "widthPt": 204.09,
+          "heightPt": 115.65
+        }
+      ],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 13,
+      "density": "dense",
+      "template": "standard-text",
+      "frameX0Pt": 42.5197,
+      "frameX1Pt": 306.1417,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 48.04,
+      "lowerClearanceToFooterRulePt": 16.04,
+      "occupancy": 0.981,
+      "topClearPt": 0.0,
+      "bottomClearPt": 4.04,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 16.04,
+      "minimumMajorGapPt": 12.0,
+      "majorGaps": [
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        }
+      ],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 14,
+      "density": "standard",
+      "template": "standard-text",
+      "frameX0Pt": 34.0157,
+      "frameX1Pt": 297.6378,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 115.77,
+      "lowerClearanceToFooterRulePt": 83.77,
+      "occupancy": 0.666,
+      "topClearPt": 0.0,
+      "bottomClearPt": 71.77,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 83.77,
+      "minimumMajorGapPt": 9.8,
+      "majorGaps": [
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "bullet",
+          "before": "heading",
+          "gapPt": 9.8
+        }
+      ],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 15,
+      "density": "standard",
+      "template": "standard-text",
+      "frameX0Pt": 42.5197,
+      "frameX1Pt": 306.1417,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 113.48,
+      "lowerClearanceToFooterRulePt": 81.48,
+      "occupancy": 0.677,
+      "topClearPt": 0.0,
+      "bottomClearPt": 69.48,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 81.48,
+      "minimumMajorGapPt": 12.0,
+      "majorGaps": [
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        }
+      ],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 16,
+      "density": "standard",
+      "template": "standard-text",
+      "frameX0Pt": 34.0157,
+      "frameX1Pt": 297.6378,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 123.14,
+      "lowerClearanceToFooterRulePt": 91.14,
+      "occupancy": 0.632,
+      "topClearPt": 0.0,
+      "bottomClearPt": 79.14,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 91.14,
+      "minimumMajorGapPt": 12.0,
+      "majorGaps": [
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        }
+      ],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": []
+    },
+    {
+      "page": 17,
+      "density": "standard",
+      "template": "standard-text",
+      "frameX0Pt": 42.5197,
+      "frameX1Pt": 306.1417,
+      "frameWidthPt": 263.622,
+      "firstContentTopFromTopPt": 81.0,
+      "lastContentBottomFromBottomPt": 64.5,
+      "lowerClearanceToFooterRulePt": 32.5,
+      "occupancy": 0.905,
+      "topClearPt": 0.0,
+      "bottomClearPt": 20.5,
+      "primaryAnchorPt": 259.16,
+      "secondaryAnchorPt": 131.6,
+      "compactSecondaryAnchorPt": 162.78,
+      "visualSecondaryAnchorPt": 154.28,
+      "bottomCalloutAnchorPt": 47.0,
+      "footerClearPt": 32.5,
+      "minimumMajorGapPt": 1.8,
+      "majorGaps": [
+        {
+          "after": "bullet",
+          "before": "text",
+          "gapPt": 1.8
+        },
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "text",
+          "before": "text",
+          "gapPt": 4.0
+        },
+        {
+          "after": "text",
+          "before": "heading",
+          "gapPt": 12.0
+        },
+        {
+          "after": "text",
+          "before": "text",
+          "gapPt": 4.0
+        }
+      ],
+      "principalVisuals": [],
+      "intentionalException": null,
+      "candidates": [
+        "major content groups are separated by less than 4 pt"
+      ]
+    }
+  ],
+  "visualReviewCandidates": [
+    {
+      "page": 5,
+      "reasons": [
+        "major content groups are separated by less than 4 pt"
+      ]
+    },
+    {
+      "page": 17,
+      "reasons": [
+        "major content groups are separated by less than 4 pt"
+      ]
+    }
+  ]
+}

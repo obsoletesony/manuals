@@ -1,0 +1,29 @@
+{
+  "pages": 18,
+  "spreads": 9,
+  "visibleFonts": [
+    "/AAAAAA+NotoSansJP-Bold",
+    "/AAAAAA+NotoSansJP-Regular",
+    "/AAAAAB+NotoSansJP-Regular"
+  ],
+  "embeddedFonts": "pass",
+  "requiredText": "pass",
+  "pageHeadings": "pass",
+  "metadata": "pass",
+  "bookmarks": "pass",
+  "linkAnnotations": 19,
+  "hyperlinks": [
+    "https://github.com/obsoletesony/PSPMAN-Issues",
+    "https://obsoletesony.com/jp/pspman",
+    "https://obsoletesony.com/jp/pspman/report-a-bug"
+  ],
+  "blankPages": "pass",
+  "printBoxes": "pass",
+  "screenshots": "pass",
+  "orangeAccents": "pass",
+  "deterministic": {
+    "PSPMAN-User-Guide-JP.pdf": true,
+    "PSPMAN-User-Guide-JP-Spreads.pdf": true,
+    "PSPMAN-User-Guide-JP-Print.pdf": true
+  }
+}

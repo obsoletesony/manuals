@@ -118,7 +118,7 @@ def validate() -> dict:
     print_pdf = PdfReader(str(print_path))
     expected_titles = json.loads((MANUAL_DIR / "content" / "manual.yaml").read_text(encoding="utf-8"))["pages"]
     page_count = len(expected_titles)
-    assert page_count == 15, page_count
+    assert page_count == 18, page_count
     assert len(reader.pages) == page_count, len(reader.pages)
     assert len(spreads.pages) == (page_count + 1) // 2, len(spreads.pages)
     assert len(print_pdf.pages) == page_count, len(print_pdf.pages)
@@ -137,21 +137,22 @@ def validate() -> dict:
         raise AssertionError(f"Reader PDF contains an accidental blank page: {textless_pages}")
     package_version = json.loads((REPO_ROOT / "package.json").read_text(encoding="utf-8"))["version"]
     required = [
-        "PSPMAN", "User's Guide",
+        "PSPMAN",
         "obsoletesony.com/pspman", "obsoletesony.com/pspman/report-a-bug", "github.com/obsoletesony/PSPMAN-Issues",
-        "0.1.0-alpha.5", "stereo 16-bit / 44.1 kHz FLAC", "MPEG-1 Layer III MP3", "Cassette View", "Track Information",
-        "Spectrum Analyzer", "31 Hz", "16 kHz", "Classic", "Amber", "Green", "Monochrome", "Multicolor",
-        "Supported files and limits", "PSP-1000", "64 MB of RAM", "PSP Street (E1000)",
-        "PSP Go with Memory Stick Micro (M2)",
-        "PSP Go internal system storage is not supported in this Public Alpha",
-        "Custom firmware or another working homebrew environment", "1,000 tracks", "12 folder levels",
-        "embedded JPEG and PNG cover art", "Under memory pressure", "Playback is unaffected", "No Cover", "Some Japanese characters may not display correctly",
+        "stereo 16-bit / 44.1 kHz FLAC", "MPEG-1 Layer III MP3", "Spectrum Analyzer", "Cassette View",
+        "Equalizer", "Synchronized Lyrics", "Playback Speed", "2.0x",
+        "PSP-1000", "PSP-2000", "PSP-3000", "PSP Go", "PSP Street (E1000)",
+        "PSP Go internal system storage", "system Confirm button",
+        "1,000 compatible tracks", "12 folder levels", "embedded JPEG and PNG", "No Cover",
         "Copyright 2026 ObsoleteSony. All rights reserved.", "PSPMAN is built with PocketJS.",
     ]
     missing_text = [value for value in required if value.casefold() not in normalized_text.casefold()]
     if missing_text:
         raise AssertionError(f"Required text missing: {missing_text}")
     checksums = json.loads((OUTPUT / "checksums.json").read_text(encoding="utf-8"))
+    package_version = json.loads((REPO_ROOT / "package.json").read_text(encoding="utf-8"))["version"]
+    if checksums.get("version") != package_version:
+        raise AssertionError(f"Manual output version mismatch: {checksums.get('version')} != {package_version}")
     provenance = checksums.get("manualProvenance", {})
     expected_digest, expected_file_count = manual_input_digest(REPO_ROOT, MANUAL_DIR)
     if provenance.get("scope") != "user-guide-output":
@@ -196,8 +197,6 @@ def validate() -> dict:
         raise AssertionError("The removed Parts and controls page remains in the manual")
     if "OPERATING INSTRUCTIONS" in text.upper():
         raise AssertionError("The obsolete Operating Instructions title remains in the manual")
-    if page_text[0].count("USER'S GUIDE") != 1 or "USER'S GUIDE" in page_text[-1]:
-        raise AssertionError("USER'S GUIDE must appear on the front cover only")
     if "PSPMAN USER'S GUIDE" in normalized_text:
         raise AssertionError("The removed interior footer label remains in the manual")
     if "OS-PSPMAN-01 (2)" in normalized_text:
@@ -296,8 +295,9 @@ def validate() -> dict:
             expected_x0, expected_x1 = mm(15), TRIM - mm(12)
         if not close(entry["frameX0Pt"], expected_x0) or not close(entry["frameX1Pt"], expected_x1):
             raise AssertionError(f"Page {page_number} frame is not mirrored correctly: {entry}")
-    if any(entry["lowerClearanceToFooterRulePt"] < 12 for entry in measurements):
-        raise AssertionError("Manual content enters the footer clear area")
+    footer_failures = [(entry["page"], entry["lowerClearanceToFooterRulePt"]) for entry in measurements if entry["lowerClearanceToFooterRulePt"] < 12]
+    if footer_failures:
+        raise AssertionError(f"Manual content enters the footer clear area: {footer_failures}")
     for entry in measurements:
         unexplained = [gap for gap in entry["majorGaps"] if gap["gapPt"] > 24.5]
         if unexplained and not entry.get("intentionalException"):

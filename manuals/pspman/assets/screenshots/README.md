@@ -1,7 +1,6 @@
 # Screenshot provenance
 
-These six images are public-safe PSPMAN captures at the native 480x272
-framebuffer size.
+These images are public-safe PSPMAN captures at the native 480x272 framebuffer size.
 
 The three current captures are unscaled internal 480x272 framebuffer images.
 Matching 960x544 nearest-neighbor print assets are stored in `print-2x/`.
@@ -30,3 +29,5 @@ The capture library contained only the project-owned PSPMAN demonstration track:
 - Source: synthetic, copyright-safe demonstration media
 
 No PPSSPP chrome, desktop UI, private media, commercial metadata, third-party album artwork, or demonstration audio is included. The demonstration FLAC and temporary capture harness are intentionally excluded.
+
+Alpha 6 adds `eq-480x272.png`, a documentation capture generated from the shipped Equalizer geometry and labels. It contains no private or commercial metadata.

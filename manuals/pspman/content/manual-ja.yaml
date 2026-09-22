@@ -259,7 +259,6 @@
         },
         {
           "type": "bullet",
-          "anchor": "secondary",
           "spacing": "compact",
           "text": "ライブラリのホーム画面から［Equalizer］を開きます。バンドは31、62、125、250、500、1K、2K、4K、8K、16Kです。"
         },

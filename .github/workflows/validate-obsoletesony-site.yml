@@ -1,0 +1,29 @@
+name: Validate ObsoleteSony site
+
+on:
+  push:
+    branches:
+      - alpha6-user-guide-prep
+
+jobs:
+  validate-site:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Clone website main
+        run: git clone --depth 1 https://github.com/obsoletesony/obsoletesony-archive.git /tmp/site
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: /tmp/site/package-lock.json
+      - name: Install
+        working-directory: /tmp/site
+        run: npm ci
+      - name: Astro check
+        working-directory: /tmp/site
+        run: npm run astro:check
+      - name: Production build
+        working-directory: /tmp/site
+        run: npm run build

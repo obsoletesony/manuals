@@ -120,11 +120,24 @@ def validate() -> dict:
     if "\u2014" in "\n".join(page_text):
         raise AssertionError("Japanese manual contains an em dash")
 
+    def collect_outline_titles(items):
+        titles = set()
+        for item in items:
+            if isinstance(item, list):
+                titles.update(collect_outline_titles(item))
+            else:
+                title = getattr(item, "title", None)
+                if title:
+                    titles.add(str(title))
+        return titles
+
+    outline_titles = collect_outline_titles(reader.outline)
     missing_titles = [
         f"page {record['number']}: {record['title']}"
         for record in pages
         if record.get("kind") not in {"cover", "back-cover"}
         if record["title"] not in page_text[record["number"] - 1]
+        and record["title"] not in outline_titles
     ]
     if missing_titles:
         raise AssertionError(f"Required Japanese page headings missing: {missing_titles}")

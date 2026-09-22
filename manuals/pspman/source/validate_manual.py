@@ -226,7 +226,7 @@ def validate() -> dict:
     if metadata.get("/Subject") != "User's guide for PSPMAN":
         raise AssertionError(f"Unexpected PDF subject: {metadata.get('/Subject')}")
     for key in ("/CreationDate", "/ModDate"):
-        if metadata.get(key) != "D:20260902000000+00'00'":
+        if metadata.get(key) != "D:20260922000000+00'00'":
             raise AssertionError(f"Unexpected reader PDF {key}: {metadata.get(key)}")
     if spreads.metadata.get("/Subject") != "User's guide for PSPMAN":
         raise AssertionError(f"Unexpected spread PDF subject: {spreads.metadata.get('/Subject')}")

@@ -1,23 +1,65 @@
 {
   "hardware": {
-    "minimumRam": "64 MB",
-    "supportedModels": ["PSP-2000", "PSP-3000", "PSP Go with Memory Stick Micro (M2)", "PSP Street (E1000)"],
-    "unsupported": "PSP-1000 (32 MB RAM)",
+    "minimumRam": "32 MB",
+    "supportedModels": [
+      "PSP-1000",
+      "PSP-2000",
+      "PSP-3000",
+      "PSP Go",
+      "PSP Street (E1000)"
+    ],
+    "unsupported": "No PSP model exclusion within the qualified Alpha 6 hardware family",
     "software": "Custom firmware or another working homebrew environment"
   },
   "output": "signed 16-bit / 44.1 kHz stereo PCM",
   "limits": [
-    {"area": "FLAC audio", "supported": "FLAC", "notes": "Stereo 16-bit / 44.1 kHz"},
-    {"area": "MP3 audio", "supported": "MPEG-1 Layer III", "notes": "44.1 kHz; CBR or VBR; mono or stereo; through 320 kbps"},
-    {"area": "Library", "supported": "Up to 1,000 tracks", "notes": "Up to 12 directory levels"},
-    {"area": "Artwork", "supported": "Embedded JPEG / PNG", "notes": "No Cover appears when an image cannot be displayed"},
-    {"area": "Storage", "supported": "Memory Stick", "notes": "MUSIC and PSP/MUSIC roots; PSP Go internal system storage is not supported"}
+    {
+      "area": "FLAC audio",
+      "supported": "FLAC",
+      "notes": "Stereo 16-bit / 44.1 kHz"
+    },
+    {
+      "area": "MP3 audio",
+      "supported": "MPEG-1 Layer III",
+      "notes": "44.1 kHz; CBR or VBR; mono or stereo; through 320 kbps"
+    },
+    {
+      "area": "Library",
+      "supported": "Up to 1,000 tracks",
+      "notes": "Up to 12 directory levels"
+    },
+    {
+      "area": "Artwork",
+      "supported": "Embedded JPEG / PNG",
+      "notes": "No Cover appears for unsupported or damaged images"
+    },
+    {
+      "area": "Lyrics",
+      "supported": "Local synchronized UTF-8 .lrc",
+      "notes": "Matching sidecar beside MP3/FLAC; loaded on demand"
+    },
+    {
+      "area": "EQ",
+      "supported": "10 bands + PREAMP",
+      "notes": "Custom -12..+12 dB; PREAMP -12.0..0.0 dB"
+    },
+    {
+      "area": "Playback Speed",
+      "supported": "1.0x through 2.0x",
+      "notes": "Pitch-preserving; 2.0x can use significant processing headroom"
+    },
+    {
+      "area": "Storage",
+      "supported": "PSP storage",
+      "notes": "MUSIC and PSP/MUSIC roots; PSP Go internal system storage supported"
+    }
   ],
   "unsupported": [
     "FLAC profiles other than stereo 16-bit / 44.1 kHz",
-    "48 kHz MP3, MPEG-2, MPEG-2.5, and MP3 profiles outside the documented Alpha 3 support",
+    "48 kHz MP3, MPEG-2, MPEG-2.5, and MP3 profiles outside the documented support",
     "WAV, AIFF, ALAC, AAC, ATRAC, WMA, Ogg Vorbis, Opus, APE, and other codecs",
     "Files outside the 1,000-track and 12-directory-level library bounds",
-    "Artwork that cannot be displayed"
+    "Unsupported or damaged artwork",
+    "Online lyric lookup or download"
   ]
 }

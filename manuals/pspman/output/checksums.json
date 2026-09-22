@@ -4,7 +4,7 @@
     "scope": "user-guide-output",
     "schemaVersion": 1,
     "inputDigestAlgorithm": "sha256",
-    "inputTreeSha256": "cb6945c22af97b618927aa9f51ad8294ecbe74b7122ea0d1e290694c3d612d26",
+    "inputTreeSha256": "f805fdc641242f9affa607a18bf0f938f0bacb926148e14d817564838824f354",
     "inputFileCount": 47,
     "definition": "Paths and bytes of package.json plus manuals/pspman content, assets, and source"
   },

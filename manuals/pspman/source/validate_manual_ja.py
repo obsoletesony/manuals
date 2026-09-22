@@ -74,7 +74,7 @@ def validate() -> dict:
     pages = content["pages"]
     page_count = len(pages)
 
-    assert page_count == 15, page_count
+    assert page_count == 18, page_count
     assert len(reader.pages) == page_count, len(reader.pages)
     assert len(spreads.pages) == (page_count + 1) // 2, len(spreads.pages)
     assert len(print_pdf.pages) == page_count, len(print_pdf.pages)
@@ -95,32 +95,12 @@ def validate() -> dict:
         raise AssertionError(f"Japanese reader PDF contains an accidental blank page: {textless_pages}")
 
     required = [
-        "ユーザーガイド",
-        "はじめに",
-        "インストールと音楽の追加",
-        "ライブラリ",
-        "再生中画面",
-        "カセット表示",
-        "スペクトラムアナライザー",
-        "31Hz",
-        "16kHz",
-        "クラシック",
-        "アンバー",
-        "グリーン",
-        "モノクローム",
-        "マルチカラー",
-        "対応ファイルと上限",
-        "PSP-1000",
-        "64MBのRAM",
-        "PSPStreet（E1000）",
-        "メモリースティックマイクロ（M2）",
-        "最大1,000曲",
-        "最大12階層",
-        "選んだ色はPSPMANを終了するまで保持されます",
-        "obsoletesony.com/jp/pspman",
-        "obsoletesony.com/jp/pspman/report-a-bug",
-        "github.com/obsoletesony/PSPMAN-Issues",
-        "Copyright2026ObsoleteSony.Allrightsreserved.",
+        "ユーザーガイド", "はじめに", "インストールと音楽の追加", "ライブラリ", "再生中画面",
+        "スペクトラムアナライザー", "イコライザー", "同期Lyrics", "再生速度", "カセット表示",
+        "PSP-1000", "PSP-2000", "PSP-3000", "PSPGo", "PSPStreet（E1000）",
+        "PSPGoの本体ストレージ", "最大1,000曲", "最大12段",
+        "obsoletesony.com/jp/pspman", "obsoletesony.com/jp/pspman/report-a-bug",
+        "github.com/obsoletesony/PSPMAN-Issues", "Copyright2026ObsoleteSony.Allrightsreserved.",
     ]
     missing = [value for value in required if re.sub(r"\s+", "", value) not in normalized_text]
     if missing:

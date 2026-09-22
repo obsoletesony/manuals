@@ -1,6 +1,6 @@
 {
-  "status": "Staged fact sheet for PSPMAN 0.1.0-alpha.3 User's Guide",
-  "recorded": "2026-09-02",
+  "status": "Staged fact sheet for PSPMAN 0.1.0-alpha.6 User's Guide",
+  "recorded": "2026-09-22",
   "versionSource": "package.json",
   "identity": {
     "product": "PSPMAN",
@@ -15,14 +15,23 @@
   "installation": {
     "applicationDirectory": "PSP/GAME/PSPMAN/",
     "entryPoint": "EBOOT.PBP",
-    "storage": "Memory Stick; PSP Go requires Memory Stick Micro (M2)",
-    "pspGoInternalStorage": "Not supported in this Public Alpha",
-    "musicRoots": ["MUSIC", "PSP/MUSIC"]
+    "storage": "PSP storage; Memory Stick, Memory Stick Micro (M2), and PSP Go internal system storage where applicable",
+    "pspGoInternalStorage": "Supported",
+    "musicRoots": [
+      "MUSIC",
+      "PSP/MUSIC"
+    ]
   },
   "hardware": {
-    "minimumRam": "64 MB",
-    "supportedModels": ["PSP-2000", "PSP-3000", "PSP Go with Memory Stick Micro (M2)", "PSP Street (E1000)"],
-    "unsupportedModels": ["PSP-1000 (32 MB RAM)"],
+    "minimumRam": "32 MB",
+    "supportedModels": [
+      "PSP-1000",
+      "PSP-2000",
+      "PSP-3000",
+      "PSP Go",
+      "PSP Street (E1000)"
+    ],
+    "unsupportedModels": [],
     "softwareRequirement": "Custom firmware or another working homebrew environment"
   },
   "audio": {
@@ -32,27 +41,122 @@
     "gapless": "Not claimed"
   },
   "metadata": {
-    "fields": ["title", "artist", "album", "album artist", "track number", "disc number", "date", "genre", "composer", "duration", "source format", "file identity"],
+    "fields": [
+      "title",
+      "artist",
+      "album",
+      "album artist",
+      "track number",
+      "disc number",
+      "date",
+      "genre",
+      "composer",
+      "duration",
+      "source format",
+      "file identity"
+    ],
     "flac": "Vorbis comments and embedded PICTURE front cover",
     "mp3": "ID3 title, artist, album, track, and disc fields with embedded APIC JPEG or PNG front cover",
-    "display": "UTF-8 metadata is preserved; some Japanese characters may not display correctly"
+    "display": "UTF-8 metadata is preserved; Alpha 6 substantially expands practical Japanese and mixed-script glyph coverage"
   },
   "artwork": {
-    "formats": ["JPEG", "PNG"],
-    "behavior": "Under memory pressure, some embedded artwork may not load; playback is unaffected and images that cannot be displayed show No Cover",
+    "formats": [
+      "JPEG",
+      "PNG"
+    ],
+    "behavior": "Unsupported or damaged embedded artwork may fall back to No Cover without interrupting playback; same-track reselection republishes already loaded artwork correctly",
     "guidance": "Embedded JPEG or PNG; use smaller JPEG artwork as a temporary workaround when PNG or unusually large artwork does not display"
   },
   "library": {
-    "organization": ["All Songs", "Album", "Artist", "Folder", "Favorites", "Recent", "Playlists"],
+    "organization": [
+      "All Songs",
+      "Album",
+      "Artist",
+      "Folder",
+      "Favorites",
+      "Recent",
+      "Playlists"
+    ],
     "maximumTracks": 1000,
     "maximumDirectoryLevels": 12,
     "startup": "recursively scans enabled storage roots and reuses the persisted library index",
-    "persistence": ["library index", "Favorites", "Recent", "queue/session state", "artwork cache", "cassette preference", "playback settings"]
+    "persistence": [
+      "library index",
+      "Favorites",
+      "Recent",
+      "queue/session state",
+      "artwork cache",
+      "cassette preference",
+      "playback settings",
+      "EQ state and PREAMP",
+      "playback speed",
+      "Lyrics color"
+    ],
+    "sessionOnly": [
+      "spectrum palette"
+    ]
+  },
+  "spectrum": {
+    "bands": [
+      "31 Hz",
+      "63 Hz",
+      "125 Hz",
+      "250 Hz",
+      "500 Hz",
+      "1 kHz",
+      "2 kHz",
+      "4 kHz",
+      "8 kHz",
+      "16 kHz"
+    ],
+    "palettes": [
+      "Classic",
+      "Amber",
+      "Green",
+      "Monochrome",
+      "Multicolor"
+    ],
+    "behavior": "Visualizes live PCM without changing the sound",
+    "paletteMemory": "Remembered while PSPMAN remains open; resets to Classic after the application exits; independent from Cassette colors"
   },
   "controlsSource": "controls.json",
-  "about": "SELECT opens the global About overlay; any button closes it",
+  "about": "SELECT opens the global About overlay; the PSP system Back button closes it",
   "help": "Settings contains Controls and Help",
   "diagnostics": "Pause playback, return to Library, then hold TRIANGLE to open Diagnostics",
   "quit": "HOME opens the PSP system confirmation; a confirmed exit completes PSPMAN's clean shutdown path",
-  "thirdPartyNotices": ["THIRD_PARTY_NOTICES.md", "LICENSES/"]
+  "thirdPartyNotices": [
+    "THIRD_PARTY_NOTICES.md",
+    "LICENSES/"
+  ],
+  "controls": {
+    "buttonAssignment": "PSPMAN follows the PSP system Cross/Circle confirm assignment automatically; there is no PSPMAN override"
+  },
+  "eq": {
+    "bands": [
+      "31",
+      "62",
+      "125",
+      "250",
+      "500",
+      "1K",
+      "2K",
+      "4K",
+      "8K",
+      "16K"
+    ],
+    "customRange": "-12..+12 dB in 1 dB steps",
+    "preamp": "-12.0..0.0 dB in 0.5 dB steps",
+    "presets": [
+      "Flat",
+      "Bass",
+      "Treble",
+      "Vocal",
+      "Rock",
+      "Pop",
+      "Jazz",
+      "Classical"
+    ]
+  },
+  "lyrics": "Optional local synchronized UTF-8 .lrc sidecars beside MP3/FLAC; loaded on demand and never downloaded online",
+  "playbackSpeed": "1.0x, 1.25x, 1.5x, 1.75x, 2.0x with pitch preservation; global selection persists"
 }

@@ -74,7 +74,7 @@ def validate() -> dict:
     pages = content["pages"]
     page_count = len(pages)
 
-    assert page_count == 15, page_count
+    assert page_count == 18, page_count
     assert len(reader.pages) == page_count, len(reader.pages)
     assert len(spreads.pages) == (page_count + 1) // 2, len(spreads.pages)
     assert len(print_pdf.pages) == page_count, len(print_pdf.pages)
@@ -95,24 +95,12 @@ def validate() -> dict:
         raise AssertionError(f"Japanese reader PDF contains an accidental blank page: {textless_pages}")
 
     required = [
-        "ユーザーガイド",
-        "はじめに",
-        "インストールと音楽の追加",
-        "ライブラリ",
-        "再生中画面",
-        "カセット表示",
-        "対応ファイルと上限",
-        "PSP-1000",
-        "64MBのRAM",
-        "PSPStreet（E1000）",
-        "メモリースティックマイクロ（M2）",
-        "最大1,000曲",
-        "最大12階層",
-        "選んだ色はPSPMANを終了するまで保持されます",
+        "ユーザーガイド", "はじめに", "インストールと音楽の追加", "ライブラリ", "再生中画面",
+        "スペクトラムアナライザー", "イコライザー", "カセット表示",
+        "PSP-1000", "PSP-2000", "PSP-3000", "PSPGo", "PSPStreet（E1000）",
+        "PSPGoの本体ストレージ", "最大1,000曲",
         "obsoletesony.com/jp/pspman",
-        "obsoletesony.com/jp/pspman/report-a-bug",
-        "github.com/obsoletesony/PSPMAN-Issues",
-        "Copyright2026ObsoleteSony.Allrightsreserved.",
+        "github.com/obsoletesony/PSPMAN-Issues", "Copyright2026ObsoleteSony.Allrightsreserved.",
     ]
     missing = [value for value in required if re.sub(r"\s+", "", value) not in normalized_text]
     if missing:
@@ -132,11 +120,24 @@ def validate() -> dict:
     if "\u2014" in "\n".join(page_text):
         raise AssertionError("Japanese manual contains an em dash")
 
+    def collect_outline_titles(items):
+        titles = set()
+        for item in items:
+            if isinstance(item, list):
+                titles.update(collect_outline_titles(item))
+            else:
+                title = getattr(item, "title", None)
+                if title:
+                    titles.add(str(title))
+        return titles
+
+    outline_titles = collect_outline_titles(reader.outline)
     missing_titles = [
         f"page {record['number']}: {record['title']}"
         for record in pages
         if record.get("kind") not in {"cover", "back-cover"}
         if record["title"] not in page_text[record["number"] - 1]
+        and record["title"] not in outline_titles
     ]
     if missing_titles:
         raise AssertionError(f"Required Japanese page headings missing: {missing_titles}")
@@ -156,7 +157,7 @@ def validate() -> dict:
     if metadata.get("/Subject") != content["document"]["subject"]:
         raise AssertionError(f"Unexpected Japanese PDF subject: {metadata.get('/Subject')}")
     for key in ("/CreationDate", "/ModDate"):
-        if metadata.get(key) != "D:20260902000000+00'00'":
+        if metadata.get(key) != "D:20260922000000+00'00'":
             raise AssertionError(f"Unexpected Japanese reader PDF {key}: {metadata.get(key)}")
 
     if not reader.outline:

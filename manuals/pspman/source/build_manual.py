@@ -156,7 +156,7 @@ def cover(c, page: ManualPage, content: dict, *, back: bool = False) -> None:
     c.drawRightString(x0 + TRIM - mm(15), y0 + mm(17), document.get("coverLabel", "USER'S GUIDE"))
 
 
-TOC_PAGE_NUMBERS = (2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14)
+TOC_PAGE_NUMBERS = (2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 17)
 
 
 def table_of_contents(content: dict) -> list[tuple[str, int]]:
@@ -707,8 +707,8 @@ def main() -> None:
     if canonical_origin().lower() != content["document"]["sourceRepository"].lower():
         raise RuntimeError(f"Repository URL mismatch: {canonical_origin()}")
     page_count = len(content["pages"])
-    if page_count != 15 or [p["number"] for p in content["pages"]] != list(range(1, page_count + 1)):
-        raise RuntimeError("Manual content must define pages 1 through 15 exactly")
+    if page_count != 18 or [p["number"] for p in content["pages"]] != list(range(1, page_count + 1)):
+        raise RuntimeError("Manual content must define pages 1 through 18 exactly")
     output_stem = "PSPMAN-User-Guide-JP" if args.locale == "ja" else "PSPMAN-User-Guide"
     reader = args.output_dir / f"{output_stem}.pdf"
     spreads = args.output_dir / f"{output_stem}-Spreads.pdf"
